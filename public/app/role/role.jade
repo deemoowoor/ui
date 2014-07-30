@@ -1,0 +1,55 @@
+.row
+    .col-md-6
+        .panel.panel-default
+            .panel-heading
+                h2
+                    strong Role
+                    h2 Form
+            .panel-body
+                form.form-horizontal(name="roleForm")
+                    .form-group
+                        label.col-md-2.control-label(for="name") Name
+                        .col-md-10
+                            input.form-control(name="name", type="text", placeholder="name", ng-model="name", required)
+                    .form-group
+                        label.col-md-2.control-label Active
+                        .col-md-10
+                            .checkbox
+                                input(type="checkbox", id="active", name="active", value="active",ng-model="active")
+
+                    .form-group
+                        .col-md-10.col-md-offset-2
+                            .pull-right
+                                button.btn.btn-primary(ng-click="add()", ng-disabled="roleForm.$invalid") Submit
+                                | &nbsp;
+                                a.btn.btn-default(href="/admin/role") Cancel
+pre Filter:{{totalitems}} / {{customfiltered.length}}
+pre Total:{{totalitems}}
+.panel.panel-default
+    .panel-heading
+        h2
+            strong Table
+    .pull-right
+        form.form-inline
+            .form-group
+                input.form-control(ng-model="searchText",ng-change="filter()", placeholder="Filter")
+            .form-group.margin-left-med
+                select.form-control(ng-model="sortOrder", ng-options="item.value as item.text for item in sortOptions")
+    .panel-body
+
+
+        table.table.table-hover.table-striped.table-condesed
+            thead
+                tr
+                    th Name
+                    th Date
+                    th Delete
+            tbody
+                tr(ng-repeat="role in customfiltered = (roles| filter:searchText) | startFrom:(bigCurrentPage-1)*itemsPerPage | limitTo:itemsPerPage")
+                    td {{role.name}}
+                    td {{role.activationDate | date}}
+                    td
+                        a.btn.btn-info(href="/roles/edit-role/{{role._id}}")
+                            i.fa.fa-edit
+                        .btn.btn-danger(ng-click="delete(role)") x
+        pagination(total-items="customfiltered.length",items-per-page="itemsPerPage", page="bigCurrentPage", max-size="maxSize", class="pagination-sm", boundary-links="true", rotate="false", num-pages="numPages")

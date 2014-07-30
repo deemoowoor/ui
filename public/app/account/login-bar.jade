@@ -1,0 +1,32 @@
+.top(ng-controller="mvNavBarLoginCtrl")
+
+        ul.loginbar
+            li(ng-hide="identity.isAuthenticated()")
+                i.icon-lock
+                a Login
+                ul.lenguages.col-md-2
+                    li
+                            form
+                                .input-group.input-group-sm
+                                    span.input-group-addon
+                                        i.icon-user
+                                    input.form-control(placeholder="Email", ng-model="username")
+                                .input-group.input-group-sm
+                                    span.input-group-addon
+                                        i.icon-lock
+                                    input.form-control(type="password", placeholder="Password", ng-model="password")
+                                button.btn.btn-xs.btn-u-blue(ng-click="signin(username, password)") Login
+            li.devider(ng-show="!identity.isAuthenticated()")
+            li(ng-show="identity.isAuthenticated()")
+                i.icon-chevron-down
+                a {{identity.currentUser.firstName + " "+ identity.currentUser.lastName}}
+
+                ul.lenguages
+                    li(ng-show="identity.currentUser.isAdmin()")
+                        a(href="/admin/users") User Admin
+                    li
+                        a(href="/profile") Profile
+                    li
+                        a(href="#" ng-click="signout()") Sign Out
+            li(ng-hide="identity.isAuthenticated()")
+                a(href="/signup") Signup

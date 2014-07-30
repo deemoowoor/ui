@@ -1,0 +1,58 @@
+.row
+    .col-md-6
+        .panel.panel-default
+            .panel-heading
+                h2
+                    strong Horizontal
+                    h2 Form
+            .panel-body
+                form.form-horizontal(name="signupForm")
+                    .form-group
+                        label.col-md-2.control-label(for="username") Username
+                        .col-md-10
+                            select.form-control(name="username", ng-model="username")
+                                option(value="",selected) Select Name
+                                option(ng-repeat="user in users", value ="{{user.firstName + ' ' + user.lastName}}") {{user.firstName + ' ' + user.lastName}}
+
+
+                            // input.form-control(name="username", type="text", placeholder="username", ng-model="username", required)
+                    .form-group
+                        label.col-md-2.control-label(for="title") Title
+                        .col-md-10
+                            input.form-control(name="title", type="text", placeholder="title", ng-model="title", required)
+                    .form-group
+                        .col-md-10.col-md-offset-2
+                            .pull-right
+                                button.btn.btn-primary(ng-click="add()", ng-disabled="signupForm.$invalid") Submit Triin
+                                | &nbsp;
+                                a.btn.btn-default(href="/custom") Cancel
+
+
+.panel.panel-default
+    .panel-heading
+        h2
+            strong Table
+    .pull-right
+        form.form-inline
+            .form-group
+                input.form-control(ng-model="searchText", placeholder="Filter")
+            .form-group.margin-left-med
+                select.form-control(ng-model="sortOrder", ng-options="item.value as item.text for item in sortOptions")
+
+    .panel-body
+        table.table.table-hover.table-striped.table-condesed
+            thead
+                tr
+                    th UserName
+                    th Application Title
+                    th Publish Date
+                    th Delete
+            tbody
+                tr(ng-repeat="course in courses | filter:searchText | orderBy:sortOrder")
+                    td {{course.username}}
+                    td
+                        a(href="/custom/{{course._id}}") {{course.title}}
+                    td {{course.published | date}}
+                    td
+                        button.btn.btn-danger(ng-click="delete(course)") x
+

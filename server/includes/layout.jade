@@ -1,0 +1,29 @@
+doctype html
+html(ng-app="app")
+    head
+        Title peale.ee
+        link(href="/favicon.ico", rel="shortcut icon", type="image/x-icon")
+        <!-- Bootstrap core CSS -->
+        link(rel="stylesheet",href="/assets/css/bootstrap.min.css")
+
+        <!-- page css files -->
+        link(rel="stylesheet",href="/assets/css/font-awesome.min.css")
+        link(rel="stylesheet",href="/assets/css/jquery-ui.min.css.css")
+        link(rel="stylesheet",href="/assets/css/fullcalendar.css")
+        link(rel="stylesheet",href="/assets/css/morris.css")
+        link(rel="stylesheet",href="/assets/css/jquery-jvectormap-1.2.2.css")
+        link(rel="stylesheet",href="/assets/css/climacons-font.css.css")
+        <!-- Custom styles for this template -->
+
+        link(rel="stylesheet",href="/assets/css/style.css")
+        link(rel="stylesheet",href="/vendor/toastr/toastr.css")
+        link(rel="stylesheet", href="/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css")
+
+        link(rel="stylesheet",href="/css/site.css")
+        link(rel="stylesheet",href="/css/player.css")
+
+
+body(ng-controller="mvNavBarLoginCtrl")
+        include currentUser
+        block main-content
+        include scripts

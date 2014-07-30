@@ -1,0 +1,1 @@
+<div class="container"><select ng-model="userdrop"><option value="" selected="selected">Select Name</option><option ng-repeat="user in users" value="{{user.firstName + ' ' + user.lastName}}">{{user.firstName + ' ' + user.lastName}}</option></select><table class="table"><tr ng-repeat="user in users"><td>{{user.firstName + ' ' + user.lastName}}</td></tr></table></div>

@@ -1,0 +1,8 @@
+.container
+    select(ng-model="userdrop")
+        option(value="",selected) Select Name
+        option(ng-repeat="user in users", value ="{{user.firstName + ' ' + user.lastName}}") {{user.firstName + ' ' + user.lastName}}
+
+    table.table
+        tr(ng-repeat="user in users")
+            td {{user.firstName + ' ' + user.lastName}}

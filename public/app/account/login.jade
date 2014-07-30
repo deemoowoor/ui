@@ -1,0 +1,30 @@
+.row
+    .login-box
+        .header Logi sisse
+        form.form-horizontal.login
+            .form-group
+                .controls.row
+                    .input-group.col-sm-12
+                        input.form-control(type="text", id="username", placeholder="kasutajanimi", ng-model="username")
+                        span.input-group-addon
+                            i.fa.fa-user
+
+            .form-group
+                .controls.row
+                    .input-group.col-sm-12
+                        input.form-control(type="text", id="password", placeholder="parool",ng-model="password",ng-hide="checked")
+                        input.form-control(type="password", id="password", placeholder="Password",ng-model="password",ng-show="checked")
+                        span.input-group-addon
+                            i.fa.fa-key
+            .confirm
+                input(type="checkbox",ng-model="checked")
+                label Varja parool
+
+            .row
+                p
+                    a.btn.btn-lg.btn-primary.col-xs-12(ng-click="signin(username, password)") Logi sisse
+            .row
+                p
+                    a.btn.btn-lg.btn-default.col-xs-12(href="/signup") Registreeri
+            a.pull-left(href="recover") Unustasid parooli?
+

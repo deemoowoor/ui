@@ -1,0 +1,42 @@
+.row.inbox
+    .col-md-3
+        .panel.panel-default
+            .panel-body.inbox-menu
+
+                a.btn.btn-danger.btn-block(href="/messages/newmessage") Uus Sõnum
+
+                ul
+                    li
+                        a(href="page-inbox.html#")
+                            i.fa.fa-inbox
+                            |Inbox
+                            span.label.label-danger {{messages.length}}
+    .col-md-9
+
+        .panel.panel-default
+
+            .panel-body.message
+                p.text-center Uus Sõnum
+
+                form.form-horizontal(name="messageForm")
+
+                    .form-group
+                        label.col-sm-1.control-label(for="recepier") Kellele
+                        .col-sm-11
+                            input.form-control(name="recepier", type="text", placeholder="kellele", ng-model="recepier", required)
+                    .form-group
+                        label.col-sm-1.control-label(for="title") Pelkiri
+                        .col-sm-11
+                            input.form-control(name="title", type="text", placeholder="pealkiri", ng-model="title", required)
+
+                    .form-group
+                        label.col-sm-1.control-label(for="body") Sõnum
+                        .col-sm-11
+                            textarea.form-control(name="message", type="body", placeholder="sõnum", ng-model="body", required)
+
+                    .form-group
+                        .col-md-10.col-md-offset-2
+                            .pull-right
+                                button.btn.btn-primary(ng-click="send()", ng-disabled="messageForm.$invalid") Saada
+                                | &nbsp;
+                                a.btn.btn-default(href="/admin/role") Cancel

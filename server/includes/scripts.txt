@@ -1,0 +1,71 @@
+<!--[if !IE]>-->
+script(type="text/javascript" src="/assets/js/jquery-2.1.0.min.js")
+<!--<![endif]-->
+<!--[if IE]>
+script(type="text/javascript" src="/assets/js/jquery-1.11.0.min.js")
+<![endif]-->
+
+<!--[if !IE]>-->
+script window.jQuery || document.write("<script src='/assets/js/jquery-2.1.0.min.js'>"+"<"+"/script>");
+<!--<![endif]-->
+<!--[if IE]>
+script window.jQuery || document.write("<script src='/assets/js/jquery-1.11.0.min.js'>"+"<"+"/script>");
+<![endif]-->
+script(type="text/javascript" src="/assets/js/jquery-migrate-1.2.1.min.js")
+script(type="text/javascript" src="/assets/js/bootstrap.min.js")
+
+<!-- page scripts -->
+
+script(type="text/javascript" src="/assets/js/jquery-ui.min.js")
+script(type="text/javascript" src="/assets/js/jquery.ui.touch-punch.min.js")
+script(type="text/javascript" src="/assets/js/jquery.sparkline.min.js")
+script(type="text/javascript" src="/assets/js/fullcalendar.min.js")
+<!--[if lte IE 8]>
+script(type="text/javascript" src="/assets/js/excanvas.min.js")
+<![endif]-->
+script(type="text/javascript" src="/assets/js/jquery.flot.min.js")
+script(type="text/javascript" src="/assets/js/jquery.flot.pie.min.js")
+script(type="text/javascript" src="/assets/js/jquery.flot.stack.min.js")
+script(type="text/javascript" src="/assets/js/jquery.flot.resize.min.js")
+script(type="text/javascript" src="/assets/js/jquery.flot.time.min.js")
+script(type="text/javascript" src="/assets/js/jquery.flot.spline.min.js")
+script(type="text/javascript" src="/assets/js/jquery.autosize.min.js")
+script(type="text/javascript" src="/assets/js/jquery.placeholder.min.js")
+script(type="text/javascript" src="/assets/js/moment.min.js")
+script(type="text/javascript" src="/assets/js/daterangepicker.min.js")
+script(type="text/javascript" src="/assets/js/jquery.easy-pie-chart.min.js")
+script(type="text/javascript" src="/assets/js/jquery.dataTables.min.js")
+script(type="text/javascript" src="/assets/js/dataTables.bootstrap.min.js")
+script(type="text/javascript" src="/assets/js/raphael.min.js")
+script(type="text/javascript" src="/assets/js/morris.min.js")
+script(type="text/javascript" src="/assets/js/jquery-jvectormap-1.2.2.min.js")
+script(type="text/javascript" src="/assets/js/uncompressed/jquery-jvectormap-world-mill-en.js")
+script(type="text/javascript" src="/assets/js/uncompressed/gdp-data.js")
+script(type="text/javascript" src="/assets/js/gauge.min.js")
+
+<!-- theme scripts -->
+script(type="text/javascript" src="/assets/js/custom.min.js")
+script(type="text/javascript" src="/assets/js/core.min.js")
+<!-- inline scripts related to this page -->
+script(type="text/javascript" src="/assets/js/pages/index.js")
+
+script(type="text/javascript" src="/vendor/toastr/toastr.js")
+script(type="text/javascript" src="/vendor/angular/angular.js")
+script(type="text/javascript" src="/vendor/angular-resource/angular-resource.js")
+script(type="text/javascript" src="/vendor/angular-route/angular-route.js")
+script(type="text/javascript" src="/app/app.js")
+script(type="text/javascript" src="/app/main/mvMainCtrl.js")
+script(type="text/javascript" src="/app/account/mvNavBarLoginCtrl.js")
+script(type="text/javascript" src="/app/common/mvIdentity.js")
+script(type="text/javascript" src="/app/common/mvNotifier.js")
+script(type="text/javascript" src="/app/common/mvAuth.js")
+script(type="text/javascript" src="/app/common/mvNavigationCtrl.js")
+script(type="text/javascript" src="/app/account/mvUser.js")
+script(type="text/javascript" src="/app/account/mvSignupCtrl.js")
+script(type="text/javascript" src="/app/account/mvProfileCtrl.js")
+script(type="text/javascript" src="/app/admin/mvUserListCtrl.js")
+script(type="text/javascript" src="/app/courses/mvCourseListCtrl.js")
+script(type="text/javascript" src="/app/courses/mvCourseDetailCtrl.js")
+script(type="text/javascript" src="/app/courses/mvCachedCourses.js")
+script(type="text/javascript" src="/app/courses/mvCour.js")
+script(type="text/javascript" src="/app/courses/mvCourse.js")

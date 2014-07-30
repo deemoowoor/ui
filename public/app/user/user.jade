@@ -1,0 +1,75 @@
+.row
+    .col-md-6
+        .panel.panel-default
+            .panel-heading
+                h2
+                    strong User
+                    h2 Form
+            .panel-body
+                form.form-horizontal(name="userForm")
+                        .form-group
+                            label.col-md-3.control-label(for="email") Email
+                            .col-md-9
+                                input.form-control(name="email", type="email", placeholder="Email", ng-model="email", required)
+                        .form-group
+                            label.col-md-3.control-label(for="password") Password
+                            .col-md-9
+                                input.form-control(name="password", type="password", placeholder="Password", ng-model="password", required)
+                        .form-group
+                            label.col-md-3.control-label(for="fname") First Name
+                            .col-md-9
+                                input.form-control(name="fname", type="text", placeholder="First Name", ng-model="fname", required)
+                        .form-group
+                            label.col-md-3.control-label(for="lname") Last Name
+                            .col-md-9
+                                input.form-control(name="lname", type="text", placeholder="Last Name", ng-model="lname", required)
+                        .form-group
+                            label.col-md-3.control-label Role
+                            .col-md-9
+                                select.form-control(name="role",ng-model="role", ng-options="role.name as role.name for role in roles")
+
+                        .form-group
+                            .col-md-9.col-md-offset-3
+                                .pull-right
+                                    button.btn.btn-primary(ng-click="signup()", ng-disabled="userForm.$invalid") Submit
+                                    | &nbsp;
+                                    a.btn.btn-default(href="/users") Cancel
+.panel.panel-default
+    .panel-heading
+        h2
+            strong Table
+    .pull-right
+        form.form-inline
+            .form-group
+                input.form-control(ng-model="searchText", placeholder="Filter")
+            .form-group.margin-left-med
+                select.form-control(ng-model="sortOrder", ng-options="item.value as item.text for item in sortOptions")
+
+    .panel-body
+
+        table.table.table-hover.table-striped.table-condesed
+            thead
+                tr
+                    th Username
+                    th Email
+                    th Firstname
+                    th Lastname
+                    th Role
+                    th Status
+                    th Actions
+            tbody
+                tr(ng-repeat="user in users | filter:searchText | orderBy:sortOrder")
+                    td {{user.username}}
+                    td {{user.email}}
+                    td {{user.firstName }}
+                    td {{user.lastName}}
+                    td {{user.role}}
+                    td
+                        span.label.label-success(ng-show="user.active") Active
+                        span.label.label-default(ng-show="!user.active") Inactive
+                    td
+                        a.btn.btn-info(href="/users/edit-user/{{user._id}}")
+                            i.fa.fa-edit
+                        a.btn.btn-danger(ng-click="delete(user)")
+                            i.fa.fa-trash-o
+

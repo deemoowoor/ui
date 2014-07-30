@@ -1,0 +1,50 @@
+.row
+    .col-md-6
+        .panel.panel-default
+            .panel-heading
+                h2
+                    strong Edit
+                    h2 User
+            .panel-body
+                form.form-horizontal(name="editUserForm")
+                    .form-group
+                        label.col-md-2.control-label(for="email") Email
+                        .col-md-10
+                            input.form-control(name="email", type="text", placeholder="email", ng-model="email", required)
+
+                    .form-group
+                        label.col-md-2.control-label(for="username") Username
+                        .col-md-10
+                            input.form-control(name="username", type="text", placeholder="username", ng-model="username", required)
+                    .form-group
+                        label.col-md-2.control-label(for="firstName") First name
+                        .col-md-10
+                            input.form-control(name="firstName", type="text", placeholder="firstName", ng-model="firstName", required)
+                    .form-group
+                        label.col-md-2.control-label(for="lastName") Last name
+                        .col-md-10
+                            input.form-control(name="lastName", type="text", placeholder="lastName", ng-model="lastName", required)
+
+
+                    .form-group
+                        label.col-md-2.control-label Role {{roleSelected}}
+                        .col-md-10
+                            select.form-control(name="role",ng-model="role", ng-options="role.name as role.name for role in roles")
+
+
+                    .form-group
+                        label.col-md-2.control-label(for="password") Password
+                        .col-md-10
+                            input.form-control(name="password", type="password", placeholder="Password", ng-model="password")
+
+                    .form-group
+                        label.col-md-2.control-label Active
+                        .col-md-10
+                            .checkbox
+                                input(type="checkbox", id="active", name="active", value="active",ng-model="active")
+                    .form-group
+                        .col-md-10.col-md-offset-2
+                            .pull-right
+                                button.btn.btn-primary(ng-click="update(user)", ng-disabled="editUserForm.$invalid") Submit
+                                | &nbsp;
+                                a.btn.btn-default(href="/users") Cancel

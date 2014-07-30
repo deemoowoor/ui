@@ -1,0 +1,14 @@
+.row(ng-controller="mvNavBarLoginCtrl")
+    form.col-md-3(ng-hide="identity.isAuthenticated()")
+
+        .input-group
+            span.input-group-addon
+                i.icon-user
+            input.form-control(placeholder="Email", ng-model="username")
+        .input-group
+            span.input-group-addon
+                i.icon-lock
+            input.form-control(type="password", placeholder="Password", ng-model="password")
+        button.btn.btn-u-blue(ng-click="signin(username, password)") Login
+    div(ng-show="identity.isAuthenticated()")
+        li.dropdown-toggle

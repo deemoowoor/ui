@@ -1,0 +1,32 @@
+.row.inbox
+    .col-md-3
+        .panel.panel-default
+            .panel-body.inbox-menu
+
+                a.btn.btn-danger.btn-block(href="/messages/newmessage") Uus Sõnum
+
+                ul
+                    li
+                        a(href="/messages")
+                            i.fa.fa-inbox
+                            |Inbox
+                            span.label.label-danger {{messages.length}}
+    .col-md-9
+
+        .panel.panel-default
+
+            .panel-body.message
+                span.btn-group
+                    button.btn.btn-default
+                        span.fa.fa-mail-reply
+                span.btn-group
+                    button.btn.btn-default
+                        span.fa.fa-trash-o
+                .message-title {{message.title}}
+                .header
+                    .from
+                        span {{message.sender}}
+                    .date
+                        span.fa.fa-paperclip {{dateFormated}}
+                .content
+                    p {{message.body}}

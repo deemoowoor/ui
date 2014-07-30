@@ -1,0 +1,40 @@
+.row.inbox
+        .col-md-3
+            .panel.panel-default
+                .panel-body.inbox-menu
+
+                    a.btn.btn-danger.btn-block(href="/messages/newmessage") Uus Sõnum
+
+                    ul
+                        li
+                            a(href="/messages")
+                                i.fa.fa-inbox
+                                |Inbox
+                                span.label.label-danger {{messages.length}}
+        .col-md-9
+
+            .panel.panel-default
+
+                .panel-body
+
+
+                    ul.messages-list
+
+                        li(ng-repeat="message in messages" ng-class="getClass(message)")
+
+                                .header
+                                    span.action
+                                        input(type="checkbox", id="active", name="active", value="active",ng-model="active")
+                                        i.fa.fa-square
+                                    a.from(href="/messages/view-message/{{message._id}}") {{message.sender}}
+                                    span.date
+                                        span.fa.fa-paper-clip {{message.sentDate | date:'yyyy-MM-dd HH:mm:ss'}}
+
+                                    .title
+                                        span.action
+                                            i.fa.fa-star-o
+                                            i.fa.fa-star.bg
+                                        a(href="/messages/view-message/{{message._id}}") {{message.title}}
+
+                                    .description
+                                        a(href="/messages/view-message/{{message._id}}") {{message.body}}

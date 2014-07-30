@@ -1,0 +1,25 @@
+
+li.dropdown(ng-show="identity.isAuthenticated()")
+    a.dropdown-toggle(href="/#", data-toggle="dropdown")
+        i.fa.fa-comments-o
+        span.badge {{messages.length}}
+    ul.dropdown-menu
+        li
+            a(href="/messages")
+                i.fa.fa-comments-o
+                span Messages
+li.dropdown(ng-show="identity.isAuthenticated()")
+    a.dropdown-toggle(href="/#", data-toggle="dropdown")
+        i.fa.fa-cog
+    ul.dropdown-menu
+        li
+            a(href="/profile")
+                i.fa.fa-lock
+                span Profiili seaded
+li(ng-show="identity.isAuthenticated()")
+    a(href="/#",ng-click="signout()")
+        i.fa.fa-unlock
+li(ng-hide="identity.isAuthenticated()")
+    a(href="/login")
+        i.fa.fa-lock
+

@@ -1,0 +1,41 @@
+
+.row
+    .col-md-6
+        .panel.panel-default
+            .panel-heading
+                h2
+                    strong Edit
+                    h2 Role
+            .panel-body
+                form.form-horizontal(name="editRoleForm")
+                    .form-group
+                        label.col-md-2.control-label(for="name") Name
+                        .col-md-10
+                            input.form-control(name="name", type="text", placeholder="name", ng-model="name", required)
+
+                    .form-group
+                        label.col-md-2.control-label(for="date01") Date
+                        .col-md-10
+                            .input-group.date
+                                span.input-group-addon
+                                    i.fa.fa-calendar
+                                input.form-control.date-picker( type="text",ng-model="activationDate", required)(id="datetimepicker1",data-date-format="YYYY-MM-DD HH:mm:ss")
+
+                    .form-group
+                        label.col-md-2.control-label Active
+                        .col-md-10
+                            .checkbox
+                                input(type="checkbox", id="active", name="active", value="active",ng-model="active")
+
+
+
+                    .form-group
+                        .col-md-10.col-md-offset-2
+                            .pull-right
+                                button.btn.btn-primary(ng-click="update(role)", ng-disabled="editRoleForm.$invalid") Submit
+                                | &nbsp;
+                                a.btn.btn-default(href="/roles") Cancel
+
+
+
+            script $(function() {$('#datetimepicker1').datetimepicker({language: 'ru', icons: {time: "fa fa-clock-o",date: "fa fa-calendar",up: "fa fa-arrow-up",down: "fa fa-arrow-down" }})})

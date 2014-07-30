@@ -1,0 +1,110 @@
+.row
+    .col-md-11
+        .panel.panel-default
+            .panel-heading
+                h2
+                    strong Võtan
+                    h2 peale
+            .panel-body
+                form.form-horizontal(name="takingForm")
+                    .form-group
+                        label.col-md-2.control-label
+                        .col-md-1 Päev
+                        .col-md-1 Kuu
+                        .col-md-2 Aasta
+                        .col-md-1 Tund
+                        .col-md-1 Minut
+
+
+                    .form-group
+                        label.col-md-3.control-label(for="startTime") Väljumise
+                        .col-md-1
+                            select.form-control(name="day",ng-model="day", ng-options="day as day for day in days")
+                        .col-md-1
+                            select.form-control(name="month",ng-model="month", ng-options="month as month for month in months")
+                        .col-md-2
+                            select.form-control(name="year",ng-model="year", ng-options="year as year for year in years")
+                        .col-md-1
+                            select.form-control(name="hour",ng-model="hour", ng-options="hour as hour for hour in hours")
+                        .col-md-1
+                            select.form-control(name="minute",ng-model="minute", ng-options="minute as minute for minute in minutes")
+
+
+                    .form-group
+                        label.col-md-3.control-label(for="aDirection") Alguspunkt
+                        .col-md-6
+                            input.form-control(name="aDirection", type="aDirection", placeholder="Alguspunkt", ng-model="aDirection", required)
+                    .form-group
+                        label.col-md-3.control-label(for="bDirection") Lõpp-punkt
+                        .col-md-6
+                            input.form-control(name="bDirection", type="text", placeholder="Lõpp-punkt", ng-model="bDirection", required)
+                    .form-group
+                        label.col-md-3.control-label(for="seatPlace") Vabukohti
+                        .col-md-6
+                            select.form-control(name="seatPlace",ng-model="seatPlace", ng-options="seatPlace as seatPlace for seatPlace in seatPlaces")
+                    .form-group
+                        label.col-md-3.control-label(for="postWeight") Pagasi kaal
+                        .col-md-6
+                            input.form-control(name="postWeight", type="text", placeholder="Pagasi kaal", ng-model="postWeight", required)
+                    .form-group
+                        label.col-md-3.control-label(for="postLenght") Pagasi pikkus
+                        .col-md-6
+                            input.form-control(name="postLenght", type="text", placeholder="Pagasi pikkus", ng-model="postLenght", required)
+                    .form-group
+                        label.col-md-3.control-label(for="postWidth") Pagasi laius
+                        .col-md-6
+                            input.form-control(name="postWidth", type="text", placeholder="Pagasi laius", ng-model="postWidth", required)
+                    .form-group
+                        label.col-md-3.control-label(for="postHight") Pagasi kõrgus
+                        .col-md-6
+                            input.form-control(name="postHight", type="text", placeholder="Pagasi kõrgus", ng-model="postHight", required)
+                    .form-group
+                        label.col-md-3.control-label(for="duration") Reisipikkus*
+                        .col-md-6
+                            input.form-control(name="duration", type="text", placeholder="Ligikaudne reisi pikkus", ng-model="duration", required)
+
+                    .form-group
+                        .col-md-6.col-md-offset-3
+                            .pull-right
+                                button.btn.btn-primary(ng-click="add()", ng-disabled="takingForm.$invalid") Submit
+                                | &nbsp;
+                                a.btn.btn-default(href="/users") Cancel
+
+.panel.panel-default
+    .panel-heading
+        h2
+            strong Table
+    .pull-right
+        form.form-inline
+            .form-group
+                input.form-control(ng-model="searchText", placeholder="Filter")
+            .form-group.margin-left-med
+                select.form-control(ng-model="sortOrder", ng-options="item.value as item.text for item in sortOptions")
+
+    .panel-body
+
+        table.table.table-hover.table-striped.table-condesed
+            thead
+                tr
+                    th Username
+                    th Väljun
+                    th Alguspunkt
+                    th Lõpp-punkt
+                    th Vabukohti
+                    th Actions
+            tbody
+                tr(ng-repeat="taking in takings | filter:searchText | orderBy:sortOrder")
+                    td {{taking.username}}
+                    td {{taking.startTime | date:'yyyy-MM-dd HH:mm:ss'}}
+                    td {{taking.aDirection}}
+                    td {{taking.bDirection}}
+                    td {{taking.seatPlace}}
+                    td
+                        span.label.label-success(ng-show="user.active") Active
+                        span.label.label-default(ng-show="!user.active") Inactive
+                    td
+                        a.btn.btn-info(href="/users/edit-user/{{user._id}}")
+                            i.fa.fa-edit
+                        a.btn.btn-danger(ng-click="delete(user)")
+                            i.fa.fa-trash-o
+
