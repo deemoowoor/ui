@@ -15,6 +15,8 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser) 
             return dfd.promise;
         },
 
+
+
         createUser: function(newUserData) {
             var newUser = new mvUser(newUserData);
             var dfd = $q.defer();
@@ -55,6 +57,7 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser) 
                 return true;
             } else {
                 return $q.reject('not authorized');
+                $location.path('/login')
             }
 
         },

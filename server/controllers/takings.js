@@ -1,9 +1,18 @@
 var Taking = require('mongoose').model('Taking');
 
 exports.getTakings = function(req, res) {
-    Taking.find(req.query).exec(function(err, collection) {
+    var start=new Date();
+    var customQuery=req.query;
+   // console.log(req.query.time)
+    if(req.query.time)
+    {
+        customQuery={startTime:  {$gte:start}};
+    }
+
+    Taking.find(customQuery).exec(function(err, collection) {
         res.send(collection);
-        console.log(req.query.username);
+        //  console.log(req.query);
+       // console.log({startTime:  {$gte:start}});
     })
 };
 exports.createTaking = function(req, res){
@@ -36,3 +45,23 @@ exports.updateTaking = function(req, res) {
 
     })
 };
+
+exports.updateToRated = function(req, res) {
+    var takingUpdates = req.body;
+
+//    console.log('uuendus info' +takingUpdates);
+  //  console.log('connection : %j', takingUpdates);
+
+
+    Taking.findOneAndUpdate({'registredPassengers._id':req.body._id,'registredPassengers.rated':false},{
+        $set:{'registredPassengers.$.rated': true}}).exec(function(err, course) {
+        res.send(course);
+        console.log('see on id'+ req.body._id);
+        console.log('connection : %j', course);
+        console.log('connection : %j', err);
+    })
+
+
+};
+
+

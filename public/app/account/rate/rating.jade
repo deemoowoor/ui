@@ -1,0 +1,66 @@
+.row(ng-hide="visor")
+    .col-md-11
+        .panel.panel-default
+            .panel-heading
+                h2
+                    strong Lisa
+                    h2 kommentaar
+            .panel-body
+                form.form-horizontal(name="ratingForm")
+
+                    .form-group
+                        label.col-md-3.control-label(for="startTime") Hinnang
+                        .col-md-2
+                            button.btn.btn-success(value="success",ng-click="myVar='has-success'")
+                                i.fa.fa-smile-o  Positiivne
+                        .col-md-2
+                            button.btn.btn-warning(value="warning",ng-click="myVar='has-warning'")
+                                i.fa.fa-meh-o  Neutraalne
+                        .col-md-2
+                            button.btn.btn-danger(value="warning",ng-click="myVar='has-error'")
+                                i.fa.fa-frown-o Negatiivne
+
+                    .form-group.has-success(ng-class="myVar").has-
+                        label.col-md-3.control-label(for="comment") Kommentar
+                        .col-md-6
+                            input.form-control(name="comment", type="comment", placeholder="Kommentaar", ng-model="comment", required)
+
+
+                    .form-group
+                        .col-md-6.col-md-offset-3
+                            .pull-right
+                                button.btn.btn-primary(ng-click="add(myVar)", ng-disabled="ratingForm.$invalid") Lisa
+                                | &nbsp;
+                                a.btn.btn-default(href="/rating") Loobu
+
+.panel.panel-default
+    .panel-heading
+        h2
+            strong Komentaarid/ {{taking[0].registredPassengers.length}} - {{myid}} - {{visor}}
+    .pull-right
+        form.form-inline
+            .form-group
+                input.form-control(ng-model="searchText", placeholder="Filter")
+            .form-group.margin-left-med
+                select.form-control(ng-model="sortOrder", ng-options="item.value as item.text for item in sortOptions")
+
+    .panel-body
+        table.table.table-hover.table-striped.table-condesed
+            thead
+                tr
+
+                    th.sorting(ng-click="predicate = 'username'; reverse=!reverse") Kasutaja
+
+                    th Kommentaar
+                    th.sorting(ng-click="predicate = 'ratedDate'; reverse=!reverse") Väljumine Kuupäev
+
+            tbody
+                tr(ng-repeat="rating in ratings | orderBy:predicate:reverse")
+                    td
+                        span(ng-class="getClassLabel(rating)")
+                            i(ng-class="getClass(rating)")  {{rating.username}}
+
+
+                    td {{rating.comment}}
+                    td {{rating.ratedDate | date:'yyyy-MM-dd HH:mm:ss' }} {{rating.takingRegistredPassengerId}}
+

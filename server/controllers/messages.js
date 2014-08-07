@@ -27,6 +27,22 @@ exports.sendMessage = function(req, res){
 
         res.send(message);
         console.log(message);
+/*
+        User.findOneAndUpdate({username:message.sender},{messages: +1}).exec(function(err, user) {
+
+
+
+        })
+ */
+        User.findOne({username:message.sender}, function (err, user) {
+            user.messages = user.messages+1;
+
+            user.save(function (err) {
+                if(err) {
+                    console.error('ERROR!');
+                }
+            });
+        });
 
     User.findOne({username:message.sender}).exec(function(err, user) {
 

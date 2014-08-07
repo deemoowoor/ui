@@ -1,0 +1,22 @@
+.row
+    .login-box
+        .header {{username}} sisesta uus partool {{idd}}
+        form.form-horizontal.login(name="recoverForm")
+            .form-group
+                .controls.row
+                    .input-group.col-sm-12
+                        input.form-control(type="text", id="password", placeholder="parool",ng-model="password",ng-hide="checked", required)
+                        input.form-control(type="password", id="password", placeholder="Password",ng-model="password",ng-show="checked", required)
+                        span.input-group-addon
+                            i.fa.fa-key
+            .confirm
+                input(type="checkbox",ng-model="checked")
+                label Varja parool
+
+            .row
+                p
+                    a.btn.btn-lg.btn-primary.col-xs-12(ng-click="update()",ng-disabled="recoverForm.$invalid") Muuda
+            .row
+                p
+                    a.btn.btn-lg.btn-default.col-xs-12(href="/login") Katkesta
+

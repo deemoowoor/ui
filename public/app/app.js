@@ -17,10 +17,13 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
         .when('/wish', { templateUrl: '/partials/wish/wish',
             controller: 'mvWishCtrl'
         })
+
         .when('/taking', { templateUrl: '/partials/taking/taking',
             controller: 'mvTakingCtrl'
         })
         .when('/taking/:id', { templateUrl: '/partials/taking/taking-detail',
+            controller: 'mvTakingDetailCtrl', resolve: routeRoleChecks.user})
+        .when('/taking/edit/:id', { templateUrl: '/partials/taking/edit-taking',
             controller: 'mvTakingDetailCtrl'})
         .when('/messages', { templateUrl: '/partials/message/message',
             controller: 'mvMessageCtrl'
@@ -64,6 +67,13 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
         .when('/login', { templateUrl: '/partials/account/login',
             controller: 'mvNavBarLoginCtrl'
         })
+
+        .when('/rating/:name/:id', { templateUrl: '/partials/account/rate/rating',
+            controller: 'mvRatingCtrl'
+        })
+        .when('/rating/:name', { templateUrl: '/partials/account/rate/rating',
+            controller: 'mvRatingCtrl'
+        })
         .when('/contact', { templateUrl: '/partials/contact/contact',
             controller: 'mvContactCtrl'
         })
@@ -71,16 +81,24 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
             controller: 'mvVertifyCtrl'
         })
         .when('/recover', { templateUrl: '/partials/account/recover',
-            controller: 'mvVertifyCtrl'
+            controller: 'mvRecoverCtrl'
+        })
+        .when('/recover/:id', { templateUrl: '/partials/account/recover-page',
+            controller: 'mvRecoverCtrl'
+        })
+
+        .when('/rate/:id', { templateUrl: '/partials/account/rate/rate',
+            controller: 'mvRateCtrl'
         })
 
 
 });
 
-angular.module('app').run(function($rootScope, $location) {
+angular.module('app').run(function($rootScope, $location,mvNotifier) {
     $rootScope.$on('$routeChangeError', function(evt, current, previous, rejection) {
         if(rejection === 'not authorized') {
-            $location.path('/');
+            $location.path('/login');
+            mvNotifier.notify('Pead olema sisselogitud');
         }
     })
 })

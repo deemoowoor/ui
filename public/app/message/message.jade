@@ -10,7 +10,7 @@
                             a(href="/messages")
                                 i.fa.fa-inbox
                                 |Inbox
-                                span.label.label-danger {{messages.length}}
+                                span.label.label-danger {{counti}}
         .col-md-9
 
             .panel.panel-default
@@ -37,4 +37,4 @@
                                         a(href="/messages/view-message/{{message._id}}") {{message.title}}
 
                                     .description
-                                        a(href="/messages/view-message/{{message._id}}") {{message.body}}
+                                        a(href="/messages/view-message/{{message._id}}") {{message.body}} {{message.isReaded}}

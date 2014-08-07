@@ -3,7 +3,7 @@
         .panel.panel-default
             .panel-heading
                 h2
-                    strong Andmed
+                    strong Table
             .panel-body
             form.form-horizontal(name="editUserForm")
                 table.table
@@ -27,23 +27,30 @@
                         tr
                             td Vabukohti
                             td {{seatPlace}} /{{registredPassengers.length}}
-                        tr(ng-show="isOwner()")
+                        tr
                             td nimed
+
                             td
-                                p(ng-repeat="pass in registredPassengers") {{pass.name }}  {{pass.date | date:'yyyy-MM-dd HH:mm:ss'}}
+                                p(ng-repeat="pass in registredPassengers")
+                                    a.btn-xs.btn-success(href="/rating/{{pass.name}}/{{pass._id}}",ng-hide="'{{pass.rated}}'")
+                                        i.fa.fa-star-o
+                                    a.btn-xs.btn-warning(href="/rating/{{pass.name}}/{{pass._id}}",ng-show="'{{pass.rated}}'")
+                                        i.fa.fa-check-square-o
+                                    span    {{pass.name}}  {{pass.date | date:'yyyy-MM-dd HH:mm:ss'}}
+
 
 
                         tr
                             td Lisainfo
                             td {{info}}
-                        tr(ng-hide="isOwner()")
+                        tr
                             td Lisa
                             td
                                 textarea.form-control(name="extra", type="text", placeholder="Lisa", ng-model="extra")
                         tr
                             td
                             td
-                                button.btn.btn-primary(ng-click="update(taking)", ng-disabled="editUserForm.$invalid",ng-hide="isOwner()") Kinnita
+                                button.btn.btn-primary(ng-click="update(taking)", ng-disabled="editUserForm.$invalid") Kinnita
                                 | &nbsp;
-                                a.btn.btn-default(href="/") Tagasi
+                                a.btn.btn-default(href="/") Katkesta
 

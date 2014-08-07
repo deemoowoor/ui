@@ -1,7 +1,8 @@
-angular.module('app').controller('mvMessageCtrl', function($scope,mvIdentity,mvNotifier,mvMessageCUD,mvMessage, $location)
+angular.module('app').controller('mvMessageCtrl', function($scope,mvNotifier,mvMessageCUD,mvMessage,mvIdentity, $location)
 {
-   $scope.messages=mvMessage.query({'recepier': mvIdentity.currentUser.username });
-
+  // $scope.messages=mvMessage.query({'recepier': mvIdentity.currentUser.username });
+    $scope.messages=mvIdentity.messages;
+    $scope.counti= mvIdentity.messages.isReaded.length;
     $scope.getClass = function (message) {
         return {
             unread: message.isReaded == false

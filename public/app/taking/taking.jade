@@ -91,8 +91,8 @@
                         span.label.label-success(ng-show="user.active") Active
                         span.label.label-default(ng-show="!user.active") Inactive
                     td
-                        a.btn.btn-info(href="/users/edit-user/{{user._id}}")
+                        a.btn.btn-info(href="/taking/edit/{{taking._id}}")
                             i.fa.fa-edit
-                        a.btn.btn-danger(ng-click="delete(user)")
+                        a.btn.btn-danger(ng-click="delete(taking)")
                             i.fa.fa-trash-o
 

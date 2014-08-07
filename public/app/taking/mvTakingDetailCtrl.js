@@ -2,6 +2,7 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope, mvTaking,
     mvTaking.query().$promise.then(function(collection) {
         collection.forEach(function(taking) {
             if(taking._id === $routeParams.id) {
+                $scope.id=taking._id;
                 $scope.username=taking.username;
                 $scope.startTime=taking.startTime;
                 $scope.aDirection=taking.aDirection;
@@ -14,8 +15,14 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope, mvTaking,
             }
         })
     });
+    $scope.isOwner=function(){
+        if(mvIdentity.currentUser.username===$scope.username){
+            return true
+        }
+        return false
+    };
     $scope.update=function(taking){
-        $scope.registredPassengers.push({name: mvIdentity.currentUser.username, date:new Date()})
+        $scope.registredPassengers.push({name: mvIdentity.currentUser.username, date:new Date(),rated:false})
         var newTakingData ={
 
             seatPlace: $scope.seatPlace-1,
@@ -37,7 +44,7 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope, mvTaking,
                 recepier:taking.username,
                 sentDate:new Date(),
                 getDate:'',
-                isReaded:false,
+                isReaded:true,
                 responses:[]
             };
 

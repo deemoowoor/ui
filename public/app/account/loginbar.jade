@@ -1,13 +1,25 @@
+li.dropdown(ng-show="identity.isAuthenticated()")
+    a.dropdown-toggle.avatar(href="/#", data-toggle="dropdown")
+        img(src="../../avatar/vladimir.jpg")
 
+    ul.dropdown-menu
+        li.dropdown-menu-header.text-center
+            strong {{identity.currentUser.firstName}}
+        li
+            a(href="/rating/{{identity.currentUser.username}}")
+                i.fa.fa-tasks
+                span Reiting
+                span.label.label-success {{identity.currentUser.rating}}
 li.dropdown(ng-show="identity.isAuthenticated()")
     a.dropdown-toggle(href="/#", data-toggle="dropdown")
         i.fa.fa-comments-o
-        span.badge {{messages.length}}
+        span.badge {{identity.messages.length}}
     ul.dropdown-menu
         li
             a(href="/messages")
                 i.fa.fa-comments-o
                 span Messages
+
 li.dropdown(ng-show="identity.isAuthenticated()")
     a.dropdown-toggle(href="/#", data-toggle="dropdown")
         i.fa.fa-cog

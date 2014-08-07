@@ -1,16 +1,11 @@
-angular.module('app').controller('mvNavBarLoginCtrl',function($scope,$window, $http, mvNotifier, mvAuth,$location,mvMessage,mvIdentity){
+angular.module('app').controller('mvNavBarLoginCtrl',function($scope,$window, $http, mvNotifier, mvAuth,$location,mvRating,mvMessage,mvIdentity){
     $scope.identity=mvIdentity;
-console.log(mvIdentity);
-    if(mvIdentity.isAuthenticated())
-    {  console.log($scope.identity.currentUser.username);
-        $scope.messages=mvMessage.query({'recepier': $scope.identity.currentUser.username });
-          }
-    else
-    {
-        console.log('jah');
-       // $scope.messages=mvMessage.query({'recepier': $scope.identity.currentUser.username });
 
-    }
+    $scope.messages=mvIdentity.messages;
+
+
+
+    console.log("identiti "+JSON.stringify(mvIdentity));
 
 
     $scope.signin=function(username,password) {

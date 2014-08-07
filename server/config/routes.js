@@ -7,6 +7,8 @@ var auth = require('./auth'),
     calls = require('../controllers/calls'),
     roles = require('../controllers/roles'),
     groups = require('../controllers/groups'),
+    recovers = require('../controllers/recovers'),
+    ratings = require('../controllers/ratings'),
     mongoose = require('mongoose'),
     User = mongoose.model('User');
 
@@ -40,7 +42,11 @@ module.exports = function(app) {
     app.put('/api/usersbyadmin', users.updateUserByAdmin);
     app.put('/api/vertify', users.vertify);
     app.get('/api/vertify', users.getUsers);
-
+    //app.get('/api/recover', recovers.getRecover);
+    app.get('/api/recover/:id', recovers.getRecoverById);
+    app.post('/api/recover', recovers.createRecover);
+    app.post('/api/recoverpwd', recovers.updatePassword);
+    app.post('/api/recoverdata', recovers.getRecoverData);
     app.post('/api/users/delete', users.deleteUser);
 
 
@@ -49,6 +55,10 @@ module.exports = function(app) {
     app.post('/api/custom', courses.createCourse);
     app.post('/api/custom/delete', courses.deleteCourse);
 
+
+    app.get('/api/ratings', auth.requiresRole('agent'), ratings.getRatings);
+    app.post('/api/ratings', ratings.addComment);
+    app.post('/api/ratingtrue', takings.updateToRated);
     app.get('/partials/*', function(req, res) {
         res.render('../../public/app/' + req.params);
     });

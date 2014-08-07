@@ -1,12 +1,12 @@
 
 
 
-button.btn.btn-primary(ng-click="testTransport()") Test
+//button.btn.btn-primary(ng-click="testTransport()") Test
 
 .panel.panel-default
     .panel-heading
         h2
-            strong Table
+            strong Pealesaamise võimalused
     .pull-right
         form.form-inline
             .form-group
@@ -37,5 +37,5 @@ button.btn.btn-primary(ng-click="testTransport()") Test
                         td {{transport.duration}}
 
 
-        pagination(total-items="customfiltered.length",items-per-page="itemsPerPage", page="bigCurrentPage", max-size="maxSize", class="pagination-sm", boundary-links="true", rotate="false", num-pages="numPages")
+        pagination(total-items="customfiltered.length",items-per-page="itemsPerPage", page="bigCurrentPage", max-size="maxSize", class="pagination-sm", boundary-links="true", rotate="false", num-pages="numPages",first-text="Esimene",last-text="Viimane",previous-text="Eelmine",next-text="Järgmine")
 

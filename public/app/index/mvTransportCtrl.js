@@ -23,7 +23,7 @@ angular.module('app').controller('mvTransportCtrl', function($scope, $filter,mvT
         var HH=Math.floor(Math.random() * 23) + 1;
         var MM=Math.floor(Math.random() * 59) + 1;
         var SS=Math.floor(Math.random() * 59) + 1;
-        var date='2013-'+mm+'-'+dd+' '+HH+':'+MM+':'+SS+''
+        var date='2014-'+mm+'-'+dd+' '+HH+':'+MM+':'+SS+''
         mvNotifier.notify(date);
         var newTransportData = {
             username:"Vladimir Rõkovanov",
@@ -56,11 +56,11 @@ angular.module('app').controller('mvTransportCtrl', function($scope, $filter,mvT
     };
 
 
-
+    var start=new Date();
     $scope.maxSize = 5;
     $scope.bigCurrentPage = 1;
     $scope.itemsPerPage=10;
-    $scope.transports = mvTaking.query(function(){
+    $scope.transports = mvTaking.query({time: true },function(){
         $scope.totalitems=$scope.transports.length;
 
     });

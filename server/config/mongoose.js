@@ -7,6 +7,8 @@ callModel = require('../models/Call'),
     roleModel = require('../models/Role'),
 groupModel=require('../models/Group');
 messageModel=require('../models/Message');
+recoverModel=require('../models/Recover');
+ratingModel=require('../models/Rating');
 module.exports = function(config) {
     mongoose.connect(config.db);
     var db = mongoose.connection;
@@ -24,5 +26,7 @@ module.exports = function(config) {
     transportModel.createDefaultTransports();
     takingModel.createDefaultTakings();
     messageModel.createDefaultMessages();
+    recoverModel.createDefaultRecovers();
+    ratingModel.createDefaultRatings();
 
 };
