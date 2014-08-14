@@ -5,18 +5,18 @@ angular.module('app').controller('mvNavBarLoginCtrl',function($scope,$window, $h
 
 
 
-    console.log("identiti "+JSON.stringify(mvIdentity));
+   // console.log("identiti "+JSON.stringify(mvIdentity));
 
 
     $scope.signin=function(username,password) {
         mvAuth.authenticateUser(username, password).then(function(success){
             if(success){
-                mvNotifier.notify('You have successfully signed in!');
+                mvNotifier.notify('Sisselogimine õnnestus!');
 
                 $location.path('/');
             }else
             {
-                mvNotifier.notify('You failed to login');
+                mvNotifier.notify('Sisselogimine ebaõnnestus!');
             }
         });
     }
@@ -24,7 +24,7 @@ angular.module('app').controller('mvNavBarLoginCtrl',function($scope,$window, $h
         mvAuth.logoutUser().then(function(){
             $scope.username="";
             $scope.password="";
-            mvNotifier.notify('You have successfully signed out');
+            mvNotifier.notify('Logisite välja!');
             $location.path('/');
         })
     }

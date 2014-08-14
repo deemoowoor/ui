@@ -38,8 +38,8 @@ exports.updateTaking = function(req, res) {
 
 
     Taking.findOneAndUpdate({_id:req.body._id},{
-        seatPlace:takingUpdates.seatPlace,
-        registredPassengers: takingUpdates.registredPassengers}).exec(function(err, course) {
+        seatCount:takingUpdates.seatCount,
+        registredPassengers: takingUpdates.registredPassengers,ended:takingUpdates.ended,canceled:takingUpdates.canceled}).exec(function(err, course) {
         res.send(course);
 
 
@@ -55,6 +55,24 @@ exports.updateToRated = function(req, res) {
 
     Taking.findOneAndUpdate({'registredPassengers._id':req.body._id,'registredPassengers.rated':false},{
         $set:{'registredPassengers.$.rated': true}}).exec(function(err, course) {
+        res.send(course);
+        console.log('see on id'+ req.body._id);
+        console.log('connection : %j', course);
+        console.log('connection : %j', err);
+    })
+
+
+};
+
+exports.cancel = function(req, res) {
+    var takingUpdates = req.body;
+
+//    console.log('uuendus info' +takingUpdates);
+    //  console.log('connection : %j', takingUpdates);
+
+
+    Taking.findOneAndUpdate({'registredPassengers._id':req.body._id},{
+        $set:{'registredPassengers.$.canceledByPassenger': true,'seatCount': req.body.seatCount}}).exec(function(err, course) {
         res.send(course);
         console.log('see on id'+ req.body._id);
         console.log('connection : %j', course);

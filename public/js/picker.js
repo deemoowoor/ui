@@ -1,3 +1,3 @@
 $(document).ready(function(){
-    $('.date-picker').datepicker();
+    $('.datetimepicker1').datetimepicker();
 });

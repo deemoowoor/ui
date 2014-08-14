@@ -9,6 +9,7 @@ groupModel=require('../models/Group');
 messageModel=require('../models/Message');
 recoverModel=require('../models/Recover');
 ratingModel=require('../models/Rating');
+wishModel=require('../models/Wish');
 module.exports = function(config) {
     mongoose.connect(config.db);
     var db = mongoose.connection;
@@ -28,5 +29,6 @@ module.exports = function(config) {
     messageModel.createDefaultMessages();
     recoverModel.createDefaultRecovers();
     ratingModel.createDefaultRatings();
+    wishModel.createDefaultWishes();
 
 };

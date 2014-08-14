@@ -36,13 +36,11 @@
 .panel.panel-default
     .panel-heading
         h2
-            strong Komentaarid/ {{taking[0].registredPassengers.length}} - {{myid}} - {{visor}}
+            strong Komentaarid
     .pull-right
         form.form-inline
-            .form-group
-                input.form-control(ng-model="searchText", placeholder="Filter")
-            .form-group.margin-left-med
-                select.form-control(ng-model="sortOrder", ng-options="item.value as item.text for item in sortOptions")
+
+
 
     .panel-body
         table.table.table-hover.table-striped.table-condesed
@@ -52,7 +50,7 @@
                     th.sorting(ng-click="predicate = 'username'; reverse=!reverse") Kasutaja
 
                     th Kommentaar
-                    th.sorting(ng-click="predicate = 'ratedDate'; reverse=!reverse") Väljumine Kuupäev
+                    th.sorting(ng-click="predicate = 'ratedDate'; reverse=!reverse") Kuupäev
 
             tbody
                 tr(ng-repeat="rating in ratings | orderBy:predicate:reverse")
@@ -62,5 +60,5 @@
 
 
                     td {{rating.comment}}
-                    td {{rating.ratedDate | date:'yyyy-MM-dd HH:mm:ss' }} {{rating.takingRegistredPassengerId}}
+                    td {{rating.ratedDate | date:'yyyy-MM-dd HH:mm:ss' }}
 

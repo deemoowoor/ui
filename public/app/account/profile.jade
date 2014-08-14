@@ -4,12 +4,19 @@
     .col-md-8
         .panel.panel-blue
             .panel-heading
-                h3.panel-title Profiili Vorm
+                h3.panel-title Profiil
                     i.icon-tasks
             .panel-body
                 form.form-horizontal(name="profileForm")
                     fieldset
                         legend Muuda Andmed
+                        .form-group
+                            label.col-md-2.control-label(for="img") img
+                            .col-md-10
+
+                                input(type="file" on-change="readFile()")
+                                input(type="text" ng-model="imageSrc")
+                                span {{imageSrc}}
                         .form-group
                             label.col-md-2.control-label(for="email") Email
                             .col-md-10
@@ -34,6 +41,6 @@
                         .form-group
                             .col-md-10.col-md-offset-2
                                 .pull-right
-                                    button.btn.btn-primary(ng-click="update()", ng-disabled="signupForm.$invalid") Submit
+                                    button.btn.btn-primary(ng-click="update()", ng-disabled="signupForm.$invalid") Salvesta
                                     | &nbsp;
-                                    a.btn.btn-default(href="/") Cancel
+                                    a.btn.btn-default(href="/") Loobu

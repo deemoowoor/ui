@@ -8,7 +8,7 @@
             .panel-body
                 form.form-horizontal(name="takingForm")
                     .form-group
-                        label.col-md-2.control-label
+                        label.col-md-3.control-label
                         .col-md-1 Päev
                         .col-md-1 Kuu
                         .col-md-2 Aasta
@@ -33,25 +33,19 @@
                     .form-group
                         label.col-md-3.control-label(for="aDirection") Lähtekoht
                         .col-md-6
-                            input.form-control(name="aDirection", type="aDirection", placeholder="Alguspunkt", ng-model="aDirection", required)
+                            input.form-control(name="aDirection", type="aDirection", placeholder="Alguspunkt", ng-model="aDirection",ng-maxlength="20", required)
                     .form-group
                         label.col-md-3.control-label(for="bDirection") Sihtkoht
                         .col-md-6
-                            input.form-control(name="bDirection", type="text", placeholder="Lõpp-punkt", ng-model="bDirection", required)
-                    .form-group
-                        label.col-md-3.control-label Saadetised
-                        .col-md-6
-                            .checkbox
-                                input(type="checkbox", id="active", name="active", value="active",ng-model="active")
-
-                    .form-group
+                            input.form-control(name="bDirection", type="text", placeholder="Lõpp-punkt", ng-model="bDirection",ng-maxlength="20", required)
+                     .form-group
                         label.col-md-3.control-label(for="seatPlace") Reisikaaslased
                         .col-md-6
                             select.form-control(name="seatPlace",ng-model="seatPlace", ng-options="seatPlace as seatPlace for seatPlace in seatPlaces")
                     .form-group
                         label.col-md-3.control-label(for="duration") Reisi kestvus
                         .col-md-6
-                            input.form-control(name="duration", type="text", placeholder="Ligikaudne reisi kestvus", ng-model="duration", required)
+                            input.form-control(name="duration", type="text", placeholder="Ligikaudne reisi kestvus", ng-model="duration",ng-maxlength="6", required)
 
                     .form-group
                         .col-md-6.col-md-offset-3
@@ -80,7 +74,7 @@
                     th Lähtekoht
                     th Sihtkoht
                     th Reisikaaslased
-                    th Actions
+                    th Staatus
             tbody
                 tr(ng-repeat="taking in takings | filter:searchText | orderBy:sortOrder")
                     td {{taking.startTime | date:'yyyy-MM-dd HH:mm:ss'}}
@@ -88,11 +82,13 @@
                     td {{taking.bDirection}}
                     td {{taking.seatPlace}}
                     td
-                        span.label.label-success(ng-show="user.active") Active
-                        span.label.label-default(ng-show="!user.active") Inactive
+                        span.label.label-default(ng-show="taking.canceled") Tühistatud
+                        span.label.label-success(ng-show="!taking.canceled") Atkiivne
                     td
                         a.btn.btn-info(href="/taking/edit/{{taking._id}}")
                             i.fa.fa-edit
-                        a.btn.btn-danger(ng-click="delete(taking)")
+                        a.btn.btn-danger(ng-click="forceEnd(taking)",ng-show="!taking.canceled")
+                            i.fa.fa-trash-o
+                        a.btn.btn-success(ng-click="forceStart(taking)",ng-show="taking.canceled")
                             i.fa.fa-trash-o
 

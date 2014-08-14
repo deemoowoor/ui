@@ -25,7 +25,7 @@ block main-content
             <!-- start: Main Menu -->
             .sidebar.col-md-2.col-sm-1(ng-show="identity.isAuthenticated()")
                 .nav-sidebar.title
-                    span  Main Menu
+                    span  Valikud
                 ul.nav.nav-sidebar(ng-controller="NavigationCtrl")
                     li(ng-show="identity.isAuthenticated()")
                         a(href="/", ng-class="{ active: isActive('/') }")

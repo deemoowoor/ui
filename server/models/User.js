@@ -40,16 +40,16 @@ function createDefaultUsers() {
             User.create({email:'vladimir.rokovanov@gmail.com',firstName:'Vladimir',lastName:'Rõkovanov',username:'vladimir', mobile:'53497853',salt: salt, hashed_pwd: hash,roles: ['admin','agent'], role:'admin',active:true,rating:10,messages:5});
             salt = encrypt.createSalt();
             hash = encrypt.hashPwd(salt, 'jaanus');
-            User.create({email:'jaanus@gmail.com',firstName:'Jaanus',lastName:'Reindam',username:'jaanus', salt: salt, hashed_pwd: hash,roles:[], role:'supervisor',active:true});
-            salt = encrypt.createSalt();
-            hash = encrypt.hashPwd(salt, 'allar');
-            User.create({email:'allar@gmail.com',firstName:'Allar',lastName:'Elerand',username:'allar', salt: salt, hashed_pwd: hash, role:'agent',active:false});
+            User.create({email:'vladimir.rokovanov@qmsystem.ee',firstName:'Jaanus',lastName:'Reindam',username:'jaanus', salt: salt, hashed_pwd: hash,roles:[], role:'supervisor',active:true});
             salt = encrypt.createSalt();
             hash = encrypt.hashPwd(salt, 'triin');
-            User.create({email:'triin@gmail.com',firstName:'Triin',lastName:'Kõrge',username:'triin', mobile:'51933516',salt: salt, hashed_pwd: hash,roles: ['agent'], role:'agent',active:false});
+            User.create({email:'vlarok@hotmail.com',firstName:'Triin',lastName:'Kõrge',username:'triin', mobile:'51933516',salt: salt, hashed_pwd: hash,roles: ['agent'], role:'agent',active:false});
         }
     })
+
 }
+
+
 
 
 

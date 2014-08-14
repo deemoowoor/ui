@@ -15,11 +15,14 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
         .when('/', { templateUrl: '/partials/index/index', controller: 'mvTransportCtrl',activetab: 'dashboard'})
         //.when('/', { templateUrl: '/partials/main/main', controller: 'mvMainCtrl',activetab: 'dashboard'})
         .when('/wish', { templateUrl: '/partials/wish/wish',
-            controller: 'mvWishCtrl'
+            controller: 'mvWishCtrl', resolve: routeRoleChecks.user
+        })
+        .when('/wishes', { templateUrl: '/partials/wish/wishes',
+            controller: 'mvWishesCtrl'
         })
 
         .when('/taking', { templateUrl: '/partials/taking/taking',
-            controller: 'mvTakingCtrl'
+            controller: 'mvTakingCtrl', resolve: routeRoleChecks.user
         })
         .when('/taking/:id', { templateUrl: '/partials/taking/taking-detail',
             controller: 'mvTakingDetailCtrl', resolve: routeRoleChecks.user})

@@ -61,7 +61,7 @@ exports.updateUser = function(req, res) {
 
     req.user.firstName = userUpdates.firstName;
     req.user.lastName = userUpdates.lastName;
-    req.user.username = userUpdates.username;
+    req.user.email = userUpdates.email;
     req.user.role=userUpdates.role;
     if(userUpdates.password && userUpdates.password.length > 0) {
         req.user.salt = encrypt.createSalt();
@@ -72,6 +72,7 @@ exports.updateUser = function(req, res) {
         res.send(req.user);
     });
 };
+
 
 exports.updateUserByAdmin = function(req, res) {
     var userUpdates = req.body;

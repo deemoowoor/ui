@@ -17,6 +17,7 @@ angular.module('app').filter('startFrom', function() {
 
 angular.module('app').controller('mvTransportCtrl', function($scope, $filter,mvTaking, $timeout,mvTransportCUD,mvNotifier){
 
+    $scope.kuu= moment().format('dddd');
     $scope.testTransport = function() {
         var mm=Math.floor(Math.random() * 12) + 1;
         var dd=Math.floor(Math.random() * 30) + 1;
@@ -67,7 +68,9 @@ angular.module('app').controller('mvTransportCtrl', function($scope, $filter,mvT
     $scope.predicate = '-startTime';
 
 
-
+    $scope.test=function(muut){
+        return moment(muut).format("ddd, Do MMMM YYYY HH:mm");
+    }
 
 
 });

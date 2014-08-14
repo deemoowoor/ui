@@ -1,6 +1,7 @@
 var auth = require('./auth'),
     transports = require('../controllers/transports'),
     takings = require('../controllers/takings'),
+    wishes = require('../controllers/wishes'),
     messages = require('../controllers/messages'),
     users = require('../controllers/users'),
     courses = require('../controllers/courses'),
@@ -18,6 +19,8 @@ module.exports = function(app) {
     app.post('/api/transports', transports.createTransport);
 
     app.get('/api/takings', takings.getTakings);
+    app.get('/api/wishes', wishes.getWishes);
+    app.post('/api/wishes', wishes.createWish);
     app.post('/api/takings', takings.createTaking);
     app.put('/api/takings', takings.updateTaking);
 
@@ -59,6 +62,7 @@ module.exports = function(app) {
     app.get('/api/ratings', auth.requiresRole('agent'), ratings.getRatings);
     app.post('/api/ratings', ratings.addComment);
     app.post('/api/ratingtrue', takings.updateToRated);
+    app.post('/api/cancel', takings.cancel);
     app.get('/partials/*', function(req, res) {
         res.render('../../public/app/' + req.params);
     });

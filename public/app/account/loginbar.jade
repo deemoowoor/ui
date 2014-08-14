@@ -1,6 +1,6 @@
 li.dropdown(ng-show="identity.isAuthenticated()")
     a.dropdown-toggle.avatar(href="/#", data-toggle="dropdown")
-        img(src="../../avatar/vladimir.jpg")
+        img(src="../../avatar/{{identity.currentUser.username}}.jpg")
 
     ul.dropdown-menu
         li.dropdown-menu-header.text-center
@@ -10,6 +10,11 @@ li.dropdown(ng-show="identity.isAuthenticated()")
                 i.fa.fa-tasks
                 span Reiting
                 span.label.label-success {{identity.currentUser.rating}}
+        li
+            a(href="/profile")
+                i.fa.fa-lock
+                span Profiili seaded
+
 li.dropdown(ng-show="identity.isAuthenticated()")
     a.dropdown-toggle(href="/#", data-toggle="dropdown")
         i.fa.fa-comments-o
@@ -18,16 +23,9 @@ li.dropdown(ng-show="identity.isAuthenticated()")
         li
             a(href="/messages")
                 i.fa.fa-comments-o
-                span Messages
+                span Sõnumid
 
-li.dropdown(ng-show="identity.isAuthenticated()")
-    a.dropdown-toggle(href="/#", data-toggle="dropdown")
-        i.fa.fa-cog
-    ul.dropdown-menu
-        li
-            a(href="/profile")
-                i.fa.fa-lock
-                span Profiili seaded
+
 li(ng-show="identity.isAuthenticated()")
     a(href="/#",ng-click="signout()")
         i.fa.fa-unlock

@@ -16,6 +16,12 @@ angular.module('app').factory('mvIdentity', function($window, mvUser,mvMessage) 
         isAuthenticated: function() {
             return !!this.currentUser;
         },
+        isOwner: function(user) {
+            if(currentUser.username===user){
+              return true;
+            }
+            return false;
+        },
         isAuthorized: function(role) {
             return !!this.currentUser && this.currentUser.roles.indexOf(role) > -1;
         }

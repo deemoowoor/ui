@@ -1,1 +1,99 @@
-h1 wish
+.row
+    .col-md-11
+        .panel.panel-default
+            .panel-heading
+                h2
+                    strong Tahan
+                    h2 peale
+            .panel-body
+                form.form-horizontal(name="wishForm")
+                    .form-group
+                        label.col-md-3.control-label
+                        .col-md-1 Päev
+                        .col-md-1 Kuu
+                        .col-md-2 Aasta
+                        .col-md-1 Tund
+                        .col-md-1 Minut
+                    .form-group
+                        label.col-md-3.control-label(for="startTime") Väljumise aeg
+                        .col-md-1
+                            select.form-control(name="day",ng-model="day", ng-options="day as day for day in days")
+                        .col-md-1
+                            select.form-control(name="month",ng-model="month", ng-options="month as month for month in months")
+                        .col-md-2
+                            select.form-control(name="year",ng-model="year", ng-options="year as year for year in years")
+                        .col-md-1
+                            select.form-control(name="hour",ng-model="hour", ng-options="hour as hour for hour in hours")
+                        .col-md-1
+                            select.form-control(name="minute",ng-model="minute", ng-options="minute as minute for minute in minutes")
+                    .form-group
+                        label.col-md-3.control-label(for="aDirection") Lähtekoht
+                        .col-md-6
+                            input.form-control(name="aDirection", type="aDirection", placeholder="Alguspunkt", ng-model="aDirection", required)
+                    .form-group
+                        label.col-md-3.control-label(for="bDirection") Sihtkoht
+                        .col-md-6
+                            input.form-control(name="bDirection", type="text", placeholder="Lõpp-punkt", ng-model="bDirection", required)
+                    .form-group
+                            label.col-md-3.control-label(for="info") Info
+                            .col-md-6
+                                input.form-control(name="info", type="text", placeholder="Info", ng-model="info")
+                    .form-group
+                        .col-md-6.col-md-offset-3
+                            .pull-right
+                                button.btn.btn-primary(ng-click="add()", ng-disabled="wishForm.$invalid") Lisa
+                                | &nbsp;
+                                a.btn.btn-default(href="/") Loobu
+.panel.panel-default
+    .panel-heading
+        h2
+            strong Olete peal
+
+    .panel-body
+        table.table.table-hover.table-striped.table-condesed
+            thead
+                tr
+                    th Väljumuse kuupäev
+                    th Lähtekoht
+                    th Sihtkoht
+                    th Reisikaaslased
+                    th Staatus
+            tbody
+                tr(ng-repeat="taking in takings | filter:searchText | orderBy:sortOrder")
+                    td {{taking.startTime | date:'yyyy-MM-dd HH:mm:ss'}}
+                    td {{taking.aDirection}}
+                    td {{taking.bDirection}}
+                    td {{taking.seatPlace}}
+                    td
+                        span.label.label-default(ng-show="taking.canceled") Tühistatud
+                        span.label.label-success(ng-show="!taking.canceled") Atkiivne
+                    td
+                        a.btn.btn-info(href="/taking/{{taking._id}}")
+                            i.fa.fa-edit
+                        a.btn.btn-danger(ng-click="delete(taking)")
+                            i.fa.fa-trash-o
+.panel.panel-default
+    .panel-heading
+        h2
+            strong Tahan peale
+
+    .panel-body
+        table.table.table-hover.table-striped.table-condesed
+            thead
+                tr
+                    th Väljumuse kuupäev
+                    th Lähtekoht
+                    th Sihtkoht
+                    th Info
+            tbody
+                tr(ng-repeat="wish in wishes | filter:searchText | orderBy:sortOrder")
+                    td {{wish.startTime | date:'yyyy-MM-dd HH:mm:ss'}}
+                    td {{wish.aDirection}}
+                    td {{wish.bDirection}}
+                    td {{wish.info}}
+                    td
+                        a.btn.btn-info(href="/taking/edit/{{taking._id}}")
+                            i.fa.fa-edit
+                        a.btn.btn-danger(ng-click="delete(taking)")
+                            i.fa.fa-trash-o
+                            

@@ -12,6 +12,7 @@
                         tr
                             td Võtab peale
                             td
+
                                 strong {{username}}
 
 
@@ -26,15 +27,26 @@
                             td {{bDirection}}
                         tr
                             td Vabukohti
-                            td {{seatPlace}} /{{registredPassengers.length}}
-                        tr(ng-show="isOwner()")
+                            td Vaba {{seatCount}}
+                        tr
                             td nimed
                             td
                                 p(ng-repeat="pass in registredPassengers") {{pass.name }}  {{pass.date | date:'yyyy-MM-dd HH:mm:ss'}}
+                                    btn.btn.btn-danger(ng-click="cancel(pass._id)",ng-show="isOwner(pass.name,pass.canceledByPassenger)") Tühista
+                                    span.label.label-default(ng-show="pass.canceledByPassenger") Tühistatud
+                                    a.btn-xs.btn-success(href="/rating/{{pass.name}}/{{pass._id}}",ng-hide="'{{pass.rated}}'")
+                                        i.fa.fa-star-o
+                                    a.btn-xs.btn-warning(href="/rating/{{pass.name}}/{{pass._id}}",ng-show="'{{pass.rated}}'")
+                                        i.fa.fa-check-square-o
+                                    a.btn-xs.btn-success(href="/rating/{{username}}/{{pass._id}}",ng-hide="'{{pass.ratedByPassaneger}}'")
+                                        i.fa.fa-star-o
+                                    a.btn-xs.btn-warning(href="/rating/{{username}}/{{pass._id}}",ng-show="'{{pass.ratedByPassaneger}}'")
+                                        i.fa.fa-check-square-o
+
 
 
                         tr
-                            td Lisainfo
+                            td Lisainfo {{teen}}
                             td {{info}}
                         tr(ng-hide="isOwner()")
                             td Lisa
@@ -43,7 +55,7 @@
                         tr
                             td
                             td
-                                button.btn.btn-primary(ng-click="update(taking)", ng-disabled="editUserForm.$invalid",ng-hide="isOwner()") Kinnita
+                                button.btn.btn-primary(ng-click="update(taking)", ng-disabled="editUserForm.$invalid",ng-hide="isOwnerOrFull()") Kinnita
                                 | &nbsp;
                                 a.btn.btn-default(href="/") Tagasi
 
