@@ -48,7 +48,7 @@ angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNo
         mvTakingCUD.updateTaking(clone).then(function(){
 
 
-            mvNotifier.notify('Tühistatud');
+            mvNotifier.notify('Lõpetatud');
             $scope.takings=mvTaking.query({'username': mvIdentity.currentUser.username });
 
         },function(reason){
@@ -99,14 +99,15 @@ angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNo
                 bDirection:$scope.bDirection,
                 seatPlace:$scope.seatPlace,
                 seatCount:$scope.seatPlace,
-                postWeight:$scope.postWeight,
-                postLenght:$scope.postLenght,
-                postWidth:$scope.postWidth,
-                postHight:$scope.postHight,
+             //   postWeight:$scope.postWeight,
+           //     postLenght:$scope.postLenght,
+             //   postWidth:$scope.postWidth,
+               // postHight:$scope.postHight,
                 duration:$scope.duration,
-                transportType:'Kaubik',
-                transportMark:'Ford Transit',
-                transportYear:'1983'
+                info:$scope.info,
+              //  transportType:'Kaubik',
+                //transportMark:'Ford Transit',
+                //transportYear:'1983'
             };
             mvTakingCUD.createTaking(newTakingData).then(function(responsedId) {
                 console.log(responsedId);

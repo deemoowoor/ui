@@ -20,6 +20,8 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
         .when('/wishes', { templateUrl: '/partials/wish/wishes',
             controller: 'mvWishesCtrl'
         })
+        .when('/wishes/:id', { templateUrl: '/partials/wish/wishes-detail',
+            controller: 'mvWishesDetailCtrl'})
 
         .when('/taking', { templateUrl: '/partials/taking/taking',
             controller: 'mvTakingCtrl', resolve: routeRoleChecks.user

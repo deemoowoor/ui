@@ -1,1 +1,10 @@
-<li ng-show="identity.isAuthenticated()" class="dropdown"><a href="/#" data-toggle="dropdown" class="dropdown-toggle avatar"><img src="../../avatar/{{identity.currentUser.username}}.jpg"/></a><ul class="dropdown-menu"><li class="dropdown-menu-header text-center"><strong>{{identity.currentUser.firstName}}</strong></li><li><a href="/rating/{{identity.currentUser.username}}"><i class="fa fa-tasks"></i><span>Reiting</span><span class="label label-success">{{identity.currentUser.rating}}</span></a></li><li><a href="/profile"><i class="fa fa-lock"></i><span>Profiili seaded</span></a></li></ul></li><li ng-show="identity.isAuthenticated()" class="dropdown"><a href="/#" data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-comments-o"></i><span class="badge">{{identity.messages.length}}</span></a><ul class="dropdown-menu"><li><a href="/messages"><i class="fa fa-comments-o"></i><span>Sõnumid</span></a></li></ul></li><li ng-show="identity.isAuthenticated()"><a href="/#" ng-click="signout()"><i class="fa fa-unlock"></i></a></li><li ng-hide="identity.isAuthenticated()"><a href="/login"><i class="fa fa-lock"></i></a></li>
+<li ng-show="identity.isAuthenticated()" class="dropdown"><a href="/#" data-toggle="dropdown" class="dropdown-toggle avatar"><img src="../../avatar/{{identity.currentUser.username}}.jpg"/></a><ul class="dropdown-menu"><li class="dropdown-menu-header text-center"><strong>{{identity.currentUser.firstName}}</strong></li><li><a href="/rating/{{identity.currentUser.username}}"><i class="fa fa-tasks"></i><span>Kommentaarid</span><!--span.label.label-success {{identity.currentUser.rating}}--></a></li><li><a href="/profile"><i class="fa fa-lock"></i><span>Profiili seaded</span></a></li></ul></li><!--li.dropdown(ng-show="identity.isAuthenticated()")a.dropdown-toggle(href="/#", data-toggle="dropdown")
+    i.fa.fa-comments-o
+    span.badge {{identity.messages.length}}
+ul.dropdown-menu
+    li
+        a(href="/messages")
+            i.fa.fa-comments-o
+            span Sõnumid
+            
+            --><li ng-show="identity.isAuthenticated()"><a href="/#" ng-click="signout()"><i class="fa fa-unlock"></i></a></li><li ng-hide="identity.isAuthenticated()"><a href="/login"><i class="fa fa-lock"></i></a></li>

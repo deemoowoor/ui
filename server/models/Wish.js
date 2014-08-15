@@ -5,7 +5,8 @@ var wishSchema = mongoose.Schema({
     startTime:Date,
     aDirection:String,
     bDirection:String,
-    info:String
+    info:String,
+    canceled:Boolean
     });
 
 

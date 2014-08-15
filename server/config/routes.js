@@ -11,16 +11,19 @@ var auth = require('./auth'),
     recovers = require('../controllers/recovers'),
     ratings = require('../controllers/ratings'),
     mongoose = require('mongoose'),
+    uploads = require('../controllers/uploads')
     User = mongoose.model('User');
 
 module.exports = function(app) {
 
+    app.post('/upload', uploads.uploadImg);
     app.get('/api/transports', transports.getTransports);
     app.post('/api/transports', transports.createTransport);
 
     app.get('/api/takings', takings.getTakings);
     app.get('/api/wishes', wishes.getWishes);
     app.post('/api/wishes', wishes.createWish);
+    app.put('/api/wishes', wishes.updateWish);
     app.post('/api/takings', takings.createTaking);
     app.put('/api/takings', takings.updateTaking);
 
@@ -38,13 +41,15 @@ module.exports = function(app) {
     app.get('/api/calls', calls.getCalls);
     app.post('/api/calls', calls.createCall);
    // app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
-    app.get('/api/users', users.getUsers);
+    app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
     app.post('/api/users', users.createUser);
     //app.put('/api/users', users.updateUserByAdmin);
     app.put('/api/users', users.updateUser);
     app.put('/api/usersbyadmin', users.updateUserByAdmin);
-    app.put('/api/vertify', users.vertify);
-    app.get('/api/vertify', users.getUsers);
+    app.post('/api/vertify', users.vertify);
+    //app.get('/api/vertify/:id', users.getUserById);
+
+    app.post('/api/vertifydata', users.getVertifyData);
     //app.get('/api/recover', recovers.getRecover);
     app.get('/api/recover/:id', recovers.getRecoverById);
     app.post('/api/recover', recovers.createRecover);
@@ -59,7 +64,7 @@ module.exports = function(app) {
     app.post('/api/custom/delete', courses.deleteCourse);
 
 
-    app.get('/api/ratings', auth.requiresRole('agent'), ratings.getRatings);
+    app.get('/api/ratings', ratings.getRatings);
     app.post('/api/ratings', ratings.addComment);
     app.post('/api/ratingtrue', takings.updateToRated);
     app.post('/api/cancel', takings.cancel);

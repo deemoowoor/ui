@@ -12,4 +12,5 @@ angular.module('app').controller('mvWishesCtrl', function($scope,mvIdentity,mvNo
     $scope.test=function(muut){
         return moment(muut).format("ddd, Do MMMM YYYY HH:mm");
     }
+
 })

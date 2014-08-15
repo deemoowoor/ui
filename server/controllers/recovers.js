@@ -1,5 +1,17 @@
-var Recover = require('mongoose').model('Recover');
-var User = require('mongoose').model('User'),encrypt = require('../utilities/encryption');
+var Recover = require('mongoose').model('Recover'),
+    User = require('mongoose').model('User'),encrypt = require('../utilities/encryption'),
+nodemailer = require('nodemailer');
+
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'vladimir.rokovanov@gmail.com',
+        pass: '235562690Gmail'
+    }
+});
+
+
 exports.createRecover = function(req, res){
     var recoverEmail = req.body;
     console.log(recoverEmail);
@@ -27,6 +39,13 @@ exports.createRecover = function(req, res){
 
                     }
                     res.send({reason:"on lihtlsat"});
+
+                    transporter.sendMail({
+                        from: 'vladimir.rokovanov@gmail.com',
+                        to: recoverEmail.email,
+                        subject: 'peale.ee ',
+                        text: 'parooli taastus http://localhost:3030/recover/' + recover._id
+                    });
                 })
             }
             else{

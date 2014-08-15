@@ -33,3 +33,17 @@ exports.createWish = function(req, res){
 
 
 };
+
+exports.updateWish = function(req, res) {
+    var takingUpdates = req.body;
+
+    console.log(takingUpdates);
+
+
+
+    Wish.findOneAndUpdate({_id:req.body._id},{canceled:takingUpdates.canceled}).exec(function(err, course) {
+        res.send(course);
+
+
+    })
+};

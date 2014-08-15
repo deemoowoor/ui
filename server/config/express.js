@@ -12,6 +12,7 @@ module.exports = function(app, config) {
         app.set('view engine', 'jade');
         app.use(express.logger('dev'));
         app.use(express.cookieParser());
+       // app.use(express.bodyParser({ keepExtensions: true, uploadDir: config.rootPath  + '/public/uploads' }));
         app.use(express.bodyParser());
         app.use(express.session({secret: 'multi vision unicorns'}));
         app.use(passport.initialize());

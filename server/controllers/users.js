@@ -4,10 +4,11 @@ var User = require('mongoose').model('User'),
 
 
 var transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.zone.ee',
+    port: 25,
     auth: {
-        user: 'vladimir.rokovanov@gmail.com',
-        pass: '235562690Gmail'
+        user: 'portaal@peale.ee',
+        pass: '235562690Portaal'
     }
 });
 
@@ -29,6 +30,7 @@ exports.createUser = function(req, res, next) {
             if(err.toString().indexOf('$username_1') > -1) {
                 err = new Error('See kasutajanimi on juba kasutusel');
 
+
             }
             if(err.toString().indexOf('$email_1') > -1) {
                 err = new Error('Seda emaili aadressit on korra kasutatud');
@@ -45,7 +47,7 @@ exports.createUser = function(req, res, next) {
                 from: 'vladimir.rokovanov@gmail.com',
                 to: user.email,
                 subject: 'peale.ee ',
-                text: 'aktiveerige oma http://localhost:3030/vertify/' + user._id
+                text: 'kinnitage oma email http://localhost:3030/vertify/' + user._id
             });
         })
     })
@@ -89,14 +91,13 @@ exports.updateUserByAdmin = function(req, res) {
 
 exports.vertify = function(req, res) {
     var userUpdates = req.body;
+    console.log(userUpdates)
+
+    User.findOneAndUpdate({_id:req.body._id},{active:true}).exec(function(err, user) {
 
 
+    });
 
-    User.findOneAndUpdate({_id:req.body._id},{username: userUpdates.username, firstName:userUpdates.firstName, lastName:userUpdates.lastName, active:userUpdates.active, role:userUpdates.role}).exec(function(err, user) {
-        res.send(user);
-
-
-    })
 };
 
 
@@ -110,4 +111,14 @@ exports.deleteUser = function(req, res) {
 
 
     })
+};
+
+exports.getVertifyData = function(req, res) {
+    console.log('siin peaks'+req.body.id)
+    User.findOne({_id:req.body.id}).exec(function(err, data) {
+        res.send(data);
+        console.log(data)
+    })
+
+
 };

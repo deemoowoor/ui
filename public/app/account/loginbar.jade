@@ -8,14 +8,14 @@ li.dropdown(ng-show="identity.isAuthenticated()")
         li
             a(href="/rating/{{identity.currentUser.username}}")
                 i.fa.fa-tasks
-                span Reiting
-                span.label.label-success {{identity.currentUser.rating}}
+                span Kommentaarid
+                //span.label.label-success {{identity.currentUser.rating}}
         li
             a(href="/profile")
                 i.fa.fa-lock
                 span Profiili seaded
 
-li.dropdown(ng-show="identity.isAuthenticated()")
+//li.dropdown(ng-show="identity.isAuthenticated()")
     a.dropdown-toggle(href="/#", data-toggle="dropdown")
         i.fa.fa-comments-o
         span.badge {{identity.messages.length}}

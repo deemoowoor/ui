@@ -36,16 +36,16 @@ block main-content
                             i.fa.fa-edit
                             span.hidden-sm.text Toimingud
                             span.chevron.closed
-                        ul
+                        ul(ng-show="identity.currentUser.active")
                             li
                                 a.submenu(href="/taking", ng-class="{ active: isActive('/taking') }")
-                                    i.fa.fa-user
+                                    i.fa.fa-users
                                     span.hidden-sm.text Võtan peale
                             li
                                 a.submenu(href="/wish", ng-class="{ active: isActive('/wish') }")
-                                    i.fa.fa-shield
+                                    i.fa.fa-user
                                     span.hidden-sm.text Tahan peale
-                            li
+                            //li
                                 a.submenu(href="/groups", ng-class="{ active: isActive('/groups') }")
                                     i.fa.fa-users
                                     span.hidden-sm.text Soovin saata

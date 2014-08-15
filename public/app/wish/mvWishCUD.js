@@ -15,6 +15,20 @@ angular.module('app').factory('mvWishCUD', function($http, mvIdentity, $q, mvWis
             });
 
             return dfd.promise;
+        },
+        updateWish:function(newTakingData){
+
+            var dfd = $q.defer();
+
+            newTakingData.$update().then(function() {
+
+                //  mvIdentity.currentUser = newCourse;
+                dfd.resolve();
+            }, function(response) {
+                dfd.reject(response.data.reason);
+            });
+
+            return dfd.promise;
         }
     }
 });

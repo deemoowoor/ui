@@ -1,6 +1,6 @@
 .container
 
-    .col-md-2
+
     .col-md-8
         .panel.panel-blue
             .panel-heading
@@ -10,17 +10,14 @@
                 form.form-horizontal(name="profileForm")
                     fieldset
                         legend Muuda Andmed
-                        .form-group
-                            label.col-md-2.control-label(for="img") img
-                            .col-md-10
 
-                                input(type="file" on-change="readFile()")
-                                input(type="text" ng-model="imageSrc")
-                                span {{imageSrc}}
                         .form-group
                             label.col-md-2.control-label(for="email") Email
                             .col-md-10
                                 input.form-control(name="email", type="email", placeholder="Email", ng-model="email", required)
+
+                           // .col-md-2
+                                button.btn.btn-primary(ng-click="activation()") Aktiveeri
                         .form-group
                             label.col-md-2.control-label(for="fname") First Name
                             .col-md-10
@@ -44,3 +41,37 @@
                                     button.btn.btn-primary(ng-click="update()", ng-disabled="signupForm.$invalid") Salvesta
                                     | &nbsp;
                                     a.btn.btn-default(href="/") Loobu
+        .panel.panel-blue
+            .panel-heading
+                h3.panel-title Profiili Pilt
+                    i.icon-tasks
+           // .panel-body
+                form.form-horizontal(name="picForm",method="post",action="/upload", enctype="multipart/form-data")
+                    fieldset
+
+                        .form-group
+                            label.col-md-2.control-label(for="img") img
+                            .col-md-10
+
+                                input(type="file",name="image" )
+
+                        .form-group
+                            .col-md-10.col-md-offset-2
+                                .pull-right
+                                    button.btn.btn-primary(type="submit", value="Upload") Salvesta
+               .panel-body
+                  form.form-horizontal(name="picForm")
+                     fieldset
+                         .form-group
+                                label.col-md-2.control-label(for="img") img
+                                .col-md-10
+                                    input(type="file", onchange="angular.element(this).scope().uploadFile(this.files)", ng-model="image")
+                         .form-group
+                                .col-md-10.col-md-offset-2
+                                    .pull-right
+                                        button.btn.btn-primary(ng-click="upload()") Salvesta
+
+                         img.img-responsive(src="http://localhost:3030{{fileName}}")
+                         p {{result}}
+
+

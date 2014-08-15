@@ -1,15 +1,23 @@
 var Message = require('mongoose').model('Message');
 var nodemailer = require('nodemailer');
 var User = require('mongoose').model('User');
+var smtpTransport = require('nodemailer-smtp-transport');
 
 
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
+
+var transporter = nodemailer.createTransport(smtpTransport({
+    host: 'smtp.zone.ee',
+    port: 587,
     auth: {
-        user: 'vladimir.rokovanov@gmail.com',
-        pass: '235562690Gmails'
-    }
-});
+        user: 'portaal@peale.ee',
+        pass: '235562690Portaal'
+    },
+    maxConnections: 5,
+    maxMessages: 10
+}));
+
+
+
 
 exports.getMessages = function(req, res) {
     Message.find(req.query).exec(function(err, collection) {

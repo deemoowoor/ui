@@ -1,9 +1,14 @@
+.alert(ng-show="identity.isAuthenticated()")
+    .alert-danger(ng-hide="identity.currentUser.active")
+        strong Teavitus!
+        span    Teile on saadetud kinnituskiri aadressile {{identity.currentUser.email}}. Palun kinnitage oma postkasti õigsust!
 
 
 
 //button.btn.btn-primary(ng-click="testTransport()") Test
 ul.nav.nav-tabs(role="tablist")
     li.active
+
         a(href="/") Võtan peale
 
     li
@@ -38,9 +43,11 @@ ul.nav.nav-tabs(role="tablist")
                         th Vaata
                 tbody
                     tr(ng-repeat="transport in customfiltered = (transports| filter:searchText) | startFrom:(bigCurrentPage-1)*itemsPerPage | limitTo:itemsPerPage | orderBy:predicate:reverse" ,ng-click="get(transport.filename)",class="{{selected}}")
-                            td {{transport.username}}
                             td
-                                span.label.label-default(ng-show="transport.canceled") Tühistatud
+                                strong
+                                    a(href="/rating/{{transport.username}}") {{transport.username}}
+                            td
+                                span.label.label-default(ng-show="transport.canceled") Lõpetatud
                                 span.label.label-success(ng-show="!transport.canceled") Atkiivne
 
                             td {{test(transport.startTime)}}

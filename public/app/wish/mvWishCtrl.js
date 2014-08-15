@@ -60,4 +60,47 @@ angular.module('app').controller('mvWishCtrl', function($scope,mvIdentity,mvNoti
         }
 
     }
+
+    $scope.forceEnd=function(taking){
+
+        var newTakingData ={
+
+            canceled:true
+        };
+
+        var clone = angular.copy(taking);
+        angular.extend(clone, newTakingData);
+
+
+        mvWishCUD.updateWish(clone).then(function(){
+
+
+            mvNotifier.notify('Lõpetatud');
+            $scope.wishes=mvTaking.query({'username': mvIdentity.currentUser.username });
+
+        },function(reason){
+            mvNotifier.error(reason);
+        })
+    };
+    $scope.forceStart = function(taking){
+
+        var newTakingData ={
+
+            canceled:false
+        };
+
+        var clone = angular.copy(taking);
+        angular.extend(clone, newTakingData);
+
+
+        mvWishCUD.updateWish(clone).then(function(){
+
+
+            mvNotifier.notify('Taastatud');
+            $scope.wishes=mvTaking.query({'username': mvIdentity.currentUser.username });
+
+        },function(reason){
+            mvNotifier.error(reason);
+        })
+    };
 })

@@ -2,7 +2,7 @@ angular.module('app').controller('mvRatingCtrl', function($scope, mvRating,mvTak
 
 //{_id:$routeParams.id, registredPassengers: [{name:$routeParams.name}]} {registredPassengers: [{_id:$routeParams.id}]}
     $scope.taking=mvTaking.query({'registredPassengers._id':$routeParams.id});
-
+    $scope.user=$routeParams.name;
     $scope.ratings=mvRating.query({ratedUsername: $routeParams.name});
     $scope.myid=$routeParams.id;
     $scope.checked=function(id){
