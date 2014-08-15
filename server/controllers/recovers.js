@@ -1,15 +1,20 @@
 var Recover = require('mongoose').model('Recover'),
     User = require('mongoose').model('User'),encrypt = require('../utilities/encryption'),
-nodemailer = require('nodemailer');
+    nodemailer = require('nodemailer'),
+    smtpTransport = require('nodemailer-smtp-transport');
 
 
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
+var transporter = nodemailer.createTransport(smtpTransport({
+    host: 'smtp.zone.ee',
+    port: 587,
     auth: {
-        user: 'vladimir.rokovanov@gmail.com',
-        pass: '235562690Gmail'
-    }
-});
+        user: 'portaal@peale.ee',
+        pass: '235562690Portaal'
+    },
+    maxConnections: 5,
+    maxMessages: 10
+}));
+
 
 
 exports.createRecover = function(req, res){

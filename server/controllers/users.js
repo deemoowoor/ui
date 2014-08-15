@@ -1,16 +1,20 @@
 var User = require('mongoose').model('User'),
     encrypt = require('../utilities/encryption'),
-    nodemailer = require('nodemailer');
+    nodemailer = require('nodemailer'),
+ smtpTransport = require('nodemailer-smtp-transport');
 
 
-var transporter = nodemailer.createTransport({
+var transporter = nodemailer.createTransport(smtpTransport({
     host: 'smtp.zone.ee',
-    port: 25,
+    port: 587,
     auth: {
         user: 'portaal@peale.ee',
         pass: '235562690Portaal'
-    }
-});
+    },
+    maxConnections: 5,
+    maxMessages: 10
+}));
+
 
 exports.getUsers = function(req, res) {
     User.find({}).exec(function(err, collection) {
@@ -74,6 +78,7 @@ exports.updateUser = function(req, res) {
         res.send(req.user);
     });
 };
+
 
 
 exports.updateUserByAdmin = function(req, res) {

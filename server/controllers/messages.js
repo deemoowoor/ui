@@ -57,10 +57,10 @@ exports.sendMessage = function(req, res){
 
 
     transporter.sendMail({
-        from: 'vladimir.rokovanov@gmail.com',
+        from: 'portaal@peale.ee',
         to: user.email,
-        subject: 'peale.ee teavitab et ' +message.sender+ ' soovib peale',
-        text: 'hello world!'
+        subject: 'peale.ee teavitab',
+        text: message.sender+ ' soovib peale'
     });
 
 })
