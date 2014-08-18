@@ -29,14 +29,14 @@ module.exports = function(app) {
 
     app.get('/api/messages', messages.getMessages);
     app.post('/api/messages', messages.sendMessage);
-    app.get('/api/roles', roles.getRoles);
-    app.put('/api/roles', roles.updateRole);
-    app.post('/api/roles', roles.createRole);
-    app.post('/api/roles/delete', roles.deleteRole);
+  //  app.get('/api/roles', roles.getRoles);
+   // app.put('/api/roles', roles.updateRole);
+  //  app.post('/api/roles', roles.createRole);
+  //  app.post('/api/roles/delete', roles.deleteRole);
 
 
-    app.get('/api/groups', groups.getGroups);
-    app.post('/api/groups', groups.createGroup);
+   // app.get('/api/groups', groups.getGroups);
+    //app.post('/api/groups', groups.createGroup);
     
     app.get('/api/calls', calls.getCalls);
     app.post('/api/calls', calls.createCall);
