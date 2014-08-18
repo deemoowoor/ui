@@ -1,64 +1,79 @@
 .row(ng-show="identity.isAuthenticated()")
     .col-md-11
-        .panel.panel-default
-            .panel-heading
-                h2
-                    strong Lisa
-                    h2 kommentaar
-            .panel-body
-                form.form-horizontal(name="ratingForm")
+        .row.profile
+            .col-md-3
+                .panel.panel-default
+                    .panel-body
+                        //img.img-responsive(src="/avatar/{{user}}.jpg")
+                        img.img-responsive(fallback-src="/avatar/default.png", ng-src="/avatar/{{user}}.jpg")
 
-                    .form-group
-                        label.col-md-3.control-label(for="startTime") Hinnang
-                        .col-md-2
-                            button.btn.btn-success(value="success",ng-click="myVar='has-success'")
-                                i.fa.fa-smile-o  Positiivne
-                        .col-md-2
-                            button.btn.btn-warning(value="warning",ng-click="myVar='has-warning'")
-                                i.fa.fa-meh-o  Neutraalne
-                        .col-md-2
-                            button.btn.btn-danger(value="warning",ng-click="myVar='has-error'")
-                                i.fa.fa-frown-o Negatiivne
+                        h2.text-center
+                            strong {{user}}
 
-                    .form-group.has-success(ng-class="myVar").has-
-                        label.col-md-3.control-label(for="comment") Kommentar
-                        .col-md-6
-                            input.form-control(name="comment", type="comment", placeholder="Kommentaar", ng-model="comment", required)
+                            p
+                                small     {{role}}
 
+            .col-md-9
 
-                    .form-group
-                        .col-md-6.col-md-offset-3
-                            .pull-right
-                                button.btn.btn-primary(ng-click="add(myVar)", ng-disabled="ratingForm.$invalid") Lisa
-                                | &nbsp;
-                                a.btn.btn-default(href="/rating") Loobu
+                .panel.panel-default
+                    .panel-heading
+                        h2
+                            strong Lisa
+                            h2 kommentaar
+                    .panel-body
+                        form.form-horizontal(name="ratingForm")
 
-.panel.panel-default
-    .panel-heading
-        h2
-            strong Komentaarid
-    .pull-right
-        form.form-inline
+                            .form-group
+                                label.col-md-3.control-label(for="startTime") Hinnang
+                                .col-md-2
+                                    button.btn.btn-success(value="success",ng-click="myVar='has-success'")
+                                        i.fa.fa-smile-o  Positiivne
+                                .col-md-2
+                                    button.btn.btn-warning(value="warning",ng-click="myVar='has-warning'")
+                                        i.fa.fa-meh-o  Neutraalne
+                                .col-md-2
+                                    button.btn.btn-danger(value="warning",ng-click="myVar='has-error'")
+                                        i.fa.fa-frown-o Negatiivne
 
-
-
-    .panel-body
-        table.table.table-hover.table-striped.table-condesed
-            thead
-                tr
-
-                    th.sorting(ng-click="predicate = 'username'; reverse=!reverse") Kasutaja
-
-                    th Kommentaar
-                    th.sorting(ng-click="predicate = 'ratedDate'; reverse=!reverse") Kuupäev
-
-            tbody
-                tr(ng-repeat="rating in ratings | orderBy:predicate:reverse")
-                    td
-                        span(ng-class="getClassLabel(rating)")
-                            i(ng-class="getClass(rating)")  {{rating.username}}
+                            .form-group.has-success(ng-class="myVar").has-
+                                label.col-md-3.control-label(for="comment") Kommentar
+                                .col-md-6
+                                    input.form-control(name="comment", type="comment", placeholder="Kommentaar", ng-model="comment", required)
 
 
-                    td {{rating.comment}}
-                    td {{rating.ratedDate | date:'yyyy-MM-dd HH:mm:ss' }}
+                            .form-group
+                                .col-md-6.col-md-offset-3
+                                    .pull-right
+                                        button.btn.btn-primary(ng-click="add(myVar)", ng-disabled="ratingForm.$invalid") Lisa
+                                        | &nbsp;
+                                        a.btn.btn-default(href="/rating") Loobu
+
+                    .panel.panel-default
+                        .panel-heading
+                            h2
+                                strong Komentaarid
+                        .pull-right
+                            form.form-inline
+
+
+
+                        .panel-body
+                            table.table.table-hover.table-striped.table-condesed
+                                thead
+                                    tr
+
+                                        th.sorting(ng-click="predicate = 'username'; reverse=!reverse") Kasutaja
+
+                                        th Kommentaar
+                                        th.sorting(ng-click="predicate = 'ratedDate'; reverse=!reverse") Kuupäev
+
+                                tbody
+                                    tr(ng-repeat="rating in ratings | orderBy:predicate:reverse")
+                                        td
+                                            span(ng-class="getClassLabel(rating)")
+                                                i(ng-class="getClass(rating)")  {{rating.username}}
+
+
+                                        td {{rating.comment}}
+                                        td {{rating.ratedDate | date:'yyyy-MM-dd HH:mm:ss' }}
 

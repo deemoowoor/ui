@@ -7,7 +7,7 @@ exports.getWishes = function(req, res) {
     // console.log(req.query.time)
     if(req.query.time)
     {
-        customQuery={startTime:  {$gte:start}};
+        customQuery={startTime:  {$gte:start},deleted:false};
     }
 
     Wish.find(customQuery).exec(function(err, collection) {
@@ -41,7 +41,7 @@ exports.updateWish = function(req, res) {
 
 
 
-    Wish.findOneAndUpdate({_id:req.body._id},{canceled:takingUpdates.canceled}).exec(function(err, course) {
+    Wish.findOneAndUpdate({_id:req.body._id},{canceled:takingUpdates.canceled,deleted:takingUpdates.deleted}).exec(function(err, course) {
         res.send(course);
 
 

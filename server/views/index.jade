@@ -44,7 +44,7 @@ block main-content
                             li
                                 a.submenu(href="/wish", ng-class="{ active: isActive('/wish') }")
                                     i.fa.fa-user
-                                    span.hidden-sm.text Tahan peale
+                                    span.hidden-sm.text Soovin peale
                             //li
                                 a.submenu(href="/groups", ng-class="{ active: isActive('/groups') }")
                                     i.fa.fa-users
@@ -76,3 +76,10 @@ block main-content
             .col-sm-11.main(ng-class="identity.isAuthenticated() ? 'col-md-10' : 'col-md-12'")
                 .row.tere
                     div(ng-view)
+    footer
+        .row
+            .col-sm-5
+               span © 2014 telpro
+            .col-sm-6.text-right
+                span Kontakt info@peale.ee
+

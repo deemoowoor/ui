@@ -17,6 +17,7 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope, mvTaking,
                 $scope.info = taking.info;
                 $scope.taking = taking;
 
+
             }
         })
     });
@@ -81,7 +82,9 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope, mvTaking,
                 sentDate:new Date(),
                 getDate:'',
                 isReaded:true,
-                responses:[]
+                responses:[],
+                deleted:false,
+                package: $scope.package
             };
 
             mvMessageCUD.sendMessage(newMessageData).then(function(responsedId) {

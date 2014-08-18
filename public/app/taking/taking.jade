@@ -38,10 +38,16 @@
                         label.col-md-3.control-label(for="bDirection") Sihtkoht
                         .col-md-6
                             input.form-control(name="bDirection", type="text", placeholder="Lõpp-punkt", ng-model="bDirection",ng-maxlength="20", required)
-                     .form-group
+                    .form-group
                         label.col-md-3.control-label(for="seatPlace") Reisikaaslased
                         .col-md-6
                             select.form-control(name="seatPlace",ng-model="seatPlace", ng-options="seatPlace as seatPlace for seatPlace in seatPlaces")
+                    .form-group
+                        label.col-md-3.control-label(for="package") Võtan pakki
+                        .col-md-6
+                            .checkbox
+                                input(type="checkbox", id="package", name="package", value="true",ng-model="package")
+
                     .form-group
                         label.col-md-3.control-label(for="duration") Reisi kestvus
                         .col-md-6
@@ -78,25 +84,36 @@
                             th Väljun
                             th Lähtekoht
                             th Sihtkoht
-                            th Reisikaaslased
+                            th Reisiate Arv
+                            th Kauba/Pakivedu
                             th Staatus
                     tbody
-                        tr(ng-repeat="taking in takings | filter:searchText | orderBy:sortOrder")
+                        tr(ng-repeat="taking in takings | filter:searchText | orderBy:sortOrder",ng-show="!taking.deleted")
                             td {{taking.startTime | date:'yyyy-MM-dd HH:mm:ss'}}
                             td {{taking.aDirection}}
                             td {{taking.bDirection}}
-                            td {{taking.seatPlace}}
                             td
-                                span.label.label-default(ng-show="taking.canceled") Lõpetatud
+                                span.label.label-primary {{taking.seatPlace}}
+
+                            td
+                                span(ng-show="taking.package")
+                                    i.fa.fa-truck
+                                    i.fa.fa-dropbox
+                            td
+                                span.label.label-warning(ng-show="taking.canceled") Lõpetatud
                                 span.label.label-success(ng-show="!taking.canceled") Atkiivne
                             td
                                 //a.btn.btn-info(href="/taking/edit/{{taking._id}}")
                                     i.fa.fa-edit
-                                a.btn.btn-danger(ng-click="forceEnd(taking)",ng-show="!taking.canceled")
-                                    i.fa.fa-trash-o
+                                a.btn.btn-warning(ng-click="forceEnd(taking)",ng-show="!taking.canceled")
+                                    i.fa.fa-lock
                                         strong  Lõpeta
 
                                 a.btn.btn-success(ng-click="forceStart(taking)",ng-show="taking.canceled")
-                                    i.fa.fa-trash-o
+                                    i.fa.fa-unlock
                                         strong  Aktiveeri
+                                a.btn.btn-danger(ng-click="delete(taking)")
+                                    i.fa.fa-trash-o
+                                        strong  Kustuta
+
 

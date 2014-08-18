@@ -1,3 +1,15 @@
+angular.module('app').directive('fallbackSrc', function () {
+    var fallbackSrc = {
+        link: function postLink(scope, iElement, iAttrs) {
+            iElement.bind('error', function() {
+                angular.element(this).attr("src", iAttrs.fallbackSrc);
+            });
+        }
+    }
+    return fallbackSrc;
+});
+
+
 angular.module('app').service('uploadsService', function($http) {
 
     var code = '';
@@ -39,7 +51,7 @@ angular.module('app').service('uploadsService', function($http) {
 
 
 
-angular.module('app').controller('mvProfileCtrl', function($scope, mvAuth, mvIdentity, mvNotifier,uploadsService,$timeout) {
+angular.module('app').controller('mvProfileCtrl', function($scope ,mvAuth, mvIdentity, mvNotifier,uploadsService,$timeout,$location) {
 
 
 
@@ -49,7 +61,7 @@ angular.module('app').controller('mvProfileCtrl', function($scope, mvAuth, mvIde
     $scope.fname=mvIdentity.currentUser.firstName;
     $scope.lname=mvIdentity.currentUser.lastName;
     $scope.mobile=mvIdentity.currentUser.mobile;
-
+    $scope.fileName="/avatar/"+mvIdentity.currentUser.username+".jpg";
 
     $scope.uploadFile = function(files) {
 
@@ -59,8 +71,9 @@ angular.module('app').controller('mvProfileCtrl', function($scope, mvAuth, mvIde
 
             $timeout(function() {
                 $scope.fileName = promise.fileName();
-                $scope.result='Mellow Yellow';
-                console.log('update with timeout fired')
+                $scope.message ="Kui pilt ei muutunud värskendage lehte";
+                mvNotifier.notify('Pilt on üles laetud! Laadige leht uuesti');
+
             }, 3000);
 
 
@@ -83,7 +96,7 @@ angular.module('app').controller('mvProfileCtrl', function($scope, mvAuth, mvIde
             newUserData.password =$scope.password;
         }
         mvAuth.updateCurrentUser(newUserData).then(function(){
-            mvNotifier.notify('Your user account ha been updated');
+            mvNotifier.notify('Teie profiil on uendatud!');
         },function(reason){
             mvNotifier.error(reason);
         })

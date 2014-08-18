@@ -1,9 +1,24 @@
-angular.module('app').controller('mvRatingCtrl', function($scope, mvRating,mvTaking,mvIdentity,$routeParams,mvRatingCUD,mvTakingCUD,mvNotifier) {
-
+angular.module('app').controller('mvRatingCtrl', function($scope,mvUserCUD, mvRating,mvTaking,mvIdentity,$location,$routeParams,mvRatingCUD,mvTakingCUD,mvNotifier) {
+    console.log('tere');
 //{_id:$routeParams.id, registredPassengers: [{name:$routeParams.name}]} {registredPassengers: [{_id:$routeParams.id}]}
+    mvUserCUD.check({username: $routeParams.name}).then(function(response) {
+
+        if(response.data.reason===0){
+            console.log("se lits on null")
+            $location.path('/');
+        }
+       // console.log(JSON.stringify(response));
+    }, function (reason) {
+        mvNotifier.error(reason);
+
+    });
     $scope.taking=mvTaking.query({'registredPassengers._id':$routeParams.id});
+
     $scope.user=$routeParams.name;
+    $scope.role="Tavakasutaja";
     $scope.ratings=mvRating.query({ratedUsername: $routeParams.name});
+
+
     $scope.myid=$routeParams.id;
     $scope.checked=function(id){
 

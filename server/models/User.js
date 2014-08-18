@@ -38,10 +38,26 @@ function createDefaultUsers() {
             var salt, hash;
             salt = encrypt.createSalt();
             hash = encrypt.hashPwd(salt, 'v');
-            User.create({email:'vladimir.rokovanov@gmail.com',firstName:'Vladimir',lastName:'Rõkovanov',username:'vladimir', mobile:'53497853',salt: salt, hashed_pwd: hash,roles: ['admin','agent'], role:'admin',active:true,rating:10,messages:5});
+            User.create({email:'vladimir.rokovanov@gmail.com',firstName:'Vladimir',lastName:'Rõkovanov',username:'vlarok', mobile:'53497853',salt: salt, hashed_pwd: hash,roles: ['admin','agent'], role:'Administrator',active:true,rating:10,messages:5});
             salt = encrypt.createSalt();
             hash = encrypt.hashPwd(salt, 'triin');
-            User.create({email:'vlarok@hotmail.com',firstName:'Triin',lastName:'Kõrge',username:'triin', mobile:'51933516',salt: salt, hashed_pwd: hash,roles: ['agent'], role:'agent',active:false});
+            User.create({email:'vlaroksss@hotmail.com',firstName:'Triin',lastName:'Kõrge',username:'triin', mobile:'51933516',salt: salt, hashed_pwd: hash,roles: ['agent'], role:'Tavakasutaja',active:true});
+            salt = encrypt.createSalt();
+            hash = encrypt.hashPwd(salt, 'fsfwfewfd323332');
+            User.create({email:'admin@peale.ee',firstName:'admin',lastName:'admin',username:'admin', mobile:'',salt: salt, hashed_pwd: hash,roles: ['agent'], role:'agent',active:false});
+            hash = encrypt.hashPwd(salt, 'fsfwfewfd323332');
+            User.create({email:'administrator@peale.ee',firstName:'administrator',lastName:'administrator',username:'administrator', mobile:'',salt: salt, hashed_pwd: hash,roles: ['agent'],active:false});
+            hash = encrypt.hashPwd(salt, 'fsfwfewfd323332');
+            User.create({email:'administraator@peale.ee',firstName:'administraator',lastName:'administraator',username:'administraator', mobile:'',salt: salt, hashed_pwd: hash,roles: ['agent'],active:false});
+            hash = encrypt.hashPwd(salt, 'fsfwfewfd323332');
+            User.create({email:'moderator@peale.ee',firstName:'moderator',lastName:'moderator',username:'moderator', mobile:'',salt: salt, hashed_pwd: hash,roles: ['agent'],active:false});
+            hash = encrypt.hashPwd(salt, 'fsfwfewfd323332');
+            User.create({email:'moderaator@peale.ee',firstName:'moderaator',lastName:'moderaator',username:'moderaator', mobile:'',salt: salt, hashed_pwd: hash,roles: ['agent'],active:false});
+            hash = encrypt.hashPwd(salt, 'fsfwfewfd323332');
+            User.create({email:'vladimir@peale.ee',firstName:'vladimir',lastName:'vladimir',username:'vladimir', mobile:'',salt: salt, hashed_pwd: hash,roles: ['agent'],active:false});
+
+
+
         }
     })
 

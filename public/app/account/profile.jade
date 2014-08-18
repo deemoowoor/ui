@@ -1,63 +1,57 @@
-.container
+.row
+.col-md-11
+    .row.profile
+        .col-md-3
+            .panel.panel-default
+                .panel-body
+                    //img.img-responsive(src="{{fileName}}")
+                    img.img-responsive(fallback-src="/avatar/default.png", ng-src="{{fileName}}")
 
 
-    .col-md-8
-        .panel.panel-blue
-            .panel-heading
-                h3.panel-title Profiil
-                    i.icon-tasks
-            .panel-body
-                form.form-horizontal(name="profileForm")
-                    fieldset
-                        legend Muuda Andmed
+                    h2.text-center
+                        strong {{user}}
+                    span.btn.btn-primary.btn-file Muuda pilt
+                        input(type="file", onchange="angular.element(this).scope().uploadFile(this.files)", ng-model="image")
 
-                        .form-group
-                            label.col-md-2.control-label(for="email") Email
-                            .col-md-10
-                                input.form-control(name="email", type="email", placeholder="Email", ng-model="email", required)
 
-                           // .col-md-2
-                                button.btn.btn-primary(ng-click="activation()") Aktiveeri
-                        .form-group
-                            label.col-md-2.control-label(for="fname") First Name
-                            .col-md-10
-                                input.form-control(name="fname", type="text", placeholder="First Name", ng-model="fname", required)
-                        .form-group
-                            label.col-md-2.control-label(for="lname") Last Name
-                            .col-md-10
-                                input.form-control(name="lname", type="text", placeholder="Last Name", ng-model="lname", required)
-                        .form-group
-                            label.col-md-2.control-label(for="mobile") Mobiil
-                            .col-md-10
-                                input.form-control(name="mobile", type="text", placeholder="Mobiil telefon", ng-model="mobile", required)
-                        .form-group
-                            label.col-md-2.control-label(for="password") Password
-                            .col-md-10
-                                input.form-control(name="password", type="password", placeholder="Password", ng-model="password")
+        .col-md-9
+            .panel.panel-blue
+                .panel-heading
+                    h3.panel-title Profiil
+                        i.icon-tasks
+                .panel-body
+                    form.form-horizontal(name="profileForm")
+                        fieldset
+                            legend Muuda Andmed
 
-                        .form-group
-                            .col-md-10.col-md-offset-2
-                                .pull-right
-                                    button.btn.btn-primary(ng-click="update()", ng-disabled="signupForm.$invalid") Salvesta
-                                    | &nbsp;
-                                    a.btn.btn-default(href="/") Loobu
-        .panel.panel-blue
-            .panel-heading
-                h3.panel-title Profiili Pilt
-                    i.icon-tasks
-                      .panel-body
-                  form.form-horizontal(name="picForm")
-                     fieldset
-                         .form-group
-                                label.col-md-2.control-label(for="img") img
+                            .form-group
+                                label.col-md-2.control-label(for="email") Email
                                 .col-md-10
-                                    input(type="file", onchange="angular.element(this).scope().uploadFile(this.files)", ng-model="image")
-                         .form-group
+                                    input.form-control(name="email", type="email", placeholder="Email", ng-model="email", required)
+
+                               // .col-md-2
+                                    button.btn.btn-primary(ng-click="activation()") Aktiveeri
+                            .form-group
+                                label.col-md-2.control-label(for="fname") First Name
+                                .col-md-10
+                                    input.form-control(name="fname", type="text", placeholder="First Name", ng-model="fname", required)
+                            .form-group
+                                label.col-md-2.control-label(for="lname") Last Name
+                                .col-md-10
+                                    input.form-control(name="lname", type="text", placeholder="Last Name", ng-model="lname", required)
+                            .form-group
+                                label.col-md-2.control-label(for="mobile") Mobiil
+                                .col-md-10
+                                    input.form-control(name="mobile", type="text", placeholder="Mobiil telefon", ng-model="mobile", required)
+                            .form-group
+                                label.col-md-2.control-label(for="password") Password
+                                .col-md-10
+                                    input.form-control(name="password", type="password", placeholder="Password", ng-model="password")
+
+                            .form-group
                                 .col-md-10.col-md-offset-2
                                     .pull-right
-                                        button.btn.btn-primary(ng-click="upload()") Salvesta
-                         img.img-responsive(src="{{fileName}}")
-                         p {{result}}
-
-
+                                        button.btn.btn-primary(ng-click="update()", ng-disabled="signupForm.$invalid") Salvesta
+                                        | &nbsp;
+                                        a.btn.btn-default(href="/") Loobu
 

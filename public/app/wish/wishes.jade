@@ -3,7 +3,7 @@ ul.nav.nav-tabs(role="tablist")
         a(href="/") Võtan peale
 
     li.active
-        a(href="/wishes") Tahan peale
+        a(href="/wishes") Soovin peale
 .panel.panel-default
     .pull-right
         form.form-inline
@@ -13,26 +13,38 @@ ul.nav.nav-tabs(role="tablist")
         table.table.table-hover.table-condesed
             thead
                 tr
+                    th Vaata
                     th.sorting(ng-click="sort_by('username')") Kasutaja
                     th Staatus
                     th.sorting(ng-click="predicate = 'startTime'; reverse=!reverse") Väljumine
+                    th Reisiate Arv
+                    th Kauba/Pakivedu
                     th.sorting(ng-click="sort_by('aDirection')") Lähtekoht
                     th.sorting(ng-click="sort_by('aDirection')") Sihtkoht
-                    th Vaata
+
             tbody
                 tr(ng-repeat="transport in customfiltered = (transports| filter:searchText) | startFrom:(bigCurrentPage-1)*itemsPerPage | limitTo:itemsPerPage | orderBy:predicate:reverse" ,ng-click="get(transport.filename)",class="{{selected}}")
-                    td {{transport.username}}
                     td
-                        span.label.label-default(ng-show="transport.canceled") Tühistatud
+                        a.btn.btn-success(href="/wishes/{{transport._id}}")
+                            i.fa.fa-search-plus
+                    td
+                        strong
+                            a(href="/rating/{{transport.username}}") {{transport.username}}
+
+                    td
+                        span.label.label-warning(ng-show="transport.canceled") Lõpetatud
                         span.label.label-success(ng-show="!transport.canceled") Atkiivne
                     td {{test(transport.startTime)}}
                         span.small  {{transport.startTime | date:'yyyy-MM-dd'}}
 
+                    td
+                        span.label.label-primary {{transport.seats}}
 
-
+                    td
+                        span(ng-show="transport.package")
+                            i.fa.fa-truck
+                            i.fa.fa-dropbox
                     td {{transport.aDirection}}
                     td {{transport.bDirection}}
-                    td
-                        a.btn.btn-success(href="/wishes/{{transport._id}}")
-                            i.fa.fa-search-plus
+
         pagination(total-items="customfiltered.length",items-per-page="itemsPerPage", page="bigCurrentPage", max-size="maxSize", class="pagination-sm", boundary-links="true", rotate="false", num-pages="numPages",first-text="Esimene",last-text="Viimane",previous-text="Eelmine",next-text="Järgmine")

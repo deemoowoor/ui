@@ -18,7 +18,15 @@ var transporter = nodemailer.createTransport(smtpTransport({
 
 exports.getUsers = function(req, res) {
     User.find({}).exec(function(err, collection) {
+
         res.send(collection);
+    })
+};
+
+exports.userExists=function(req, res) {
+    User.count({username:req.body.username}).exec(function(err, collection) {
+        console.log('dsd '+ collection);
+        res.send({reason:collection});
     })
 };
 

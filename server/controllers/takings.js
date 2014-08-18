@@ -6,8 +6,13 @@ exports.getTakings = function(req, res) {
    // console.log(req.query.time)
     if(req.query.time)
     {
-        customQuery={startTime:  {$gte:start}};
+        customQuery={startTime:  {$gte:start},deleted:false};
     }
+
+
+    Taking.count({startTime:  {$gte:start},deleted:false}, function (err, count) {
+        console.log('I do not ever run' + count);
+    });
 
     Taking.find(customQuery).exec(function(err, collection) {
         res.send(collection);
@@ -39,7 +44,7 @@ exports.updateTaking = function(req, res) {
 
     Taking.findOneAndUpdate({_id:req.body._id},{
         seatCount:takingUpdates.seatCount,
-        registredPassengers: takingUpdates.registredPassengers,ended:takingUpdates.ended,canceled:takingUpdates.canceled}).exec(function(err, course) {
+        registredPassengers: takingUpdates.registredPassengers,ended:takingUpdates.ended,canceled:takingUpdates.canceled,deleted:takingUpdates.deleted}).exec(function(err, course) {
         res.send(course);
 
 

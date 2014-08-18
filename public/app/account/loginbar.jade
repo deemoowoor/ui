@@ -1,14 +1,15 @@
 li.dropdown(ng-show="identity.isAuthenticated()")
     a.dropdown-toggle.avatar(href="/#", data-toggle="dropdown")
-        img(src="../../avatar/{{identity.currentUser.username}}.jpg")
+        //img(src="../../avatar/{{identity.currentUser.username}}.jpg")
+        img(fallback-src="../../avatar/default.png", ng-src="../../avatar/{{identity.currentUser.username}}.jpg")
 
     ul.dropdown-menu
         li.dropdown-menu-header.text-center
             strong {{identity.currentUser.firstName}}
         li
             a(href="/rating/{{identity.currentUser.username}}")
-                i.fa.fa-tasks
-                span Kommentaarid
+                i.fa.fa-user
+                span Profiil ja Kommentaarid
                 //span.label.label-success {{identity.currentUser.rating}}
         li
             a(href="/profile")

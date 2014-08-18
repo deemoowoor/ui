@@ -45,6 +45,7 @@ module.exports = function(app) {
     app.post('/api/users', users.createUser);
     //app.put('/api/users', users.updateUserByAdmin);
     app.put('/api/users', users.updateUser);
+    app.post('/api/check', users.userExists);
     app.put('/api/usersbyadmin', users.updateUserByAdmin);
     app.post('/api/vertify', users.vertify);
     //app.get('/api/vertify/:id', users.getUserById);

@@ -26,7 +26,9 @@ var takingSchema = mongoose.Schema({
     registredPassengers: [registredPassengersSchema],
     info:String,
     canceled:Boolean,
-    ended:Boolean
+    ended:Boolean,
+    deleted:Boolean,
+    package:Boolean
 
 
 

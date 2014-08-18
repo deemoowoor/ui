@@ -56,7 +56,7 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser) 
             if(mvIdentity.isAuthorized(role)) {
                 return true;
             } else {
-                return $q.reject('not authorized');
+                return $q.reject('Ei ole autoriseeritud!');
                 $location.path('/login')
             }
 
@@ -65,7 +65,7 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q, mvUser) 
             if(mvIdentity.isAuthenticated()) {
                 return true;
             } else {
-                return $q.reject('not authorized');
+                return $q.reject('Ei ole autoriseeritud!');
             }
         }
     }
