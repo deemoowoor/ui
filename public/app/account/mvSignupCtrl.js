@@ -10,7 +10,7 @@ angular.module('app').controller('mvSignupCtrl', function($scope, mvUser, mvNoti
         };
 
         mvAuth.createUser(newUserData).then(function() {
-            mvNotifier.notify('User account created!');
+            mvNotifier.notify('Kasutaja loodud!');
             $location.path('/');
         }, function(reason) {
             mvNotifier.error(reason);

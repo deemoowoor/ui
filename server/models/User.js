@@ -18,7 +18,8 @@ var userSchema = mongoose.Schema({
     role: String,
     active:Boolean,
     rating:Number,
-    messages:Number
+    messages:Number,
+    date:Date
 });
 
 userSchema.methods = {
@@ -55,7 +56,6 @@ function createDefaultUsers() {
             User.create({email:'moderaator@peale.ee',firstName:'moderaator',lastName:'moderaator',username:'moderaator', mobile:'',salt: salt, hashed_pwd: hash,roles: ['agent'],active:false});
             hash = encrypt.hashPwd(salt, 'fsfwfewfd323332');
             User.create({email:'vladimir@peale.ee',firstName:'vladimir',lastName:'vladimir',username:'vladimir', mobile:'',salt: salt, hashed_pwd: hash,roles: ['agent'],active:false});
-
 
 
         }
