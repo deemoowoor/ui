@@ -12,13 +12,14 @@ exports.uploadImg = function(req, res){
 
         var imageName = req.files.image.name;
         var imagePath = req.files.image.path;
-
+        var imageType = req.files.image.type;
+        console.log("tyyp " + imageType.match(/(jpg|jpeg|png)$/i))
         /// If there's an error
-        if(!imageName){
+        if(!imageName || imageType.match(/(jpg|jpeg|png)$/i)===null){
 
             console.log("There was an error")
             res.redirect("/");
-            res.end();
+            res.end("There was an error");
 
         } else {
 

@@ -77,7 +77,9 @@ angular.module('app').controller('mvProfileCtrl', function($scope ,mvAuth, mvIde
             }, 3000);
 
 
-        });
+        }), function(reason) {
+            mvNotifier.error(reason);
+        };
 
     };
 
