@@ -74,10 +74,10 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
         })
 
         .when('/rating/:name/:id', { templateUrl: '/partials/account/rate/rating',
-            controller: 'mvRatingCtrl'
+            controller: 'mvRatingCtrl', resolve: routeRoleChecks.user
         })
         .when('/rating/:name', { templateUrl: '/partials/account/rate/rating',
-            controller: 'mvRatingCtrl'
+            controller: 'mvRatingCtrl', resolve: routeRoleChecks.user
         })
         .when('/contact', { templateUrl: '/partials/contact/contact',
             controller: 'mvContactCtrl'
