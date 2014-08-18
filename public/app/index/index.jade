@@ -35,6 +35,7 @@ ul.nav.nav-tabs(role="tablist")
                         th Staatus
 
                         th.sorting(ng-click="predicate = 'startTime'; reverse=!reverse") Väljumine
+                        th Hind
                         th.sorting(ng-click="predicate = 'seatPlaces'; reverse=!reverse") Vabu kohti
                         th Kauba/Pakivedu
                         th.sorting(ng-click="sort_by('aDirection')") Lähtekoht
@@ -56,6 +57,8 @@ ul.nav.nav-tabs(role="tablist")
 
                             td {{test(transport.startTime)}}
                                 span.small  {{transport.startTime | date:'yyyy-MM-dd'}}
+
+                            td {{transport.price}}
                             td
                                 span.label.label-primary {{transport.seatCount}}
                             td

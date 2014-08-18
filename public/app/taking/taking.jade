@@ -43,6 +43,11 @@
                         .col-md-6
                             select.form-control(name="seatPlace",ng-model="seatPlace", ng-options="seatPlace as seatPlace for seatPlace in seatPlaces")
                     .form-group
+                        label.col-md-3.control-label(for="price") Hind
+                        .col-md-6
+                            input.form-control(name="price", type="price", placeholder="Hind näiteks 10 eurot", ng-model="price",ng-maxlength="10", required)
+
+                    .form-group
                         label.col-md-3.control-label(for="package") Võtan pakki
                         .col-md-6
                             .checkbox
@@ -51,7 +56,7 @@
                     .form-group
                         label.col-md-3.control-label(for="duration") Reisi kestvus
                         .col-md-6
-                            input.form-control(name="duration", type="text", placeholder="Ligikaudne reisi kestvus", ng-model="duration",ng-maxlength="6", required)
+                            input.form-control(name="duration", type="text", placeholder="Ligikaudne reisi kestvus", ng-model="duration",ng-maxlength="10", required)
                     .form-group
                         label.col-md-3.control-label(for="duration") Info
                         .col-md-6
@@ -81,20 +86,25 @@
                 table.table.table-hover.table-striped.table-condesed
                     thead
                         tr
+                            th Vaata
                             th Väljun
                             th Lähtekoht
                             th Sihtkoht
                             th Reisiate Arv
+                            th Hind
                             th Kauba/Pakivedu
                             th Staatus
                     tbody
                         tr(ng-repeat="taking in takings | filter:searchText | orderBy:sortOrder",ng-show="!taking.deleted")
+                            td
+                                a.btn-sm.btn-success(href="/taking/{{taking._id}}")
+                                    i.fa.fa-search-plus
                             td {{taking.startTime | date:'yyyy-MM-dd HH:mm:ss'}}
                             td {{taking.aDirection}}
                             td {{taking.bDirection}}
                             td
                                 span.label.label-primary {{taking.seatPlace}}
-
+                            td {{taking.price}}
                             td
                                 span(ng-show="taking.package")
                                     i.fa.fa-truck

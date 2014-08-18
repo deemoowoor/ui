@@ -41,9 +41,20 @@ angular.module('app').factory('mvTakingCUD', function($http, mvIdentity, $q, mvT
             });
             return dfd.promise;
         },
-        cancel: function(newTakingData) {
+        canceledByOwner: function(newTakingData) {
             var dfd = $q.defer();
-            $http.post('/api/cancel', newTakingData).then(function(response) {
+            $http.post('/api/canceledByOwner', newTakingData).then(function(response) {
+                if(response.data.success) {
+                    dfd.resolve(true);
+                } else {
+                    dfd.resolve(false);
+                }
+            });
+            return dfd.promise;
+        },
+        canceledByPassenger: function(newTakingData) {
+            var dfd = $q.defer();
+            $http.post('/api/canceledByPassenger', newTakingData).then(function(response) {
                 if(response.data.success) {
                     dfd.resolve(true);
                 } else {

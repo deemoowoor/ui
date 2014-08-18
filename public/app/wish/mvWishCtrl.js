@@ -1,5 +1,5 @@
 angular.module('app').controller('mvWishCtrl', function($scope,mvIdentity,mvNotifier,mvTaking,mvWish,mvWishCUD){
-   // $scope.takings=mvTaking.query({'registredPassengers.name': mvIdentity.currentUser.username });
+    $scope.takings=mvTaking.query({'registredPassengers.name': mvIdentity.currentUser.username });
 
 
     $scope.seatPlaces = ['1','2','3','4','5','6','7','8','9','10','11','12'];

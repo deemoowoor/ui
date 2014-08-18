@@ -4,7 +4,7 @@
             .panel-heading
                 h2
                     strong Uus
-                    h2 pealesoov
+                    h2 soov
             .panel-body
                 form.form-horizontal(name="wishForm")
                     .form-group
@@ -39,10 +39,11 @@
                         .col-md-6
                             input.form-control(name="seats", type="text", placeholder="Sisetage arv", ng-model="seats", required,ng-maxlength="2")
                     .form-group
-                        label.col-md-3.control-label(for="package") Võtan pakki
+                        label.col-md-3.control-label(for="package") Saadan pakki
                         .col-md-6
                             .checkbox
                                 input(type="checkbox", id="package", name="package", value="true",ng-model="package")
+                                span Kui saadate ainult pakki märkige reisijate arvuks 0
 
                     .form-group
                             label.col-md-3.control-label(for="info") Info
@@ -54,7 +55,7 @@
                                 button.btn.btn-primary(ng-click="add()", ng-disabled="wishForm.$invalid") Lisa
                                 | &nbsp;
                                 a.btn.btn-default(href="/") Loobu
-        //.panel.panel-default
+        .panel.panel-default
             .panel-heading
                 h2
                     strong Olete peal
@@ -63,25 +64,25 @@
                 table.table.table-hover.table-striped.table-condesed
                     thead
                         tr
+                            th Vaata
                             th Väljumuse kuupäev
                             th Lähtekoht
                             th Sihtkoht
-                            th Reisikaaslased
+                            th Reisiate Arv
                             th Staatus
                     tbody
                         tr(ng-repeat="taking in takings | filter:searchText | orderBy:sortOrder")
+                            td
+                                a.btn-sm.btn-success(href="/taking/{{taking._id}}")
+                                    i.fa.fa-search-plus
                             td {{taking.startTime | date:'yyyy-MM-dd HH:mm:ss'}}
                             td {{taking.aDirection}}
                             td {{taking.bDirection}}
                             td {{taking.seatPlace}}
                             td
-                                span.label.label-default(ng-show="taking.canceled") Tühistatud
+                                span.label.label-default(ng-show="taking.canceled") Lõpetatud
                                 span.label.label-success(ng-show="!taking.canceled") Atkiivne
-                            td
-                                a.btn.btn-info(href="/taking/{{taking._id}}")
-                                    i.fa.fa-edit
-                                a.btn.btn-danger(ng-click="delete(taking)")
-                                    i.fa.fa-trash-o
+
         .panel.panel-default
             .panel-heading
                 h2
@@ -92,6 +93,7 @@
                 table.table.table-hover.table-striped.table-condesed
                     thead
                         tr
+                            th Vaata
                             th Väljumuse kuupäev
                             th Lähtekoht
                             th Sihtkoht
@@ -101,6 +103,9 @@
                             th Staatus
                     tbody
                         tr(ng-repeat="wish in wishes | filter:searchText | orderBy:sortOrder")
+                            td
+                                a.btn.btn-success(href="/wishes/{{wish._id}}")
+                                    i.fa.fa-search-plus
                             td {{wish.startTime | date:'yyyy-MM-dd HH:mm:ss'}}
                             td {{wish.aDirection}}
                             td {{wish.bDirection}}

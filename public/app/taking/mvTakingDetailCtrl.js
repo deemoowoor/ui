@@ -34,21 +34,43 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope, mvTaking,
         }
         return false
     };
-    $scope.isOwner=function(name,canceled){
-        if(mvIdentity.currentUser.username===name && !canceled){
+    $scope.isPassenger=function(name,canceled,canceled2){
+        if(mvIdentity.currentUser.username===name && !canceled && !canceled2){
+            return true
+        }
+        return false
+    };
+    $scope.isOwner=function(name,canceled,canceled2){
+        if(mvIdentity.currentUser.username===name && !canceled && !canceled2){
             return true
         }
         return false
     };
 
-    $scope.cancel=function(id){
+    $scope.canceledByOwner=function(id){
 
         var updateTakingData = {
             _id:id,
             canceled:true,
             seatCount: parseInt($scope.seatCount)+1
         };
-        mvTakingCUD.cancel(updateTakingData).then(function(responsedId) {
+        mvTakingCUD.canceledByOwner(updateTakingData).then(function(responsedId) {
+            mvNotifier.notify('Tühistatud');
+            $scope.seatCount=parseInt($scope.seatCount)+1
+            $location.path('/');
+        }, function (reason) {
+            mvNotifier.error(reason);
+        });
+    };
+
+    $scope.canceledByPassenger=function(id){
+
+        var updateTakingData = {
+            _id:id,
+            canceled:true,
+            seatCount: parseInt($scope.seatCount)+1
+        };
+        mvTakingCUD.canceledByPassenger(updateTakingData).then(function(responsedId) {
             mvNotifier.notify('Tühistatud');
             $scope.seatCount=parseInt($scope.seatCount)+1
             $location.path('/');

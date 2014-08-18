@@ -69,7 +69,7 @@ exports.updateToRated = function(req, res) {
 
 };
 
-exports.cancel = function(req, res) {
+exports.canceledByPassenger = function(req, res) {
     var takingUpdates = req.body;
 
 //    console.log('uuendus info' +takingUpdates);
@@ -86,5 +86,21 @@ exports.cancel = function(req, res) {
 
 
 };
+exports.canceledByOwner = function(req, res) {
+    var takingUpdates = req.body;
 
+//    console.log('uuendus info' +takingUpdates);
+    //  console.log('connection : %j', takingUpdates);
+
+
+    Taking.findOneAndUpdate({'registredPassengers._id':req.body._id},{
+        $set:{'registredPassengers.$.canceledByOwner': true,'seatCount': req.body.seatCount}}).exec(function(err, course) {
+        res.send(course);
+        console.log('see on id'+ req.body._id);
+        console.log('connection : %j', course);
+        console.log('connection : %j', err);
+    })
+
+
+};
 

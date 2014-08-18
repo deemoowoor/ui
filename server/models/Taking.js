@@ -4,6 +4,7 @@ var registredPassengersSchema = mongoose.Schema({
     name:String,
     date:Date,
     canceledByPassenger:Boolean,
+    canceledByOwner:Boolean,
     rated:Boolean,
     ratedByPassaneger:Boolean
     });
@@ -11,6 +12,7 @@ var registredPassengersSchema = mongoose.Schema({
 var takingSchema = mongoose.Schema({
     username:String,
     startTime:Date,
+    price:String,
     aDirection:String,
     bDirection:String,
     seatPlace:String,

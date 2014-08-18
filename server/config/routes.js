@@ -68,7 +68,8 @@ module.exports = function(app) {
     app.get('/api/ratings', ratings.getRatings);
     app.post('/api/ratings', ratings.addComment);
     app.post('/api/ratingtrue', takings.updateToRated);
-    app.post('/api/cancel', takings.cancel);
+    app.post('/api/canceledByOwner', takings.canceledByOwner);
+    app.post('/api/canceledByPassenger', takings.canceledByPassenger);
     app.get('/partials/*', function(req, res) {
         res.render('../../public/app/' + req.params);
     });

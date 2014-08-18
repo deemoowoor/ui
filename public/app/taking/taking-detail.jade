@@ -27,8 +27,17 @@
                             td B suund
                             td {{bDirection}}
                         tr
-                            td Kohti
+                            td Vabu kohti
                             td {{seatCount}}
+                        tr
+                            td Reisijad
+                            td
+                                p(ng-repeat="pass in registredPassengers") {{pass.name }}  {{pass.date | date:'yyyy-MM-dd HH:mm:ss'}}
+                                    btn.btn.btn-warning(ng-click="canceledByPassenger(pass._id)",ng-show="isPassenger(pass.name,pass.canceledByPassenger,pass.canceledByOwner)") Tühista
+                                    btn.btn.btn-danger(ng-click="canceledByOwner(pass._id)",ng-show="isOwner(username,pass.canceledByOwner,pass.canceledByPassenger)") Tühista
+                                    span.label.label-default(ng-show="pass.canceledByPassenger") Tühistatud reisija poolt
+                                    span.label.label-default(ng-show="pass.canceledByOwner") Tühistatud pealevõtja poolt
+
 
 
                         tr
@@ -38,6 +47,7 @@
                         tr
                             td
                             td
-
+                                button.btn.btn-primary(ng-click="update(taking)", ng-disabled="editUserForm.$invalid",ng-hide="isOwnerOrFull()") Kinnita
+                                | &nbsp;
                                 a.btn.btn-default(href="/") Tagasi
 

@@ -127,6 +127,7 @@ angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNo
                 bDirection:$scope.bDirection,
                 seatPlace:$scope.seatPlace,
                 seatCount:$scope.seatPlace,
+                price:$scope.price,
              //   postWeight:$scope.postWeight,
            //     postLenght:$scope.postLenght,
              //   postWidth:$scope.postWidth,
