@@ -25,7 +25,7 @@ ul.nav.nav-tabs(role="tablist")
             tbody
                 tr(ng-repeat="transport in customfiltered = (transports| filter:searchText) | startFrom:(bigCurrentPage-1)*itemsPerPage | limitTo:itemsPerPage | orderBy:predicate:reverse" ,ng-click="get(transport.filename)",class="{{selected}}")
                     td
-                        a.btn.btn-success(href="/wishes/{{transport._id}}")
+                        a.btn-sm.btn-success(href="/wishes/{{transport._id}}")
                             i.fa.fa-search-plus
                     td
                         strong

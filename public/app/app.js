@@ -27,7 +27,7 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
             controller: 'mvTakingCtrl', resolve: routeRoleChecks.user
         })
         .when('/taking/:id', { templateUrl: '/partials/taking/taking-detail',
-            controller: 'mvTakingDetailCtrl', resolve: routeRoleChecks.user})
+            controller: 'mvTakingDetailCtrl'})
         .when('/taking/edit/:id', { templateUrl: '/partials/taking/edit-taking',
             controller: 'mvTakingDetailCtrl'})
         .when('/messages', { templateUrl: '/partials/message/message',
@@ -77,7 +77,7 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
             controller: 'mvRatingCtrl', resolve: routeRoleChecks.user
         })
         .when('/rating/:name', { templateUrl: '/partials/account/rate/rating',
-            controller: 'mvRatingCtrl', resolve: routeRoleChecks.user
+            controller: 'mvRatingCtrl'
         })
         .when('/contact', { templateUrl: '/partials/contact/contact',
             controller: 'mvContactCtrl'

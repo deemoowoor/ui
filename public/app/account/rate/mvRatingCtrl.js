@@ -1,5 +1,9 @@
 angular.module('app').controller('mvRatingCtrl', function($scope,mvUserCUD, mvRating,mvTaking,mvIdentity,$location,$routeParams,mvRatingCUD,mvTakingCUD,mvNotifier) {
     console.log('tere');
+    var username="";
+    if(mvIdentity.currentUser!=null){
+        username=mvIdentity.currentUser.username;
+    }
     $scope.isOn=false;
 //{_id:$routeParams.id, registredPassengers: [{name:$routeParams.name}]} {registredPassengers: [{_id:$routeParams.id}]}
     mvUserCUD.check({username: $routeParams.name}).then(function(response) {
@@ -15,7 +19,7 @@ angular.module('app').controller('mvRatingCtrl', function($scope,mvUserCUD, mvRa
     });
 
 
-    mvRatingCUD.check({username: mvIdentity.currentUser.username,ratedUsername:$routeParams.name}).then(function(response) {
+    mvRatingCUD.check({username: username,ratedUsername:$routeParams.name}).then(function(response) {
 
         if(response.data.reason===0){
             $scope.isOn=true;
@@ -29,7 +33,7 @@ angular.module('app').controller('mvRatingCtrl', function($scope,mvUserCUD, mvRa
 
 
     $scope.isOwner=function(){
-        if(mvIdentity.currentUser.username===$routeParams.name){
+        if(username===$routeParams.name || username===""){
             return true
         }
         return false
@@ -60,7 +64,7 @@ angular.module('app').controller('mvRatingCtrl', function($scope,mvUserCUD, mvRa
 
         var newCommentData = {
             takingRegistredPassengerId:$routeParams.id,
-            username:mvIdentity.currentUser.username,
+            username:username,
             ratedUsername:$routeParams.name,
             ratedDate:new Date(),
             rating:rating,

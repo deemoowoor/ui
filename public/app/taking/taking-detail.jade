@@ -1,3 +1,7 @@
+.alert(ng-hide="identity.isAuthenticated()")
+    .alert-warning
+        strong Teavitus!
+        span    Kogu info vaatamiseks peate olema sisselogitud!
 .row
     .col-md-6
         .panel.panel-default
@@ -29,7 +33,7 @@
                         tr
                             td Vabu kohti
                             td {{seatCount}}
-                        tr
+                        tr(ng-show="identity.isAuthenticated()")
                             td Reisijad
                             td
                                 p(ng-repeat="pass in registredPassengers") {{pass.name }}  {{pass.date | date:'yyyy-MM-dd HH:mm:ss'}}
@@ -40,14 +44,13 @@
 
 
 
-                        tr
+                        tr(ng-show="identity.isAuthenticated()")
                             td Lisainfo {{teen}}
                             td {{info}}
 
                         tr
                             td
                             td
-                                button.btn.btn-primary(ng-click="update(taking)", ng-disabled="editUserForm.$invalid",ng-hide="isOwnerOrFull()") Kinnita
+                                button.btn.btn-primary(ng-click="update(taking)", ng-disabled="editUserForm.$invalid",ng-hide="isOwnerOrFull()",ng-show="identity.isAuthenticated()") Kinnita
                                 | &nbsp;
                                 a.btn.btn-default(href="/") Tagasi
-
