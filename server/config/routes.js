@@ -46,6 +46,7 @@ module.exports = function(app) {
     //app.put('/api/users', users.updateUserByAdmin);
     app.put('/api/users', users.updateUser);
     app.post('/api/check', users.userExists);
+
     app.put('/api/usersbyadmin', users.updateUserByAdmin);
     app.post('/api/vertify', users.vertify);
     //app.get('/api/vertify/:id', users.getUserById);
@@ -67,6 +68,7 @@ module.exports = function(app) {
 
     app.get('/api/ratings', ratings.getRatings);
     app.post('/api/ratings', ratings.addComment);
+    app.post('/api/checkrate', ratings.userRated);
     app.post('/api/ratingtrue', takings.updateToRated);
     app.post('/api/canceledByOwner', takings.canceledByOwner);
     app.post('/api/canceledByPassenger', takings.canceledByPassenger);

@@ -29,6 +29,15 @@ angular.module('app').factory('mvRatingCUD', function($http, mvIdentity, $q, mvR
             });
 
             return dfd.promise;
+        },
+        check: function(newTakingData) {
+            var dfd = $q.defer();
+            $http.post('/api/checkrate', newTakingData).then(function(response) {
+
+
+                dfd.resolve(response);
+            });
+            return dfd.promise;
         }
     }
 });

@@ -39,13 +39,13 @@ angular.module('app').factory('mvUserCUD', function($http, mvIdentity, $q, mvUse
             return dfd.promise;
         },
         check: function(newTakingData) {
-        var dfd = $q.defer();
-        $http.post('/api/check', newTakingData).then(function(response) {
+                var dfd = $q.defer();
+                $http.post('/api/check', newTakingData).then(function(response) {
 
 
-            dfd.resolve(response);
-        });
-        return dfd.promise;
+                    dfd.resolve(response);
+                });
+                return dfd.promise;
     }
 
     }

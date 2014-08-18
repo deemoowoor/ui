@@ -19,3 +19,16 @@ exports.addComment = function(req, res){
         res.send(taking);
     })
 };
+
+exports.userRated=function(req, res) {
+    var myDate=new Date();
+    console.log('rated date '+ myDate);
+    myDate.setHours(myDate.getHours() - 12)
+    var ratingData = req.body;
+    Ratings.count({ratedDate:  {$gt:myDate},username: ratingData.username,ratedUsername:ratingData.ratedUsername}).exec(function(err, collection) {
+        console.log('rated user '+ collection);
+        console.log('rated data '+ ratingData);
+        console.log('rated date '+ myDate);
+        res.send({reason:collection});
+    })
+};

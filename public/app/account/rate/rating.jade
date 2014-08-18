@@ -15,7 +15,7 @@
 
             .col-md-9
 
-                .panel.panel-default
+                .panel.panel-default(ng-hide="isOwner()")
                     .panel-heading
                         h2
                             strong Lisa
@@ -41,14 +41,14 @@
                                     input.form-control(name="comment", type="comment", placeholder="Kommentaar", ng-model="comment", required)
 
 
-                            .form-group
+                            .form-group(ng-show="isOn")   {{isOn}}
                                 .col-md-6.col-md-offset-3
                                     .pull-right
                                         button.btn.btn-primary(ng-click="add(myVar)", ng-disabled="ratingForm.$invalid") Lisa
                                         | &nbsp;
                                         a.btn.btn-default(href="/rating") Loobu
 
-                    .panel.panel-default
+                .panel.panel-default
                         .panel-heading
                             h2
                                 strong Komentaarid
