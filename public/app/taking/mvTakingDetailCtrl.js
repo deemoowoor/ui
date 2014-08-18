@@ -1,5 +1,8 @@
 angular.module("app").controller("mvTakingDetailCtrl",function($scope, mvTaking,$routeParams,mvIdentity,mvTakingCUD,mvNotifier,mvMessageCUD,$location){
-
+    var username="";
+    if(mvIdentity.currentUser!=null){
+        username=mvIdentity.currentUser.username;
+    }
     mvTaking.query().$promise.then(function(collection) {
         collection.forEach(function(taking) {
             if(taking._id === $routeParams.id) {
@@ -22,7 +25,7 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope, mvTaking,
         })
     });
     $scope.isOwnerOrFull=function(){
-        if(mvIdentity.currentUser.username===$scope.username){
+        if(username===$scope.username){
             return true
         }
 
@@ -35,13 +38,13 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope, mvTaking,
         return false
     };
     $scope.isPassenger=function(name,canceled,canceled2){
-        if(mvIdentity.currentUser.username===name && !canceled && !canceled2){
+        if(username===name && !canceled && !canceled2){
             return true
         }
         return false
     };
     $scope.isOwner=function(name,canceled,canceled2){
-        if(mvIdentity.currentUser.username===name && !canceled && !canceled2){
+        if(username===name && !canceled && !canceled2){
             return true
         }
         return false
@@ -81,7 +84,7 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope, mvTaking,
 
 
     $scope.update=function(taking){
-        $scope.registredPassengers.push({name: mvIdentity.currentUser.username, date:new Date(),rated:false})
+        $scope.registredPassengers.push({name: username, date:new Date(),rated:false})
         var newTakingData ={
 
             seatCount: $scope.seatCount-1,
@@ -99,7 +102,7 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope, mvTaking,
                 type:'conversation',
                 title:'Registreerus peale',
                 body:'Kontakt telefon: '+mvIdentity.currentUser.mobile ,
-                sender:mvIdentity.currentUser.username,
+                sender:username,
                 recepier:taking.username,
                 sentDate:new Date(),
                 getDate:'',

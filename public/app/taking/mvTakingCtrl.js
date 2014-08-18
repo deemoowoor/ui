@@ -1,9 +1,12 @@
 
 angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNotifier,mvTakingCUD,mvTaking)
 {
-
+    var username="";
+    if(mvIdentity.currentUser!=null){
+        username=mvIdentity.currentUser.username;
+    }
  $scope.mydate=moment().format("DD");
-    $scope.takings=mvTaking.query({'username': mvIdentity.currentUser.username,'deleted':false });
+    $scope.takings=mvTaking.query({'username': username,'deleted':false });
     $scope.seatPlaces = ['0','1','2','3','4','5','6','7','8','9','10','11','12'];
     $scope.seatPlace='1';
     $scope.days = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
@@ -50,7 +53,7 @@ angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNo
 
 
             mvNotifier.notify('Lõpetatud');
-            $scope.takings=mvTaking.query({'username': mvIdentity.currentUser.username,'deleted':false });
+            $scope.takings=mvTaking.query({'username': username,'deleted':false });
 
         },function(reason){
             mvNotifier.error(reason);
@@ -71,7 +74,7 @@ angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNo
 
 
             mvNotifier.notify('Taastatud');
-            $scope.takings=mvTaking.query({'username': mvIdentity.currentUser.username,'deleted':false });
+            $scope.takings=mvTaking.query({'username': username,'deleted':false });
 
         },function(reason){
             mvNotifier.error(reason);
@@ -92,7 +95,7 @@ angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNo
 
 
             mvNotifier.notify('Kustutatud');
-            $scope.takings=mvTaking.query({'username': mvIdentity.currentUser.username,'deleted':false });
+            $scope.takings=mvTaking.query({'username': username,'deleted':false });
 
         },function(reason){
             mvNotifier.error(reason);
@@ -121,7 +124,7 @@ angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNo
 
             var newTakingData = {
 
-                username: mvIdentity.currentUser.username,
+                username: username,
                 startTime:newdate,
                 aDirection:$scope.aDirection,
                 bDirection:$scope.bDirection,
