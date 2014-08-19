@@ -41,9 +41,6 @@ function createDefaultUsers() {
             hash = encrypt.hashPwd(salt, 'v');
             User.create({email:'vladimir.rokovanov@gmail.com',firstName:'Vladimir',lastName:'Rõkovanov',username:'vlarok', mobile:'53497853',salt: salt, hashed_pwd: hash,roles: ['admin','agent'], role:'Administrator',active:true,rating:10,messages:5});
             salt = encrypt.createSalt();
-            hash = encrypt.hashPwd(salt, 'triin');
-            User.create({email:'vlaroksss@hotmail.com',firstName:'Triin',lastName:'Kõrge',username:'triin', mobile:'51933516',salt: salt, hashed_pwd: hash,roles: ['agent'], role:'Tavakasutaja',active:true});
-            salt = encrypt.createSalt();
             hash = encrypt.hashPwd(salt, 'fsfwfewfd323332');
             User.create({email:'admin@peale.ee',firstName:'admin',lastName:'admin',username:'admin', mobile:'',salt: salt, hashed_pwd: hash,roles: ['agent'], role:'agent',active:false});
             hash = encrypt.hashPwd(salt, 'fsfwfewfd323332');
