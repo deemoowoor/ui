@@ -60,7 +60,7 @@ exports.createUser = function(req, res, next) {
                 from: 'vladimir.rokovanov@gmail.com',
                 to: user.email,
                 subject: 'peale.ee ',
-                text: 'kinnitage oma email http://localhost:3030/vertify/' + user._id
+                text: 'kinnitage oma email http://www.peale.ee/vertify/' + user._id
             });
         })
     })
