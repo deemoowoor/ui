@@ -21,8 +21,10 @@ angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNo
     $scope.minutes = ['00','05','10','15','20','25','30','35','40','45','50','55'];
     $scope.minute='00';
     $scope.info="tel:" + mvIdentity.currentUser.mobile;
+    var newdate=new Date($scope.year, $scope.month, $scope.day, $scope.hour, $scope.minute);
+    $scope.newDate=
     $scope.check = function() {
-        var newdate=new Date($scope.year+'-'+$scope.month+'-'+$scope.day+' '+$scope.hour+':'+$scope.minute+':00');
+
         var datenow= new Date();
         var validDate=moment($scope.year+'-'+$scope.month+'-'+$scope.day,'YYYY-MM-DD').isValid()
         if(!validDate)
@@ -103,7 +105,6 @@ angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNo
     };
     $scope.add = function() {
 
-        var newdate=new Date($scope.year+'-'+$scope.month+'-'+$scope.day+' '+$scope.hour+':'+$scope.minute+':00');
         var datenow= new Date();
         var validDate=moment($scope.year+'-'+$scope.month+'-'+$scope.day,'YYYY-MM-DD').isValid()
         if( $scope.takings.length>4){

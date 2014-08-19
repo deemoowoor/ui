@@ -11,7 +11,7 @@ angular.module('app').factory('mvWishCUD', function($http, mvIdentity, $q, mvWis
                 //  mvIdentity.currentUser = newCourse;
                 dfd.resolve(response._id);
             }, function(response) {
-                dfd.reject(response.data.reason);
+                dfd.reject(response.data);
             });
 
             return dfd.promise;
@@ -25,7 +25,7 @@ angular.module('app').factory('mvWishCUD', function($http, mvIdentity, $q, mvWis
                 //  mvIdentity.currentUser = newCourse;
                 dfd.resolve();
             }, function(response) {
-                dfd.reject(response.data.reason);
+                dfd.reject(response.data);
             });
 
             return dfd.promise;

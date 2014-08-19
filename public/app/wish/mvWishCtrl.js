@@ -17,11 +17,11 @@ angular.module('app').controller('mvWishCtrl', function($scope,mvIdentity,mvNoti
     $scope.minute='00';
     $scope.wishes=mvWish.query({'username': mvIdentity.currentUser.username,'deleted':false });
     $scope.info="tel:" + mvIdentity.currentUser.mobile;
+    var newdate=new Date($scope.year, $scope.month, $scope.day, $scope.hour, $scope.minute);
 
 
     $scope.add = function() {
 
-        var newdate = new Date($scope.year + '-' + $scope.month + '-' + $scope.day + ' ' + $scope.hour + ':' + $scope.minute + ':00');
         var datenow = new Date();
         var validDate = moment($scope.year + '-' + $scope.month + '-' + $scope.day, 'YYYY-MM-DD').isValid();
         if ($scope.wishes.length > 4) {

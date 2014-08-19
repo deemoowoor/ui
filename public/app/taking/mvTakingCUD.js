@@ -11,7 +11,8 @@ angular.module('app').factory('mvTakingCUD', function($http, mvIdentity, $q, mvT
                 //  mvIdentity.currentUser = newCourse;
                 dfd.resolve(response._id);
             }, function(response) {
-                dfd.reject(response.data.reason);
+                //enne oli .reason
+                dfd.reject(response.data);
             });
 
             return dfd.promise;
@@ -25,7 +26,8 @@ angular.module('app').factory('mvTakingCUD', function($http, mvIdentity, $q, mvT
                 //  mvIdentity.currentUser = newCourse;
                 dfd.resolve();
             }, function(response) {
-                dfd.reject(response.data.reason);
+                //enne oli .reason
+                dfd.reject(response.data);
             });
 
             return dfd.promise;
