@@ -24,8 +24,11 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope, mvTaking,
             }
         })
     });
+    $scope.test=function(muut){
+        return moment(muut).format("dddd, Do MMMM YYYY HH:mm");
+    }
     $scope.isOwnerOrFull=function(){
-        if(username===$scope.username){
+        if(username===$scope.username||username===""){
             return true
         }
 

@@ -9,11 +9,16 @@ angular.module("app").controller("mvWishesDetailCtrl",function($scope, mvWish,$r
                 $scope.startTime=taking.startTime;
                 $scope.aDirection=taking.aDirection;
                 $scope.bDirection=taking.bDirection;
+                $scope.seats=taking.seats;
+                $scope.package=taking.package;
                 $scope.canceled=taking.canceled;
                 $scope.info = taking.info;
 
             }
         })
     });
+    $scope.test=function(muut){
+        return moment(muut).format("dddd, Do MMMM YYYY HH:mm");
+    }
 
 });

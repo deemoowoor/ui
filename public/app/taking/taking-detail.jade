@@ -6,51 +6,42 @@
     .col-md-6
         .panel.panel-default
             .panel-heading
-                h2
-                    strong Andmed
+
+                h1 {{aDirection}} - {{bDirection}}
+                strong {{test(startTime)}}
+
+
+
             .panel-body
-            form.form-horizontal(name="editUserForm")
-                table.table
 
-                    tbody
-                        tr
-                            td Võtab peale
-                            td
+                .col-md-4
+                    h3 Võtab peale
 
-                                strong
-                                    a(href="/rating/{{username}}") {{username}}
+                .col-md-6
+                    h3
+                        a(href="/rating/{{username}}") {{username}}
+                .col-md-4
+                    h3
+                        Vabu kohti
+                .col-md-6
+                    h3 {{seatCount}}
+                .col-md-10(ng-show="identity.isAuthenticated()")
+                    h3
+                        strong Reisijad
+                .col-md-10(ng-repeat="pass in registredPassengers",ng-show="identity.isAuthenticated()")
+                    a(href="/rating/{{username}}") {{pass.name }}
+                    p {{pass.date | date:'yyyy-MM-dd HH:mm:ss'}}
 
-
-                        tr
-                            td Väljumine
-                            td {{startTime | date:'yyyy-MM-dd HH:mm:ss'}}
-                        tr
-                            td A suund
-                            td {{aDirection}}
-                        tr
-                            td B suund
-                            td {{bDirection}}
-                        tr
-                            td Vabu kohti
-                            td {{seatCount}}
-                        tr(ng-show="identity.isAuthenticated()")
-                            td Reisijad
-                            td
-                                p(ng-repeat="pass in registredPassengers") {{pass.name }}  {{pass.date | date:'yyyy-MM-dd HH:mm:ss'}}
-                                    btn.btn.btn-warning(ng-click="canceledByPassenger(pass._id)",ng-show="isPassenger(pass.name,pass.canceledByPassenger,pass.canceledByOwner)") Tühista
-                                    btn.btn.btn-danger(ng-click="canceledByOwner(pass._id)",ng-show="isOwner(username,pass.canceledByOwner,pass.canceledByPassenger)") Tühista
-                                    span.label.label-default(ng-show="pass.canceledByPassenger") Tühistatud reisija poolt
-                                    span.label.label-default(ng-show="pass.canceledByOwner") Tühistatud pealevõtja poolt
+                    btn.btn-sm.btn-warning(ng-click="canceledByPassenger(pass._id)",ng-show="isPassenger(pass.name,pass.canceledByPassenger,pass.canceledByOwner)") Tühista
+                    btn.btn-sm.btn-danger(ng-click="canceledByOwner(pass._id)",ng-show="isOwner(username,pass.canceledByOwner,pass.canceledByPassenger)") Tühista
+                    span.label.label-default(ng-show="pass.canceledByPassenger") Tühistatud reisija poolt
+                    span.label.label-default(ng-show="pass.canceledByOwner") Tühistatud pealevõtja poolt
 
 
+            .panel-footer
 
-                        tr(ng-show="identity.isAuthenticated()")
-                            td Lisainfo {{teen}}
-                            td {{info}}
-
-                        tr
-                            td
-                            td
-                                button.btn.btn-primary(ng-click="update(taking)", ng-disabled="editUserForm.$invalid",ng-hide="isOwnerOrFull()",ng-show="identity.isAuthenticated()") Kinnita
-                                | &nbsp;
-                                a.btn.btn-default(href="/") Tagasi
+                                    button.btn.btn-success Saada mail
+                                        i.fa.fa-envelope
+                                    button.btn.btn-primary(ng-click="update(taking)", ng-disabled="editUserForm.$invalid",ng-hide="isOwnerOrFull()") Kinnita
+                                    | &nbsp;
+                                    a.btn.btn-default(href="/") Tagasi

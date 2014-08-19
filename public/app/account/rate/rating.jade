@@ -41,8 +41,9 @@
                                     input.form-control(name="comment", type="comment", placeholder="Kommentaar", ng-model="comment", required)
 
 
-                            .form-group(ng-show="isOn")   {{isOn}}
+                            .form-group(ng-show="isOn")
                                 .col-md-6.col-md-offset-3
+
                                     .pull-right
                                         button.btn.btn-primary(ng-click="add(myVar)", ng-disabled="ratingForm.$invalid") Lisa
                                         | &nbsp;

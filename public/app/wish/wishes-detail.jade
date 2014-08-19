@@ -6,38 +6,38 @@
     .col-md-6
         .panel.panel-default
             .panel-heading
-                h2
-                    strong Andmed
+                h1 {{aDirection}} - {{bDirection}}
+                strong {{test(startTime)}}
+
+
             .panel-body
-            form.form-horizontal(name="editUserForm")
-                table.table
-                    tbody
-                        tr
-                            td Võtab peale
-                            td
 
-                                strong
-                                    a(href="/rating/{{username}}") {{username}}
+                .col-md-4
+                    h3 Soovib peale
+
+                .col-md-6
+                    h3
+                        a(href="/rating/{{username}}") {{username}}
+                .col-md-4
+                    h3 Istekohti
+                .col-md-6
+                    h3 {{seats}}
+                .col-md-4
+                    h3 Kauba/Pakivedu
+                .col-md-6
+                    h3(ng-show="package") Jah
+                    h3(ng-hide="package") Ei
+                .col-md-4
+                    h3 Lisainfo
+                .col-md-6
+                    h3 {{info}}
 
 
-                        tr
-                            td Väljumine
-                            td {{startTime | date:'yyyy-MM-dd HH:mm:ss'}}
-                        tr
-                            td A suund
-                            td {{aDirection}}
-                        tr
-                            td B suund
-                            td {{bDirection}}
+            .panel-footer
+
+                button.btn.btn-success Saada mail
+                    i.fa.fa-envelope
+                a.btn.btn-default(href="/wishes") Tagasi
 
 
-                        tr
-                            td Lisainfo {{teen}}
-                            td {{info}}
-
-                        tr
-                            td
-                            td
-
-                                a.btn.btn-default(href="/") Tagasi
 
