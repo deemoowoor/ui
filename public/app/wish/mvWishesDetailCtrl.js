@@ -1,4 +1,4 @@
-angular.module("app").controller("mvWishesDetailCtrl",function($scope, mvWish,$routeParams,mvIdentity,mvTakingCUD,mvNotifier,mvMessageCUD,$location){
+angular.module("app").controller("mvWishesDetailCtrl",function($scope, mvWish,$routeParams,$window){
 
     mvWish.query().$promise.then(function(collection) {
         collection.forEach(function(taking) {
@@ -13,7 +13,7 @@ angular.module("app").controller("mvWishesDetailCtrl",function($scope, mvWish,$r
                 $scope.package=taking.package;
                 $scope.canceled=taking.canceled;
                 $scope.info = taking.info;
-
+                $window.document.title = taking.aDirection+" - "+taking.bDirection;
             }
         })
     });
