@@ -1,9 +1,18 @@
-angular.module('app').controller('mvNavBarLoginCtrl',function($scope,$window, $http, mvNotifier, mvAuth,$location,mvRating,mvMessage,mvIdentity){
+angular.module('app').factory('Page', function() {
+    var title = '';
+    return {
+        title: function() { return title; },
+        setTitle: function(newTitle) { title = newTitle }
+    };
+});
+
+
+angular.module('app').controller('mvNavBarLoginCtrl',function($scope,$window, $http, mvNotifier, mvAuth,$location,mvRating,mvMessage,mvIdentity,Page){
     $scope.identity=mvIdentity;
 
     $scope.messages=mvIdentity.messages;
 
-
+    $scope.Page = Page;
 
    // console.log("identiti "+JSON.stringify(mvIdentity));
 
