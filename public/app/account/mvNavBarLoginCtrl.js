@@ -1,5 +1,5 @@
 angular.module('app').factory('Page', function() {
-    var title = 'default';
+    var title = '';
     return {
         title: function() { return title; },
         setTitle: function(newTitle) { title = newTitle }
@@ -21,7 +21,7 @@ angular.module('app').controller('mvNavBarLoginCtrl',function($scope,$window, $h
     $scope.Page = Page;
 
    // console.log("identiti "+JSON.stringify(mvIdentity));
-
+    Page.setTitle(  '');
 
     $scope.signin=function(username,password) {
         mvAuth.authenticateUser(username, password).then(function(success){

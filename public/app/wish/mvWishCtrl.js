@@ -1,4 +1,4 @@
-angular.module('app').controller('mvWishCtrl', function($scope,mvIdentity,mvNotifier,mvTaking,mvWish,mvWishCUD){
+angular.module('app').controller('mvWishCtrl', function($scope,mvIdentity,mvNotifier,mvTaking,mvWish,mvWishCUD,Page){
     $scope.takings=mvTaking.query({'registredPassengers.name': mvIdentity.currentUser.username });
 
 
@@ -17,7 +17,7 @@ angular.module('app').controller('mvWishCtrl', function($scope,mvIdentity,mvNoti
     $scope.minute='00';
     $scope.wishes=mvWish.query({'username': mvIdentity.currentUser.username,'deleted':false });
     $scope.info="tel:" + mvIdentity.currentUser.mobile;
-
+    Page.setTitle(  'Soovin');
 
     $scope.add = function() {
         var newdate=moment($scope.year+"-"+$scope.month+"-"+$scope.day+" "+$scope.hour+":"+$scope.minute, "YYYY-MM-DD HH:mm");

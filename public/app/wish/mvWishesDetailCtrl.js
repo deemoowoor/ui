@@ -13,12 +13,14 @@ angular.module("app").controller("mvWishesDetailCtrl",function($scope, mvWish,$r
                 $scope.package=taking.package;
                 $scope.canceled=taking.canceled;
                 $scope.info = taking.info;
-                Page.setTitle(taking.aDirection+" - "+taking.bDirection);
+                Page.setTitle(  taking.aDirection +' - '+ taking.bDirection +' '+ dateNormal(taking.startTime))
             }
         })
     });
     $scope.test=function(muut){
         return moment(muut).format("dddd, Do MMMM YYYY HH:mm");
     }
-
+    function dateNormal(muut){
+        return moment(muut).format("dddd, Do MMMM YYYY HH:mm");
+    }
 });

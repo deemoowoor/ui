@@ -22,7 +22,7 @@ angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNo
     $scope.minutes = ['00','05','10','15','20','25','30','35','40','45','50','55'];
     $scope.minute='00';
     $scope.info="tel:" + mvIdentity.currentUser.mobile;
-
+    Page.setTitle(  'Võtan peale');
 
     $scope.check = function() {
 
