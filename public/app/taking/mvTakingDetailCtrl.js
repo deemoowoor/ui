@@ -17,7 +17,7 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope,Page, mvTa
                 $scope.info = taking.info;
                 $scope.taking = taking;
 
-                Page.setTitle(  taking.aDirection +' '+ taking.bDirection +' '+ dateNormal(taking.startTime))
+                Page.setTitle(  taking.aDirection +' - '+ taking.bDirection +' '+ dateNormal(taking.startTime))
 
             }
         })
