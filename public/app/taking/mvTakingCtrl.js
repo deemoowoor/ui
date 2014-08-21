@@ -23,10 +23,11 @@ angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNo
     $scope.minute='00';
     $scope.info="tel:" + mvIdentity.currentUser.mobile;
 
-    $scope.newDate=
+
     $scope.check = function() {
-        var newdate=new Date($scope.year, $scope.month, $scope.day, $scope.hour, $scope.minute);
-        var datenow= new Date();
+
+        var newdate=moment($scope.year+"-"+$scope.month+"-"+$scope.day+" "+$scope.hour+":"+$scope.minute, "YYYY-MM-DD HH:mm");
+        var datenow= moment();
         var validDate=moment($scope.year+'-'+$scope.month+'-'+$scope.day,'YYYY-MM-DD').isValid()
         if(!validDate)
         {
@@ -105,8 +106,10 @@ angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNo
         })
     };
     $scope.add = function() {
-        var newdate=new Date($scope.year, $scope.month, $scope.day, $scope.hour, $scope.minute);
-        var datenow= new Date();
+
+        var newdate=moment($scope.year+"-"+$scope.month+"-"+$scope.day+" "+$scope.hour+":"+$scope.minute, "YYYY-MM-DD HH:mm");
+
+        var datenow= moment();
         var validDate=moment($scope.year+'-'+$scope.month+'-'+$scope.day,'YYYY-MM-DD').isValid()
         if( $scope.takings.length>4){
             mvNotifier.error('Kuulutuste arv piiratud')
@@ -156,7 +159,7 @@ angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNo
                 angular.extend(clone, extendId);
 
                 mvNotifier.notify('Sisestatud!');
-                $scope.takings.push(clone);
+                $scope.takings=mvTaking.query({'username': username,'deleted':false });
             }, function (reason) {
                 mvNotifier.error(reason);
             });

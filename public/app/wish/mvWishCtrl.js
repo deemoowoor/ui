@@ -20,9 +20,8 @@ angular.module('app').controller('mvWishCtrl', function($scope,mvIdentity,mvNoti
 
 
     $scope.add = function() {
-        var newdate=new Date($scope.year, $scope.month, $scope.day, $scope.hour, $scope.minute);
-
-        var datenow = new Date();
+        var newdate=moment($scope.year+"-"+$scope.month+"-"+$scope.day+" "+$scope.hour+":"+$scope.minute, "YYYY-MM-DD HH:mm");
+        var datenow= moment();
         var validDate = moment($scope.year + '-' + $scope.month + '-' + $scope.day, 'YYYY-MM-DD').isValid();
         if ($scope.wishes.length > 4) {
             mvNotifier.error('Kuulutuste arv piiratud')
@@ -59,7 +58,7 @@ angular.module('app').controller('mvWishCtrl', function($scope,mvIdentity,mvNoti
                     angular.extend(clone, extendId);
 
                     mvNotifier.notify('Sisestatud!');
-                    $scope.wishes.push(clone);
+                    $scope.wishes=mvWish.query({'username': mvIdentity.currentUser.username,'deleted':false });
                 }, function (reason) {
                     mvNotifier.error(reason);
                 });
