@@ -6,6 +6,12 @@ angular.module('app').factory('Page', function() {
     };
 });
 
+angular.module('app').config([
+    '$locationProvider',
+    function($locationProvider) {
+        $locationProvider.hashPrefix('!');
+    }
+]);
 
 angular.module('app').controller('mvNavBarLoginCtrl',function($scope,$window, $http, mvNotifier, mvAuth,$location,mvRating,mvMessage,mvIdentity,Page){
     $scope.identity=mvIdentity;
