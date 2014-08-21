@@ -17,11 +17,12 @@ angular.module("app").controller("mvVertifyCtrl",function($scope, mvVertify,$rou
 
                 var clone = angular.copy(data);
                 angular.extend(clone, newUserData);
-
+                mvNotifier.notify('Mail on vertifitseeritud');
+                $location.path('/');
 
                 mvVertifyCUD.vertify(clone).then(function(){
-                    mvNotifier.notify('Mail on vertifitseeritud');
-                    $location.path('/login');
+
+
                 },function(reason){
                     mvNotifier.error(reason+''+clone._id);
                 });

@@ -15,8 +15,14 @@ angular.module('app').filter('startFrom', function() {
 });
 
 
-angular.module('app').controller('mvTransportCtrl', function($scope, $filter,mvTaking, $timeout,mvTransportCUD,mvNotifier){
+angular.module('app').controller('mvTransportCtrl', function($scope, $filter,mvTaking, $timeout,mvTransportCUD,mvNotifier,mvIdentity){
+if(mvIdentity.currentUser!=null){
+    if(!mvIdentity.currentUser.active){
+        mvNotifier.warning('Palun kinnitage oma postkasti õigsust! <p> Teile oli saadetud kinnituskiri aadressile ' +mvIdentity.currentUser.email );
 
+    }
+
+}
     $scope.kuu= moment().format('dddd');
     $scope.testTransport = function() {
         var mm=Math.floor(Math.random() * 12) + 1;
