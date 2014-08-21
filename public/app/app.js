@@ -26,7 +26,7 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
         .when('/taking', { templateUrl: '/partials/taking/taking',
             controller: 'mvTakingCtrl', resolve: routeRoleChecks.user
         })
-        .when('/!/taking/:id', { templateUrl: '/partials/taking/taking-detail',
+        .when('/#!/taking/:id', { templateUrl: '/partials/taking/taking-detail',
             controller: 'mvTakingDetailCtrl'})
         .when('/taking/edit/:id', { templateUrl: '/partials/taking/edit-taking',
             controller: 'mvTakingDetailCtrl'})
