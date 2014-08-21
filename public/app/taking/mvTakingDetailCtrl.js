@@ -1,9 +1,5 @@
 angular.module("app").controller("mvTakingDetailCtrl",function($scope,Page, mvTaking,$routeParams,mvIdentity,mvTakingCUD,mvNotifier,mvMessageCUD,$location){
 
-    var username="";
-    if(mvIdentity.currentUser!=null){
-        username=mvIdentity.currentUser.username;
-    }
     mvTaking.query().$promise.then(function(collection) {
         collection.forEach(function(taking) {
             if(taking._id === $routeParams.id) {
@@ -20,12 +16,18 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope,Page, mvTa
                 $scope.canceled=taking.canceled;
                 $scope.info = taking.info;
                 $scope.taking = taking;
-                Page.setTitle(taking.aDirection +' '+ taking.bDirection)
+
+                Page.setTitle(  taking.aDirection +' '+ taking.bDirection +' '+ dateNormal(taking.startTime))
 
             }
         })
     });
-
+    function dateNormal(muut){
+        return moment(muut).format("dddd, Do MMMM YYYY HH:mm");
+    }
+    $scope.test=function(muut){
+        return moment(muut).format("dddd, Do MMMM YYYY HH:mm");
+    }
     $scope.isOwnerOrFull=function(){
         if(username===$scope.username||username===""){
             return true
@@ -40,13 +42,13 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope,Page, mvTa
         return false
     };
     $scope.isPassenger=function(name,canceled,canceled2){
-        if(username===name && !canceled && !canceled2){
+        if(mvIdentity.currentUser.username===name && !canceled){
             return true
         }
         return false
     };
-    $scope.isOwner=function(name,canceled,canceled2){
-        if(username===name && !canceled && !canceled2){
+    $scope.isOwner=function(name,canceled){
+        if(mvIdentity.currentUser.username===name && !canceled){
             return true
         }
         return false
@@ -86,7 +88,7 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope,Page, mvTa
 
 
     $scope.update=function(taking){
-        $scope.registredPassengers.push({name: username, date:new Date(),rated:false})
+        $scope.registredPassengers.push({name: mvIdentity.currentUser.username, date:new Date(),rated:false})
         var newTakingData ={
 
             seatCount: $scope.seatCount-1,
@@ -104,7 +106,7 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope,Page, mvTa
                 type:'conversation',
                 title:'Registreerus peale',
                 body:'Kontakt telefon: '+mvIdentity.currentUser.mobile ,
-                sender:username,
+                sender:mvIdentity.currentUser.username,
                 recepier:taking.username,
                 sentDate:new Date(),
                 getDate:'',
