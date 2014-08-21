@@ -1,5 +1,9 @@
 angular.module("app").controller("mvTakingDetailCtrl",function($scope,Page, mvTaking,$routeParams,mvIdentity,mvTakingCUD,mvNotifier,mvMessageCUD,$location){
+var username="";
+    if(mvIdentity.currentUser!=null){
+       username= mvIdentity.currentUser.username;
 
+    }
     mvTaking.query().$promise.then(function(collection) {
         collection.forEach(function(taking) {
             if(taking._id === $routeParams.id) {
