@@ -1,6 +1,7 @@
 
-angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNotifier,mvTakingCUD,mvTaking)
+angular.module('app').controller('mvTakingCtrl', function($scope,mvIdentity,mvNotifier,mvTakingCUD,mvTaking,Page)
 {
+
     var username="";
     if(mvIdentity.currentUser!=null){
         username=mvIdentity.currentUser.username;

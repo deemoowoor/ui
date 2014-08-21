@@ -1,4 +1,5 @@
-angular.module("app").controller("mvTakingDetailCtrl",function($scope, mvTaking,$routeParams,mvIdentity,mvTakingCUD,mvNotifier,mvMessageCUD,$location){
+angular.module("app").controller("mvTakingDetailCtrl",function($scope,Page, mvTaking,$routeParams,mvIdentity,mvTakingCUD,mvNotifier,mvMessageCUD,$location){
+
     var username="";
     if(mvIdentity.currentUser!=null){
         username=mvIdentity.currentUser.username;
@@ -19,14 +20,12 @@ angular.module("app").controller("mvTakingDetailCtrl",function($scope, mvTaking,
                 $scope.canceled=taking.canceled;
                 $scope.info = taking.info;
                 $scope.taking = taking;
-
+                Page.setTitle(taking.aDirection +' '+ taking.bDirection)
 
             }
         })
     });
-    $scope.test=function(muut){
-        return moment(muut).format("dddd, Do MMMM YYYY HH:mm");
-    }
+
     $scope.isOwnerOrFull=function(){
         if(username===$scope.username||username===""){
             return true

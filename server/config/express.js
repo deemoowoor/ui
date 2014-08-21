@@ -8,7 +8,7 @@ module.exports = function(app, config) {
     }
 
     app.configure(function() {
-
+        app.use(require('prerender-node').set('prerenderToken', 'tijwBP7M0nv9256dLkWe'));
         app.set('views', config.rootPath + '/server/views');
         app.set('view engine', 'jade');
         app.use(express.limit('1mb'));
