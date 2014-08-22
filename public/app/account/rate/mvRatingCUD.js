@@ -30,9 +30,27 @@ angular.module('app').factory('mvRatingCUD', function($http, mvIdentity, $q, mvR
 
             return dfd.promise;
         },
-        check: function(newTakingData) {
+        checkIfRated: function(newTakingData) {
             var dfd = $q.defer();
-            $http.post('/api/checkrate', newTakingData).then(function(response) {
+            $http.post('/api/checkifrated', newTakingData).then(function(response) {
+
+
+                dfd.resolve(response);
+            });
+            return dfd.promise;
+        },
+        checkIfRatedbu: function(newTakingData) {
+            var dfd = $q.defer();
+            $http.post('/api/checkifratedbu', newTakingData).then(function(response) {
+
+
+                dfd.resolve(response);
+            });
+            return dfd.promise;
+        },
+        checkpassenger: function(newTakingData) {
+            var dfd = $q.defer();
+            $http.post('/api/passengerrater', newTakingData).then(function(response) {
 
 
                 dfd.resolve(response);

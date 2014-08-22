@@ -1,14 +1,11 @@
 angular.module('app').controller('mvRatingCtrl', function($scope,mvUserCUD, mvRating,mvTaking,mvIdentity,$location,$routeParams,mvRatingCUD,mvTakingCUD,mvNotifier) {
     console.log('tere');
     var username="";
-    var user;
-    var passenger;
     if(mvIdentity.currentUser!=null){
         username=mvIdentity.currentUser.username;
     }
     $scope.isOn=false;
 //{_id:$routeParams.id, registredPassengers: [{name:$routeParams.name}]} {registredPassengers: [{_id:$routeParams.id}]}
-
     mvUserCUD.check({username: $routeParams.name}).then(function(response) {
 
         if(response.data.reason===0){
@@ -22,28 +19,11 @@ angular.module('app').controller('mvRatingCtrl', function($scope,mvUserCUD, mvRa
     });
 
 
-    mvRatingCUD.checkIfRated({username: username,ratedUsername:$routeParams.name, _id:$routeParams.id}).then(function(response) {
+    mvRatingCUD.check({username: username,ratedUsername:$routeParams.name}).then(function(response) {
 
-        if(response.data.response===1){
+        if(response.data.reason===0){
             $scope.isOn=true;
-            user=true;
-            console.log('checkIfRated' +user)
          //   $location.path('/');
-
-        }
-        // console.log(JSON.stringify(response));
-    }, function (reason) {
-        mvNotifier.error(reason);
-
-    });
-    mvRatingCUD.checkIfRatedbu({username: $routeParams.name,ratedUsername:username, _id:$routeParams.id}).then(function(response) {
-
-        if(response.data.response===1){
-            $scope.isOn=true;
-            passenger = true;
-            console.log('checkIfRatedbu' + passenger)
-            //   $location.path('/');
-
         }
         // console.log(JSON.stringify(response));
     }, function (reason) {
@@ -51,20 +31,7 @@ angular.module('app').controller('mvRatingCtrl', function($scope,mvUserCUD, mvRa
 
     });
 
- /*   mvRatingCUD.checkpassenger({username: username,ratedUsername:$routeParams.name}).then(function(response) {
 
-        if(response.data.takings>response.data.ratings){
-            $scope.isOn=true;
-            //   $location.path('/');
-
-        }
-        // console.log(JSON.stringify(response));
-    }, function (reason) {
-        mvNotifier.error(reason);
-
-    });
-
-*/
     $scope.isOwner=function(){
         if(username===$routeParams.name || username===""){
             return true
@@ -85,15 +52,13 @@ angular.module('app').controller('mvRatingCtrl', function($scope,mvUserCUD, mvRa
     }
     $scope.add = function(vars) {
 
-        var rating;
-
+        var rating
         if(vars==null||vars=='has-success')
             var rating=1;
         if(vars=="has-warning")
             var rating=0;
         if(vars=="has-error")
             var rating=-1;
-
 
 
 
@@ -107,16 +72,9 @@ angular.module('app').controller('mvRatingCtrl', function($scope,mvUserCUD, mvRa
         };
 
         var updateTakingData = {
-            _id:$routeParams.id
+            _id:$routeParams.id,
+            rated:true
         };
-        if(user){
-            updateTakingData.rated=true;
-        }
-
-        if(passenger){
-            updateTakingData.ratedByPassaneger=true;
-        }
-
 
         mvTakingCUD.setRatedToTrue(updateTakingData).then(function(responsedId) {
             $scope.isOn=false;

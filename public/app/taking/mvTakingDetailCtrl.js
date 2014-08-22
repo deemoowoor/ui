@@ -46,13 +46,20 @@ var username="";
         return false
     };
     $scope.isPassenger=function(name,canceled,canceled2){
-        if(mvIdentity.currentUser.username===name && !canceled){
+        if(mvIdentity.currentUser.username===name && !canceled && !canceled2){
             return true
         }
         return false
     };
-    $scope.isOwner=function(name,canceled){
-        if(mvIdentity.currentUser.username===name && !canceled){
+
+    $scope.ifOwner=function(istrue,name){
+        if(mvIdentity.currentUser.username===name || istrue){
+            return true
+        }
+        return false
+    }
+    $scope.isOwner=function(name,canceled,canceled2){
+        if(mvIdentity.currentUser.username===name && !canceled && !canceled2){
             return true
         }
         return false
@@ -92,7 +99,7 @@ var username="";
 
 
     $scope.update=function(taking){
-        $scope.registredPassengers.push({name: mvIdentity.currentUser.username, date:new Date(),rated:false})
+        $scope.registredPassengers.push({name: mvIdentity.currentUser.username, date:new Date(),rated:false,ratedByPassaneger:false})
         var newTakingData ={
 
             seatCount: $scope.seatCount-1,
@@ -103,7 +110,17 @@ var username="";
         angular.extend(clone, newTakingData);
 
 
-        mvTakingCUD.updateTaking(clone).then(function(){
+        mvTakingCUD.updateTaking(clone).then(function(res){
+            console.log('vastus' +JSON.stringify(res))
+            if(res.reason)
+            {
+                console.log(res.reason)
+                mvNotifier.error('Eelnevalt tühistatud ei sa resveerida');
+
+                $location.path('/');
+            }
+            else{
+
 
             var newMessageData = {
 
@@ -129,7 +146,7 @@ var username="";
 
             mvNotifier.notify('Reserveritud');
             $scope.free=$scope.free-1;
-            $location.path('/');
+            $location.path('/'); }
         },function(reason){
             mvNotifier.error(reason);
         })

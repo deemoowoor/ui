@@ -67,8 +67,12 @@ module.exports = function(app) {
 
 
     app.get('/api/ratings', ratings.getRatings);
+    app.get('/api/countratedtakings', takings.CountRatedTakings);
     app.post('/api/ratings', ratings.addComment);
-    app.post('/api/checkrate', ratings.userRated);
+    app.post('/api/checkifrated', takings.checkIfRated);
+    app.post('/api/checkifratedbu', takings.checkIfRatedByUsername);
+
+    app.post('/api/passengerrater', ratings.passengerRated);
     app.post('/api/ratingtrue', takings.updateToRated);
     app.post('/api/canceledByOwner', takings.canceledByOwner);
     app.post('/api/canceledByPassenger', takings.canceledByPassenger);

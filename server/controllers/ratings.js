@@ -1,4 +1,5 @@
 var Ratings = require('mongoose').model('Rating');
+var Takings = require('mongoose').model('Taking');
 
 exports.getRatings = function(req, res) {
     console.log('user siin: ' + req.user),
@@ -21,14 +22,35 @@ exports.addComment = function(req, res){
 };
 
 exports.userRated=function(req, res) {
-    var myDate=new Date();
-    console.log('rated date '+ myDate);
-    myDate.setHours(myDate.getHours() - 12)
+var takingsCount, ratingsCount;
     var ratingData = req.body;
-    Ratings.count({ratedDate:  {$gt:myDate},username: ratingData.username,ratedUsername:ratingData.ratedUsername}).exec(function(err, collection) {
-        console.log('rated user '+ collection);
-        console.log('rated data '+ ratingData);
-        console.log('rated date '+ myDate);
-        res.send({reason:collection});
-    })
+    Ratings.count({username: ratingData.username,ratedUsername:ratingData.ratedUsername},function(err, count) {
+        console.log('ratings'+ count);
+        //res.send({reason:collection});
+        takingsCount=count;
+        Takings.count({username:ratingData.username,'registredPassengers.name': ratingData.ratedUsername,'registredPassengers.rated': true}, function (err, count) {
+            // res.send(count);
+            console.log('takings'+ count)
+
+            ratingsCount=count;
+            res.send({ratings:takingsCount,takings:ratingsCount});
+        });
+
+    });
+};
+exports.passengerRated=function(req, res) {
+    var takingsCount, ratingsCount;
+    var ratingData = req.body;
+    Ratings.count({username: ratingData.ratedUsername,ratedUsername:ratingData.username},function(err, count) {
+        console.log('ratings'+ count);
+        //res.send({reason:collection});
+        takingsCount=count;
+        Takings.count({username:ratingData.ratedUsername,'registredPassengers.name': ratingData.username}, function (err, count) {
+            // res.send(count);
+            console.log('takings'+ count)
+            ratingsCount=count;
+            res.send({ratings:takingsCount,takings:ratingsCount});
+        });
+
+    });
 };

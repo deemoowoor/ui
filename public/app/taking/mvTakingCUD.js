@@ -21,10 +21,10 @@ angular.module('app').factory('mvTakingCUD', function($http, mvIdentity, $q, mvT
 
             var dfd = $q.defer();
 
-            newTakingData.$update().then(function() {
+            newTakingData.$update().then(function(response) {
 
                 //  mvIdentity.currentUser = newCourse;
-                dfd.resolve();
+                dfd.resolve(response);
             }, function(response) {
                 //enne oli .reason
                 dfd.reject(response.data);
