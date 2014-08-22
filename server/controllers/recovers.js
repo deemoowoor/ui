@@ -46,10 +46,10 @@ exports.createRecover = function(req, res){
                     res.send({reason:"on lihtlsat"});
 
                     transporter.sendMail({
-                        from: 'vladimir.rokovanov@gmail.com',
+                        from: 'portaal@peale.ee',
                         to: recoverEmail.email,
                         subject: 'peale.ee ',
-                        text: 'parooli taastus http://localhost:3030/recover/' + recover._id
+                        text: 'parooli taastus http://www.peale.ee/recover/' + recover._id
                     });
                 })
             }
