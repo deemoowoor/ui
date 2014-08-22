@@ -33,6 +33,8 @@ exports.userExists=function(req, res) {
 exports.createUser = function(req, res, next) {
     var userData = req.body;
     userData.username = userData.username.toLowerCase();
+    userData.email = userData.email.toLowerCase();
+
     console.log(userData.username);
     userData.salt = encrypt.createSalt();
     userData.hashed_pwd = encrypt.hashPwd(userData.salt, userData.password);
@@ -57,7 +59,7 @@ exports.createUser = function(req, res, next) {
             res.send(user);
 
             transporter.sendMail({
-                from: 'vladimir.rokovanov@gmail.com',
+                from: 'portaal@peale.ee',
                 to: user.email,
                 subject: 'peale.ee ',
                 text: 'kinnitage oma email http://www.peale.ee/vertify/' + user._id
@@ -68,16 +70,26 @@ exports.createUser = function(req, res, next) {
 
 exports.updateUser = function(req, res) {
     var userUpdates = req.body;
-
+if(!req.body.activatin){
     if(req.user._id != userUpdates._id && !req.user.hasRole('admin')) {
         res.status(403);
         return res.end();
     }
-
+console.log(userUpdates.prvemail)
+    console.log('email '+ userUpdates.email)
     req.user.firstName = userUpdates.firstName;
     req.user.lastName = userUpdates.lastName;
-    req.user.email = userUpdates.email;
+    req.user.email = userUpdates.email.toLowerCase();
+    req.user.mobile = userUpdates.mobile;
     req.user.role=userUpdates.role;
+    var first=userUpdates.email;
+    var second=userUpdates.prvemail.toLowerCase();
+    if(first !== second){
+        req.user.active=false;
+    }
+
+
+    console.log(req.user.active);
     if(userUpdates.password && userUpdates.password.length > 0) {
         req.user.salt = encrypt.createSalt();
         req.user.hashed_pwd = encrypt.hashPwd(req.user.salt, userUpdates.password);
@@ -85,7 +97,18 @@ exports.updateUser = function(req, res) {
     req.user.save(function(err) {
         if(err) { res.status(400); return res.send({reason:err.toString()});}
         res.send(req.user);
+    });}
+    else{
+
+    transporter.sendMail({
+        from: 'portaal@peale.ee',
+        to: req.user.email,
+        subject: 'peale.ee ',
+        text: 'kinnitage oma email http://www.peale.ee/vertify/' + req.user._id
     });
+    res.send('saadetud');
+
+}
 };
 
 

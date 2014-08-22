@@ -11,7 +11,7 @@ module.exports = function(app, config) {
         app.use(require('prerender-node').set('prerenderToken', 'tijwBP7M0nv9256dLkWe'));
         app.set('views', config.rootPath + '/server/views');
         app.set('view engine', 'jade');
-        app.use(express.limit('1mb'));
+        app.use(express.limit('3mb'));
         app.use(express.logger('dev'));
         app.use(express.cookieParser());
        // app.use(express.bodyParser({ keepExtensions: true, uploadDir: config.rootPath  + '/public/uploads' }));

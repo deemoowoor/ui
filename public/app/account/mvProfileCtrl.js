@@ -61,6 +61,7 @@ angular.module('app').controller('mvProfileCtrl', function($scope ,mvAuth, mvIde
     $scope.fname=mvIdentity.currentUser.firstName;
     $scope.lname=mvIdentity.currentUser.lastName;
     $scope.mobile=mvIdentity.currentUser.mobile;
+    $scope.active=mvIdentity.currentUser.active;
     $scope.fileName="/avatar/"+mvIdentity.currentUser.username+".jpg";
 
     $scope.uploadFile = function(files) {
@@ -85,22 +86,41 @@ angular.module('app').controller('mvProfileCtrl', function($scope ,mvAuth, mvIde
 
 
 
+$scope.activation=function(){
+    var newUserData ={
+        activatin:true
 
+    }
+    mvAuth.updateCurrentUser(newUserData).then(function(){
+
+        mvNotifier.notify('Mail saadetud');
+    },function(reason){
+        mvNotifier.error(reason);
+    })
+
+};
 
     $scope.update=function(){
         var newUserData ={
-
+            activatin:false,
+            prvemail:mvIdentity.currentUser.email,
             email:$scope.email,
             firstName:$scope.fname,
-            lastName:$scope.lname
+            lastName:$scope.lname,
+            mobile:$scope.mobile
+
         }
         if($scope.password && $scope.password.length>0){
             newUserData.password =$scope.password;
         }
+        if($scope.email !== mvIdentity.currentUser.email){
+            $scope.active=false;
+        }
+
         mvAuth.updateCurrentUser(newUserData).then(function(){
             mvNotifier.notify('Teie profiil on uendatud!');
         },function(reason){
             mvNotifier.error(reason);
         })
     }
-})
+});

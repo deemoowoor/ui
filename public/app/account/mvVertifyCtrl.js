@@ -1,4 +1,4 @@
-angular.module("app").controller("mvVertifyCtrl",function($scope, mvVertify,$routeParams,$location,mvVertifyCUD,mvNotifier){
+angular.module("app").controller("mvVertifyCtrl",function($scope, mvVertify,mvIdentity,$routeParams,$location,mvVertifyCUD,mvNotifier){
 
 
 
@@ -17,8 +17,9 @@ angular.module("app").controller("mvVertifyCtrl",function($scope, mvVertify,$rou
 
                 var clone = angular.copy(data);
                 angular.extend(clone, newUserData);
+                mvIdentity.currentUser.active=true;
                 mvNotifier.notify('Mail on vertifitseeritud');
-                $location.path('/profile');
+                $location.path('/');
 
                 mvVertifyCUD.vertify(clone).then(function(){
 

@@ -11,8 +11,10 @@
                     h2.text-center
                         strong {{user}}
                     span.btn.btn-primary.btn-file Muuda pilt
+
                         input(type="file", onchange="angular.element(this).scope().uploadFile(this.files)", ng-model="image")
 
+                    small  maksimum 2mb
 
         .col-md-9
             .panel.panel-blue
@@ -26,30 +28,30 @@
 
                             .form-group
                                 label.col-md-2.control-label(for="email") Email
-                                .col-md-10
+                                .col-md-8
                                     input.form-control(name="email", type="email", placeholder="Email", ng-model="email", required)
 
-                               // .col-md-2
-                                    button.btn.btn-primary(ng-click="activation()") Aktiveeri
+                                .col-md-2(ng-hide="active")
+                                    button.btn.btn-primary(ng-click="activation()") Uus kinnitus
                             .form-group
                                 label.col-md-2.control-label(for="fname") First Name
-                                .col-md-10
+                                .col-md-8
                                     input.form-control(name="fname", type="text", placeholder="First Name", ng-model="fname", required)
                             .form-group
                                 label.col-md-2.control-label(for="lname") Last Name
-                                .col-md-10
+                                .col-md-8
                                     input.form-control(name="lname", type="text", placeholder="Last Name", ng-model="lname", required)
                             .form-group
                                 label.col-md-2.control-label(for="mobile") Mobiil
-                                .col-md-10
+                                .col-md-8
                                     input.form-control(name="mobile", type="text", placeholder="Mobiil telefon", ng-model="mobile", required)
                             .form-group
                                 label.col-md-2.control-label(for="password") Password
-                                .col-md-10
+                                .col-md-8
                                     input.form-control(name="password", type="password", placeholder="Password", ng-model="password")
 
                             .form-group
-                                .col-md-10.col-md-offset-2
+                                .col-md-8.col-md-offset-2
                                     .pull-right
                                         button.btn.btn-primary(ng-click="update()", ng-disabled="signupForm.$invalid") Salvesta
                                         | &nbsp;
