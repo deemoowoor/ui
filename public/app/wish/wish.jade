@@ -70,7 +70,6 @@
                             th Lähtekoht
                             th Sihtkoht
                             th Reisiate Arv
-                            th Staatus
                     tbody
                         tr(ng-repeat="taking in takings | filter:searchText | orderBy:sortOrder")
                             td
@@ -80,9 +79,7 @@
                             td {{taking.aDirection}}
                             td {{taking.bDirection}}
                             td {{taking.seatPlace}}
-                            td
-                                span.label.label-default(ng-show="taking.canceled") Lõpetatud
-                                span.label.label-success(ng-show="!taking.canceled") Atkiivne
+
 
         .panel.panel-default
             .panel-heading
@@ -101,7 +98,7 @@
 
                             th Reisiate Arv
                             th Kauba/Pakivedu
-                            th Staatus
+                            
                     tbody
                         tr(ng-repeat="wish in wishes | filter:searchText | orderBy:sortOrder")
                             td

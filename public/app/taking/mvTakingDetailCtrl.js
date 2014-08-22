@@ -45,15 +45,16 @@ var username="";
         }
         return false
     };
-    $scope.isPassenger=function(name,canceled,canceled2){
-        if(mvIdentity.currentUser.username===name && !canceled && !canceled2){
+
+
+    $scope.ifOwner=function(passname,hinnang){
+        if(passname===mvIdentity.currentUser.username){
             return true
         }
         return false
-    };
-
-    $scope.ifOwner=function(istrue,name){
-        if(mvIdentity.currentUser.username===name || istrue){
+    }
+    $scope.ifSuccess=function(name){
+        if(mvIdentity.currentUser.username!=name){
             return true
         }
         return false
@@ -115,7 +116,7 @@ var username="";
             if(res.reason)
             {
                 console.log(res.reason)
-                mvNotifier.error('Eelnevalt tühistatud ei sa resveerida');
+                mvNotifier.error('Võimalus on kasutatud!');
 
                 $location.path('/');
             }

@@ -38,11 +38,12 @@
                     btn.btn-sm.btn-danger(ng-click="canceledByOwner(pass._id)",ng-show="isOwner(username,pass.canceledByOwner,pass.canceledByPassenger)") Tühista
                     span.label.label-default(ng-show="pass.canceledByPassenger") Tühistatud reisija poolt
                     span.label.label-default(ng-show="pass.canceledByOwner") Tühistatud pealevõtja poolt
-
-                    a.btn-sm.btn-success(href="/rating/{{pass.name}}/{{pass._id}}",ng-hide="ifOwner(pass.rated,pass.name)")
-                        i.fa.fa-star-o  Jäta kommentaar
-                    a.btn-sm.btn-success(href="/rating/{{username}}/{{pass._id}}",ng-hide="ifOwner(pass.ratedByPassaneger,username)")
-                        i.fa.fa-star-o  Jäta kommentaar
+                    div(ng-hide="pass.ratedByPassaneger")
+                        a.btn-sm.btn-danger(href="/rating/{{username}}/{{pass._id}}",ng-show="ifOwner(pass.name)")
+                            i.fa.fa-star-o  Kommenteeri reisi
+                    div(ng-hide="pass.rated")
+                        a.btn-sm.btn-success(href="/rating/{{pass.name}}/{{pass._id}}",ng-show="ifOwner(username)")
+                            i.fa.fa-star-o  Jäta kommentaar reisijast
 
 
 
