@@ -32,15 +32,16 @@ ul.nav.nav-tabs(role="tablist")
                     tr
                         th Vaata
                         th.sorting(ng-click="sort_by('username')") Kasutaja
-                        th Staatus
+
 
                         th.sorting(ng-click="predicate = 'startTime'; reverse=!reverse") Väljumine
-                        th Hind
-                        th.sorting(ng-click="predicate = 'seatPlaces'; reverse=!reverse") Vabu kohti
-                        th Kauba/Pakivedu
                         th.sorting(ng-click="sort_by('aDirection')") Lähtekoht
                         th.sorting(ng-click="sort_by('aDirection')") Sihtkoht
-                        th Aeg *
+
+                        th.sorting(ng-click="predicate = 'seatPlaces'; reverse=!reverse") Vabu kohti
+                        th Kauba/Pakivedu
+                        th Hind
+
 
 
                 tbody
@@ -51,23 +52,22 @@ ul.nav.nav-tabs(role="tablist")
                             td
                                 strong
                                     a(href="/rating/{{transport.username}}") {{transport.username}}
-                            td
+                            //td
                                 span.label.label-warning(ng-show="transport.canceled") Lõpetatud
                                 span.label.label-success(ng-show="!transport.canceled") Atkiivne
 
                             td {{test(transport.startTime)}}
-                                span.small  {{transport.startTime | date:'yyyy-MM-dd'}}
+                               // span.small  {{transport.startTime | date:'yyyy-MM-dd'}}
+                            td {{transport.aDirection}}
+                            td {{transport.bDirection}}
 
-                            td {{transport.price}} €
                             td
                                 span.label.label-primary {{transport.seatCount}}
                             td
                                 span(ng-show="transport.package")
                                     i.fa.fa-truck
                                     i.fa.fa-dropbox
-                            td {{transport.aDirection}}
-                            td {{transport.bDirection}}
-                            td {{transport.duration}}
+                            td {{transport.price}} €
 
 
 

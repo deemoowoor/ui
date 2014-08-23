@@ -39,6 +39,12 @@
                         label.col-md-3.control-label(for="seats") Istekohti
                         .col-md-6
                             input.form-control(name="seats", type="text", placeholder="Sisetage arv", ng-model="seats", required,ng-maxlength="2")
+
+                    .form-group
+                        label.col-md-3.control-label(for="price") Hind
+                        .col-md-6
+                            input.form-control(name="price", type="price", placeholder="Hind  näiteks 10 € või 0 kui tasuta", ng-model="price",ng-maxlength="10", required)
+
                     .form-group
                         label.col-md-3.control-label(for="package") Saadan pakki
                         .col-md-6
@@ -50,6 +56,7 @@
                             label.col-md-3.control-label(for="info") Info
                             .col-md-6
                                 textarea.form-control(name="info", type="text", placeholder="Info", ng-model="info")
+
                     .form-group
                         .col-md-6.col-md-offset-3
                             .pull-right
@@ -97,7 +104,9 @@
                             th Sihtkoht
 
                             th Reisiate Arv
+                            th Hind
                             th Kauba/Pakivedu
+
 
                     tbody
                         tr(ng-repeat="wish in wishes | filter:searchText | orderBy:sortOrder")
@@ -109,6 +118,7 @@
                             td {{wish.bDirection}}
                             td
                                 span.label.label-primary {{wish.seats}}
+                            td {{wish.price}}
 
                             td
                                 span(ng-show="wish.package")

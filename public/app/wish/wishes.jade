@@ -15,12 +15,13 @@ ul.nav.nav-tabs(role="tablist")
                 tr
                     th Vaata
                     th.sorting(ng-click="sort_by('username')") Kasutaja
-                    th Staatus
+
                     th.sorting(ng-click="predicate = 'startTime'; reverse=!reverse") Väljumine
-                    th Reisiate Arv
-                    th Kauba/Pakivedu
                     th.sorting(ng-click="sort_by('aDirection')") Lähtekoht
                     th.sorting(ng-click="sort_by('aDirection')") Sihtkoht
+                    th Reisiate Arv
+                    th Kauba/Pakivedu
+                    th Hind
 
             tbody
                 tr(ng-repeat="transport in customfiltered = (transports| filter:searchText) | startFrom:(bigCurrentPage-1)*itemsPerPage | limitTo:itemsPerPage | orderBy:predicate:reverse" ,ng-click="get(transport.filename)",class="{{selected}}")
@@ -30,21 +31,23 @@ ul.nav.nav-tabs(role="tablist")
                     td
                         strong
                             a(href="/rating/{{transport.username}}") {{transport.username}}
+                    td {{transport.aDirection}}
+                    td {{transport.bDirection}}
 
-                    td
+                    //td
                         span.label.label-warning(ng-show="transport.canceled") Lõpetatud
                         span.label.label-success(ng-show="!transport.canceled") Atkiivne
                     td {{test(transport.startTime)}}
-                        span.small  {{transport.startTime | date:'yyyy-MM-dd'}}
+                        //span.small  {{transport.startTime | date:'yyyy-MM-dd'}}
 
                     td
                         span.label.label-primary {{transport.seats}}
+
 
                     td
                         span(ng-show="transport.package")
                             i.fa.fa-truck
                             i.fa.fa-dropbox
-                    td {{transport.aDirection}}
-                    td {{transport.bDirection}}
+                    td {{transport.price}} €
 
         pagination(total-items="customfiltered.length",items-per-page="itemsPerPage", page="bigCurrentPage", max-size="maxSize", class="pagination-sm", boundary-links="true", rotate="false", num-pages="numPages",first-text="Esimene",last-text="Viimane",previous-text="Eelmine",next-text="Järgmine")

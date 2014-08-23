@@ -43,6 +43,7 @@ angular.module('app').controller('mvWishCtrl', function($scope,mvIdentity,mvNoti
                     aDirection: $scope.aDirection,
                     bDirection: $scope.bDirection,
                     seats: $scope.seats,
+                    price:$scope.price,
                     package: $scope.package,
                     info: $scope.info,
                     deleted: false

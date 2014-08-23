@@ -8,6 +8,7 @@ var wishSchema = mongoose.Schema({
     info:String,
     canceled:Boolean,
     seats:String,
+    price:String,
     package:Boolean,
     deleted:Boolean
     });
