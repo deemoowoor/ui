@@ -27,9 +27,9 @@
                 .col-md-6
                     h3(ng-show="package") Jah
                     h3(ng-hide="package") Ei
-                .col-md-4
+                .col-md-4(ng-show="identity.isAuthenticated()")
                     h3 Lisainfo
-                .col-md-6
+                .col-md-6(ng-show="identity.isAuthenticated()")
                     h3 {{info}}
 
 
