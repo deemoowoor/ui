@@ -40,13 +40,13 @@
                         .col-md-6
                             input.form-control(name="bDirection", type="text", placeholder="Lõpp-punkt", ng-model="bDirection",ng-maxlength="20", required)
                     .form-group
-                        label.col-md-3.control-label(for="seatPlace") Reisikaaslased
+                        label.col-md-3.control-label(for="seatPlace") Vabu kohti
                         .col-md-6
                             select.form-control(name="seatPlace",ng-model="seatPlace", ng-options="seatPlace as seatPlace for seatPlace in seatPlaces")
                     .form-group
                         label.col-md-3.control-label(for="price") Hind
                         .col-md-6
-                            input.form-control(name="price", type="price", placeholder="Hind näiteks 10 eurot", ng-model="price",ng-maxlength="10", required)
+                            input.form-control(name="price", type="price", placeholder="Hind  näiteks 10 € või 0 kui tasuta", ng-model="price",ng-maxlength="10", required)
 
                     .form-group
                         label.col-md-3.control-label(for="package") Võtan pakki
@@ -91,7 +91,7 @@
                             th Väljun
                             th Lähtekoht
                             th Sihtkoht
-                            th Reisiate Arv
+                            th Vabu kohti
                             th Hind
                             th Kauba/Pakivedu
                             th Staatus

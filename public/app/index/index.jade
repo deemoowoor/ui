@@ -1,3 +1,8 @@
+.alert(ng-show="identity.isAuthenticated()")
+    .alert-danger(ng-hide="identity.currentUser.active")
+        strong Teavitus!
+        span    Teile on saadetud kinnituskiri aadressile {{identity.currentUser.email}}. Palun kinnitage oma postkasti õigsust!
+
 
 
 //button.btn.btn-primary(ng-click="testTransport()") Test
@@ -53,15 +58,13 @@ ul.nav.nav-tabs(role="tablist")
                             td {{test(transport.startTime)}}
                                 span.small  {{transport.startTime | date:'yyyy-MM-dd'}}
 
-                            td {{transport.price}}
+                            td {{transport.price}} €
                             td
                                 span.label.label-primary {{transport.seatCount}}
                             td
                                 span(ng-show="transport.package")
                                     i.fa.fa-truck
                                     i.fa.fa-dropbox
-
-
                             td {{transport.aDirection}}
                             td {{transport.bDirection}}
                             td {{transport.duration}}
