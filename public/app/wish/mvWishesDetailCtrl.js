@@ -8,12 +8,12 @@ angular.module("app").controller("mvWishesDetailCtrl",function($scope, mvWish,$r
                 $scope.username=taking.username;
                 $scope.startTime=taking.startTime;
                 $scope.aDirection=taking.aDirection;
-                $scope.bDirection=taking.bDirection;
+                $scope.Direction=taking.Direction;
                 $scope.seats=taking.seats;
                 $scope.package=taking.package;
                 $scope.canceled=taking.canceled;
                 $scope.info = taking.info;
-                Page.setTitle(  taking.aDirection +' - '+ taking.bDirection +' '+ dateNormal(taking.startTime))
+                Page.setTitle(  taking.aDirection +' - '+ taking.Direction +' '+ dateNormal(taking.startTime))
             }
         })
     });

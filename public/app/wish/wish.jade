@@ -30,20 +30,21 @@
                     .form-group
                         label.col-md-3.control-label(for="aDirection") Lähtekoht
                         .col-md-6
-                            input.form-control(name="aDirection", type="aDirection", placeholder="Alguspunkt", ng-model="aDirection", required,ng-maxlength="20")
+                            input.form-control(name="aDirection", type="aDirection", placeholder="Lähtekoht", ng-model="aDirection", required,ng-maxlength="20")
                     .form-group
-                        label.col-md-3.control-label(for="bDirection") Sihtkoht
+                        label.col-md-3.control-label(for="Direction") Suund
                         .col-md-6
-                            input.form-control(name="bDirection", type="text", placeholder="Lõpp-punkt", ng-model="bDirection", required,ng-maxlength="20")
+                            input.form-control(name="Direction", type="text", placeholder="Suund", ng-model="Direction", required,ng-maxlength="20")
                     .form-group
-                        label.col-md-3.control-label(for="seats") Istekohti
+                        label.col-md-3.control-label(for="seatPlace") Istekohti
                         .col-md-6
-                            input.form-control(name="seats", type="text", placeholder="Sisetage arv", ng-model="seats", required,ng-maxlength="2")
+                            select.form-control(name="seatPlace",ng-model="seatPlace", ng-options="seatPlace as seatPlace for seatPlace in seatPlaces")
+
 
                     .form-group
                         label.col-md-3.control-label(for="price") Hind
                         .col-md-6
-                            input.form-control(name="price", type="price", placeholder="Hind  näiteks 10 € või 0 kui tasuta", ng-model="price",ng-maxlength="10", required)
+                            input.form-control(name="price", type="price", placeholder="Hind eurodes näiteks 10 või 0 kui tasuta", ng-model="price",ng-maxlength="10", required)
 
                     .form-group
                         label.col-md-3.control-label(for="package") Saadan pakki
@@ -75,7 +76,7 @@
                             th Vaata
                             th Väljumuse kuupäev
                             th Lähtekoht
-                            th Sihtkoht
+                            th Suund
                             th Reisiate Arv
                     tbody
                         tr(ng-repeat="taking in takings | filter:searchText | orderBy:sortOrder")
@@ -84,7 +85,7 @@
                                     i.fa.fa-search-plus
                             td {{taking.startTime | date:'yyyy-MM-dd HH:mm:ss'}}
                             td {{taking.aDirection}}
-                            td {{taking.bDirection}}
+                            td {{taking.Direction}}
                             td {{taking.seatPlace}}
 
 
@@ -101,7 +102,7 @@
                             th Vaata
                             th Väljumuse kuupäev
                             th Lähtekoht
-                            th Sihtkoht
+                            th Suund
 
                             th Reisiate Arv
                             th Hind
@@ -115,7 +116,7 @@
                                     i.fa.fa-search-plus
                             td {{wish.startTime | date:'yyyy-MM-dd HH:mm:ss'}}
                             td {{wish.aDirection}}
-                            td {{wish.bDirection}}
+                            td {{wish.Direction}}
                             td
                                 span.label.label-primary {{wish.seats}}
                             td {{wish.price}}

@@ -34,7 +34,7 @@ exports.createUser = function(req, res, next) {
     var userData = req.body;
     userData.username = userData.username.toLowerCase();
     userData.email = userData.email.toLowerCase();
-
+    userData.mobile = userData.mobile;
     console.log(userData.username);
     userData.salt = encrypt.createSalt();
     userData.hashed_pwd = encrypt.hashPwd(userData.salt, userData.password);
@@ -81,7 +81,7 @@ console.log(userUpdates.prvemail)
     req.user.lastName = userUpdates.lastName;
     req.user.email = userUpdates.email.toLowerCase();
     req.user.mobile = userUpdates.mobile;
-    req.user.role=userUpdates.role;
+    //req.user.role=userUpdates.role;
     var first=userUpdates.email;
     var second=userUpdates.prvemail.toLowerCase();
     if(first !== second){

@@ -11,10 +11,11 @@ var registredPassengersSchema = mongoose.Schema({
 
 var takingSchema = mongoose.Schema({
     username:String,
+    mobile:String,
     startTime:Date,
     price:String,
     aDirection:String,
-    bDirection:String,
+    Direction:String,
     seatPlace:String,
     seatCount:String,
     postWeight:String,

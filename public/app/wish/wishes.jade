@@ -18,7 +18,7 @@ ul.nav.nav-tabs(role="tablist")
 
                     th.sorting(ng-click="predicate = 'startTime'; reverse=!reverse") Väljumine
                     th.sorting(ng-click="sort_by('aDirection')") Lähtekoht
-                    th.sorting(ng-click="sort_by('aDirection')") Sihtkoht
+                    th.sorting(ng-click="sort_by('Direction')") Suund
                     th Reisiate Arv
                     th Kauba/Pakivedu
                     th Hind
@@ -32,7 +32,7 @@ ul.nav.nav-tabs(role="tablist")
                         strong
                             a(href="/rating/{{transport.username}}") {{transport.username}}
                     td {{transport.aDirection}}
-                    td {{transport.bDirection}}
+                    td {{transport.Direction}}
 
                     //td
                         span.label.label-warning(ng-show="transport.canceled") Lõpetatud

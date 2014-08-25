@@ -30,23 +30,26 @@
                                 label.col-md-2.control-label(for="email") Email
                                 .col-md-8
                                     input.form-control(name="email", type="email", placeholder="Email", ng-model="email", required)
-
+                                    small.help-block email ei ole avalik, kui soovite emaili kasutada kontaktina siis lisage kuulutsse
                                 .col-md-2(ng-hide="active")
                                     button.btn.btn-primary(ng-click="activation()") Uus kinnitus
                             .form-group
-                                label.col-md-2.control-label(for="fname") First Name
+                                label.col-md-2.control-label(for="fname") Eesnimi
                                 .col-md-8
-                                    input.form-control(name="fname", type="text", placeholder="First Name", ng-model="fname", required)
+                                    input.form-control(name="fname", type="text", placeholder="Eesnimi", ng-model="fname", required)
                             .form-group
-                                label.col-md-2.control-label(for="lname") Last Name
+                                label.col-md-2.control-label(for="lname") Perekonnanimi
                                 .col-md-8
-                                    input.form-control(name="lname", type="text", placeholder="Last Name", ng-model="lname", required)
+                                    input.form-control(name="lname", type="text", placeholder="Perekonnanimi", ng-model="lname", required)
                             .form-group
                                 label.col-md-2.control-label(for="mobile") Mobiil
+
                                 .col-md-8
                                     input.form-control(name="mobile", type="text", placeholder="Mobiil telefon", ng-model="mobile", required)
+                                    small.help-block on avalik ainult kasutajale kellega koos sõidate, või siis kui lisate soovi kuulutuse
+
                             .form-group
-                                label.col-md-2.control-label(for="password") Password
+                                label.col-md-2.control-label(for="password") Parool
                                 .col-md-8
                                     input.form-control(name="password", type="password", placeholder="Password", ng-model="password")
 

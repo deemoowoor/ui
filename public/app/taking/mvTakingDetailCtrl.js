@@ -12,8 +12,9 @@ var username="";
                 $scope.username=taking.username;
                 $scope.startTime=taking.startTime;
                 $scope.aDirection=taking.aDirection;
-                $scope.bDirection=taking.bDirection;
+                $scope.Direction=taking.Direction;
                 $scope.seatPlace=taking.seatPlace;
+                $scope.mobile=taking.mobile;
                 $scope.seatCount=taking.seatCount;
                 $scope.free=taking.seatPlace-taking.registredPassengers.length;
                 $scope.registredPassengers =taking.registredPassengers;
@@ -21,7 +22,7 @@ var username="";
                 $scope.info = taking.info;
                 $scope.taking = taking;
 
-                Page.setTitle(  taking.aDirection +' - '+ taking.bDirection +' '+ dateNormal(taking.startTime))
+                Page.setTitle(  taking.aDirection +' - '+ taking.Direction +' '+ dateNormal(taking.startTime))
 
             }
         })
@@ -60,6 +61,13 @@ var username="";
         return false
     }
     $scope.isOwner=function(name,canceled,canceled2){
+        if(mvIdentity.currentUser.username===name && !canceled && !canceled2){
+            return true
+        }
+        return false
+    };
+
+    $scope.isPassenger=function(name,canceled,canceled2){
         if(mvIdentity.currentUser.username===name && !canceled && !canceled2){
             return true
         }
@@ -147,7 +155,8 @@ var username="";
 
             mvNotifier.notify('Reserveritud');
             $scope.free=$scope.free-1;
-            $location.path('/'); }
+            $location.path('/');
+          }
         },function(reason){
             mvNotifier.error(reason);
         })

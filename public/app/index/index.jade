@@ -29,7 +29,7 @@ ul.nav.nav-tabs(role="tablist")
 
                         th.sorting(ng-click="predicate = 'startTime'; reverse=!reverse") Väljumine
                         th.sorting(ng-click="sort_by('aDirection')") Lähtekoht
-                        th.sorting(ng-click="sort_by('aDirection')") Sihtkoht
+                        th.sorting(ng-click="sort_by('Direction')") Suund
 
                         th.sorting(ng-click="predicate = 'seatPlaces'; reverse=!reverse") Vabu kohti
                         th Kauba/Pakivedu
@@ -52,7 +52,7 @@ ul.nav.nav-tabs(role="tablist")
                             td {{test(transport.startTime)}}
                                // span.small  {{transport.startTime | date:'yyyy-MM-dd'}}
                             td {{transport.aDirection}}
-                            td {{transport.bDirection}}
+                            td {{transport.Direction}}
 
                             td
                                 span.label.label-primary {{transport.seatCount}}

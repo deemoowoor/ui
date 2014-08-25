@@ -4,7 +4,7 @@ var wishSchema = mongoose.Schema({
     username:String,
     startTime:Date,
     aDirection:String,
-    bDirection:String,
+    Direction:String,
     info:String,
     canceled:Boolean,
     seats:String,

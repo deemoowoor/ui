@@ -3,11 +3,11 @@
         strong Teavitus!
         span    Kogu info vaatamiseks peate olema sisselogitud!
 .row
-    .col-md-6
+    .col-md-7
         .panel.panel-default
             .panel-heading
 
-                h1 {{aDirection}} - {{bDirection}}
+                h1 {{aDirection}} > {{Direction}}
                 strong {{test(startTime)}}
 
 
@@ -34,16 +34,26 @@
                     h3
                         strong Reisijad
                 .col-md-10(ng-repeat="pass in registredPassengers",ng-show="identity.isAuthenticated()")
-                    a(href="/rating/{{pass.name}}") {{pass.name }}
-                    span {{pass.date | date:'yyyy-MM-dd HH:mm:ss'}}
+                    .col-md-1
+                        a(href="/rating/{{pass.name}}") {{pass.name }}
+                    .col-md-4
+                        span {{pass.date | date:'yyyy-MM-dd HH:mm:ss'}}
+                    .col-md-2(ng-show="isPassenger(pass.name,pass.canceledByPassenger,pass.canceledByOwner)")
+                        btn.btn-sm.btn-warning(ng-click="canceledByPassenger(pass._id)") Tühista
+                    .col-md-2(ng-show="isOwner(username,pass.canceledByOwner,pass.canceledByPassenger)")
+                        btn.btn-sm.btn-danger(ng-click="canceledByOwner(pass._id)") Tühista
 
-                    btn.btn-sm.btn-warning(ng-click="canceledByPassenger(pass._id)",ng-show="isPassenger(pass.name,pass.canceledByPassenger,pass.canceledByOwner)") Tühista
-                    btn.btn-sm.btn-danger(ng-click="canceledByOwner(pass._id)",ng-show="isOwner(username,pass.canceledByOwner,pass.canceledByPassenger)") Tühista
-                    span.label.label-default(ng-show="pass.canceledByPassenger") Tühistatud reisija poolt
-                    span.label.label-default(ng-show="pass.canceledByOwner") Tühistatud pealevõtja poolt
-                    div(ng-hide="pass.ratedByPassaneger")
-                        a.btn-sm.btn-danger(href="/rating/{{username}}/{{pass._id}}",ng-show="ifOwner(pass.name)")
-                            i.fa.fa-star-o  Kommenteeri reisi
+                    .col-md-2(ng-show="pass.canceledByPassenger")
+                        span.label.label-default Tühistatud reisija poolt
+                    .col-md-2(ng-show="pass.canceledByOwner")
+                        span.label.label-default Tühistatud pealevõtja poolt
+                    .col-md-5(ng-hide="pass.ratedByPassaneger")
+
+                            a.btn-sm.btn-danger(href="/rating/{{username}}/{{pass._id}}",ng-show="ifOwner(pass.name)")
+                                i.fa.fa-star-o  Kommenteeri reisi
+
+                    .col-md-10(ng-show="ifOwner(pass.name)")
+                        span {{username}} mobiili number on: {{mobile}}
                     div(ng-hide="pass.rated")
                         a.btn-sm.btn-success(href="/rating/{{pass.name}}/{{pass._id}}",ng-show="ifOwner(username)")
                             i.fa.fa-star-o  Jäta kommentaar reisijast

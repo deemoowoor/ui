@@ -8,6 +8,8 @@ angular.module('app').controller('mvWishCtrl', function($scope,mvIdentity,mvNoti
     $scope.day=moment().format("DD");
     $scope.months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
     $scope.month=moment().format("MM");
+    $scope.seatPlaces = ['0','1','2','3','4','5','6','7','8','9','10','11','12'];
+    $scope.seatPlace='1';
 
     $scope.years = ['2014','2015'];
     $scope.year=moment().format("YYYY");
@@ -16,7 +18,7 @@ angular.module('app').controller('mvWishCtrl', function($scope,mvIdentity,mvNoti
     $scope.minutes = ['00','05','10','15','20','25','30','35','40','45','50','55'];
     $scope.minute='00';
     $scope.wishes=mvWish.query({'username': mvIdentity.currentUser.username,'deleted':false });
-    $scope.info="tel:" + mvIdentity.currentUser.mobile;
+    $scope.info="Mobiil:" + mvIdentity.currentUser.mobile;
     Page.setTitle(  'Soovin');
 
     $scope.add = function() {
@@ -41,8 +43,8 @@ angular.module('app').controller('mvWishCtrl', function($scope,mvIdentity,mvNoti
                     username: mvIdentity.currentUser.username,
                     startTime: newdate,
                     aDirection: $scope.aDirection,
-                    bDirection: $scope.bDirection,
-                    seats: $scope.seats,
+                    Direction: $scope.Direction,
+                    seats: $scope.seatPlace,
                     price:$scope.price,
                     package: $scope.package,
                     info: $scope.info,

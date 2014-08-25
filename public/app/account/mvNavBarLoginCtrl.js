@@ -31,7 +31,7 @@ angular.module('app').controller('mvNavBarLoginCtrl',function($scope,$window, $h
                 $location.path('/');
             }else
             {
-                mvNotifier.notify('Sisselogimine ebaõnnestus!');
+                mvNotifier.error('Sisselogimine ebaõnnestus!');
             }
         });
     }

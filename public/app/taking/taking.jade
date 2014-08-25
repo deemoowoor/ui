@@ -34,11 +34,11 @@
                     .form-group
                         label.col-md-3.control-label(for="aDirection") Lähtekoht
                         .col-md-6
-                            input.form-control(name="aDirection", type="aDirection", placeholder="Alguspunkt", ng-model="aDirection",ng-maxlength="20", required)
+                            input.form-control(name="aDirection", type="aDirection", placeholder="Kus kohast peale võtate?", ng-model="aDirection",ng-maxlength="20", required)
                     .form-group
-                        label.col-md-3.control-label(for="bDirection") Sihtkoht
+                        label.col-md-3.control-label(for="Direction") Suund
                         .col-md-6
-                            input.form-control(name="bDirection", type="text", placeholder="Lõpp-punkt", ng-model="bDirection",ng-maxlength="20", required)
+                            input.form-control(name="Direction", type="text", placeholder="nt: Tallinn-Rapla-Türi-Viljandi", ng-model="Direction",ng-maxlength="30", required)
                     .form-group
                         label.col-md-3.control-label(for="seatPlace") Vabu kohti
                         .col-md-6
@@ -46,7 +46,7 @@
                     .form-group
                         label.col-md-3.control-label(for="price") Hind
                         .col-md-6
-                            input.form-control(name="price", type="price", placeholder="Hind  näiteks 10 € või 0 kui tasuta", ng-model="price",ng-maxlength="10", required)
+                            input.form-control(name="price", type="price", placeholder="Hind  eurodes näiteks 10 või 0 kui tasuta", ng-model="price",ng-maxlength="10", required)
 
                     .form-group
                         label.col-md-3.control-label(for="package") Võtan pakki
@@ -90,7 +90,7 @@
                             th Vaata
                             th Väljun
                             th Lähtekoht
-                            th Sihtkoht
+                            th Suund
                             th Vabu kohti
                             th Hind
                             th Kauba/Pakivedu
@@ -102,7 +102,7 @@
                                     i.fa.fa-search-plus
                             td {{taking.startTime | date:'yyyy-MM-dd HH:mm:ss'}}
                             td {{taking.aDirection}}
-                            td {{taking.bDirection}}
+                            td {{taking.Direction}}
                             td
                                 span.label.label-primary {{taking.seatPlace}}
                             td {{taking.price}}
