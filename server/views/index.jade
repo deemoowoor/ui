@@ -46,28 +46,6 @@ block main-content
                                 a.submenu(href="/wish", ng-class="{ active: isActive('/wish') }")
                                     i.fa.fa-user
                                     span.hidden-sm.text Soovin peale
-                            //li
-                                a.submenu(href="/groups", ng-class="{ active: isActive('/groups') }")
-                                    i.fa.fa-users
-                                    span.hidden-sm.text Soovin saata
-                    li(ng-show="identity.currentUser.isAdmin()")
-                        a.dropmenu(href="/#")
-                            i.fa.fa-edit
-                            span.hidden-sm.text User
-                            span.chevron.closed
-                        ul
-                            li
-                                a.submenu(href="/users", ng-class="{ active: isActive('/users') }")
-                                    i.fa.fa-user
-                                    span.hidden-sm.text Users
-                            li
-                                a.submenu(href="/roles", ng-class="{ active: isActive('/roles') }")
-                                    i.fa.fa-shield
-                                    span.hidden-sm.text Roles
-                            li
-                                a.submenu(href="/groups", ng-class="{ active: isActive('/groups') }")
-                                    i.fa.fa-users
-                                    span.hidden-sm.text Groups
 
 
                 a.full.visible-md.visible-lg(href="/#", id="main-menu-min")

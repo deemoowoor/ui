@@ -31,31 +31,31 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
         .when('/taking/edit/:id', { templateUrl: '/partials/taking/edit-taking',
             controller: 'mvTakingDetailCtrl'})
         .when('/messages', { templateUrl: '/partials/message/message',
-            controller: 'mvMessageCtrl', resolve: routeRoleChecks.admin
+            controller: 'mvMessageCtrl'
         })
         .when('/messages/newmessage', { templateUrl: '/partials/message/newmessage',
-            controller: 'mvMessageCtrl', resolve: routeRoleChecks.admin
+            controller: 'mvMessageCtrl'
         })
         .when('/messages/view-message/:id', { templateUrl: '/partials/message/view-message',
-            controller: 'mvViewMessage', resolve: routeRoleChecks.admin
+            controller: 'mvViewMessage'
         })
 
         .when('/users', { templateUrl: '/partials/user/user',
-            controller: 'mvUserCtrl', resolve: routeRoleChecks.admin
+            controller: 'mvUserCtrl'
         })
         .when('/users/edit-user/:id', { templateUrl: '/partials/user/edit-user',
             controller: 'mvEditUserCtrl'})
         .when('/roles', { templateUrl: '/partials/role/role',
-            controller: 'mvRoleCtrl', resolve: routeRoleChecks.admin
+            controller: 'mvRoleCtrl'
         })
         .when('/roles/edit-role/:id', { templateUrl: '/partials/role/edit-role',
-            controller: 'mvEditRoleCtrl', resolve: routeRoleChecks.admin
+            controller: 'mvEditRoleCtrl'
         })
         .when('/groups', { templateUrl: '/partials/group/group',
-            controller: 'mvGroupCtrl', resolve: routeRoleChecks.admin
+            controller: 'mvGroupCtrl'
         })
         .when('/groups/edit-group/:id', { templateUrl: '/partials/group/edit-group',
-            controller: 'mvEditGroupCtrl', resolve: routeRoleChecks.admin
+            controller: 'mvEditGroupCtrl'
         })
         .when('/signup', { templateUrl: '/partials/account/signup',
             controller: 'mvSignupCtrl'
@@ -64,10 +64,10 @@ angular.module('app').config(function($routeProvider, $locationProvider) {
             controller: 'mvProfileCtrl', resolve: routeRoleChecks.user
         })
         .when('/custom', { templateUrl: '/partials/courses/course-list',
-            controller: 'mvCourseListCtrl', resolve: routeRoleChecks.admin
+            controller: 'mvCourseListCtrl'
         })
         .when('/custom/:id', { templateUrl: '/partials/courses/course-details',
-            controller: 'mvCourseDetailCtrl', resolve: routeRoleChecks.admin
+            controller: 'mvCourseDetailCtrl'
         })
         .when('/login', { templateUrl: '/partials/account/login',
             controller: 'mvNavBarLoginCtrl'

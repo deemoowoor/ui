@@ -52,8 +52,11 @@
                             a.btn-sm.btn-danger(href="/rating/{{username}}/{{pass._id}}",ng-show="ifOwner(pass.name)")
                                 i.fa.fa-star-o  Kommenteeri reisi
 
-                    .col-md-10(ng-show="ifOwner(pass.name)")
-                        span {{username}} mobiili number on: {{mobile}}
+
+                    .col-md-5(ng-show="ifOwner(pass.name)")
+                        a.btn.btn-success(href="tel:{{mobile}}")
+                            i.fa.fa-phone  Helista {{mobile}}
+                        //span {{username}} mobiili number on: {{mobile}}
                     div(ng-hide="pass.rated")
                         a.btn-sm.btn-success(href="/rating/{{pass.name}}/{{pass._id}}",ng-show="ifOwner(username)")
                             i.fa.fa-star-o  Jäta kommentaar reisijast
