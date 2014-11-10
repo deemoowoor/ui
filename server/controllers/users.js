@@ -9,7 +9,7 @@ var transporter = nodemailer.createTransport(smtpTransport({
     port: 587,
     auth: {
         user: 'portaal@peale.ee',
-        pass: '235562690Portaal'
+        pass: 'Portaal'
     },
     maxConnections: 5,
     maxMessages: 10
